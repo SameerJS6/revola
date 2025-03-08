@@ -1,0 +1,55 @@
+name: Bug Report
+description: Report an issue with the project.
+title: "🐞Bug: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Thanks for taking time to fill out this bug report!
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: Provide a clear and concise description of the bug. If you plan to submit a PR for this issue, mention it here.
+      placeholder: Describe the bug in detail...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Provide a step-by-step guide to reproduce the issue.
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. Observe the issue...
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser-type
+    attributes:
+      label: Browser
+      description: Select the browser where you are experiencing this issue. If your browser is not listed, choose one that uses the same rendering engine (Chromium, Gecko, or WebKit).
+      multiple: false
+      options:
+        - Google Chrome
+        - Microsoft Edge
+        - Firefox
+        - Safari
+        - Zen
+        - Arc
+    validations:
+      required: true
+
+  - type: input
+    id: browser-version
+    attributes:
+      label: Browser Version
+      placeholder: "e.g., 131.0.5794"
+    validations:
+      required: true
