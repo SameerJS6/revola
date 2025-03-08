@@ -1,0 +1,28 @@
+name: Feature Request
+description: Request a Feature for the project
+title: "✨feat: "
+labels:
+  - feat
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Thanks for taking time to fill out this feature request!
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: Describe the feature you would like to see in the project.
+      placeholder: Provide a clear and concise description of the feature.
+      value: "I would like to request a feature that..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other relevant details or context for this feature request.
+      placeholder: Additional details here...
+      value: "This feature would be useful because..."
