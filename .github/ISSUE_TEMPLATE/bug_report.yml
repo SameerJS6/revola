@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report an issue with the project.
-title: "🐞Bug: "
+title: "🐞bug: "
 labels:
   - bug
 body:
