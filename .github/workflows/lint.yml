@@ -35,7 +35,7 @@ jobs:
       - name: Pnpm cache
         uses: actions/cache@v4
         with:
-          path: ${{steps.pnpm-cache.outcome.pnpm_cache_dir}}
+          path: ${{steps.pnpm-cache.outputs.pnpm_cache_dir}}
           key: ${{runner.os}}-pnpm-cache-${{hashFiles('**/pnpm-lock.yaml')}}
           restore-keys: |
             ${{runner.os}}-pnpm-cache-
