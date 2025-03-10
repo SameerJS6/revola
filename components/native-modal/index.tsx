@@ -66,17 +66,17 @@ const NativeModalOverlay = ({ className, ...props }: React.ComponentProps<typeof
 };
 NativeModalOverlay.displayName = "NativeModalOverlay";
 
-const NativeModalContent = ({
-  className,
-  children,
-  ...props
-}: React.ComponentProps<typeof DialogPrimitive.DialogContent>) => {
+const NativeModalContent = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof RadixDialogContent> & { hideCloseButton?: boolean }
+>(({ className, children, hideCloseButton = false, ...props }, ref) => {
   const isMobile = useMediaQuery("(min-width: 768px)");
   const NativeModalContent = isMobile ? RadixDialogContent : VaulDrawerContent;
   return (
     <NativeModalPortal>
       <NativeModalOverlay />
       <NativeModalContent
+        ref={ref}
         {...props}
         className={cn(
           "fixed z-50 bg-background",
@@ -87,15 +87,17 @@ const NativeModalContent = ({
         )}
       >
         {!isMobile && <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-muted-foreground/25 dark:bg-muted" />}
-        <NativeModalClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity focus:outline-none focus:ring focus:ring-ring disabled:pointer-events-none">
-          <X className="size-4" />
-          <span className="sr-only">close</span>
-        </NativeModalClose>
+        {!hideCloseButton && (
+          <NativeModalClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity focus:outline-none focus:ring focus:ring-ring disabled:pointer-events-none">
+            <X className="size-4" />
+            <span className="sr-only">close</span>
+          </NativeModalClose>
+        )}
         {children}
       </NativeModalContent>
     </NativeModalPortal>
   );
-};
+});
 NativeModalContent.displayName = "NativeModalContent";
 
 const NativeModalClose = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.DialogClose>) => {
