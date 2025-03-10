@@ -15,10 +15,25 @@ import { X } from "lucide-react";
 
 type DrawerType = React.ComponentProps<typeof DrawerPrimitive.Drawer>;
 
-const NativeModal = ({ shouldScaleBackground = true, ...props }: DrawerType) => {
+const NativeModal = ({
+  shouldScaleBackground = true,
+  open: controlledOpen,
+  onOpenChange: controlledOnOpenChange,
+  ...props
+}: DrawerType) => {
+  const [internalState, setInternalState] = React.useState<boolean>(false);
+
+  const isControlledOpen = typeof controlledOpen === "undefined";
+  const toggleInternalState = () => setInternalState((prev) => !prev);
+
+  const open = isControlledOpen ? internalState : controlledOpen;
+  const onOpenChange = isControlledOpen ? toggleInternalState : controlledOnOpenChange;
+
   const isMobile = useMediaQuery("(min-width: 768px)");
   const NativeModal = isMobile ? DialogPrimitive.Dialog : DrawerPrimitive.Drawer;
-  return <NativeModal shouldScaleBackground={shouldScaleBackground} {...props} />;
+  return (
+    <NativeModal shouldScaleBackground={shouldScaleBackground} open={open} onOpenChange={onOpenChange} {...props} />
+  );
 };
 NativeModal.displayName = "NativeModal";
 
