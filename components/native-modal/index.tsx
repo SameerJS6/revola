@@ -1,9 +1,11 @@
 "use client";
 
 import * as React from "react";
-import * as DialogPrimitive from "@/components/ui/dialog";
-import * as DrawerPrimitive from "@/components/ui/drawer";
-import { DialogContent as RadixDialogContent } from "@radix-ui/react-dialog";
+// import * as DialogPrimitive from "@/components/ui/dialog";
+// import * as DrawerPrimitive from "@/components/ui/drawer";
+// import { DialogContent as RadixDialogContent } from "@radix-ui/react-dialog";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { Drawer as DrawerPrimitive } from "vaul";
 import { Content as VaulDrawerContent } from "vaul";
 import useMediaQuery from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
@@ -13,7 +15,7 @@ import { X } from "lucide-react";
 
 // 1. Manage vertical margin of content on drawer.
 
-type DrawerType = React.ComponentProps<typeof DrawerPrimitive.Drawer>;
+type DrawerType = React.ComponentProps<typeof DrawerPrimitive.Root>;
 
 const NativeModal = ({
   shouldScaleBackground = true,
@@ -30,30 +32,36 @@ const NativeModal = ({
   const onOpenChange = isControlledOpen ? toggleInternalState : controlledOnOpenChange;
 
   const isMobile = useMediaQuery("(min-width: 768px)");
-  const NativeModal = isMobile ? DialogPrimitive.Dialog : DrawerPrimitive.Drawer;
+  const NativeModal = isMobile ? DialogPrimitive.Root : DrawerPrimitive.Root;
   return (
-    <NativeModal shouldScaleBackground={shouldScaleBackground} open={open} onOpenChange={onOpenChange} {...props} />
+    <NativeModal
+      shouldScaleBackground={shouldScaleBackground}
+      open={open}
+      onOpenChange={onOpenChange}
+      {...props}
+      {...(!isMobile && { autoFocus: true })}
+    />
   );
 };
 NativeModal.displayName = "NativeModal";
 
-const NativeModalTrigger = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.DialogTrigger>) => {
+const NativeModalTrigger = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) => {
   const isMobile = useMediaQuery("(min-width: 768px)");
-  const NativeModalTrigger = isMobile ? DialogPrimitive.DialogTrigger : DrawerPrimitive.DrawerTrigger;
+  const NativeModalTrigger = isMobile ? DialogPrimitive.Trigger : DrawerPrimitive.Trigger;
   return <NativeModalTrigger {...props} />;
 };
 NativeModalTrigger.displayName = "NativeModalTrigger";
 
-const NativeModalPortal = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.DialogPortal>) => {
+const NativeModalPortal = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Portal>) => {
   const isMobile = useMediaQuery("(min-width: 768px)");
-  const NativeModalPortal = isMobile ? DialogPrimitive.DialogPortal : DrawerPrimitive.DrawerPortal;
+  const NativeModalPortal = isMobile ? DialogPrimitive.Portal : DrawerPrimitive.Portal;
   return <NativeModalPortal {...props} />;
 };
 NativeModalPortal.displayName = "NativeModalPortal";
 
-const NativeModalOverlay = ({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.DialogOverlay>) => {
+const NativeModalOverlay = ({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Overlay>) => {
   const isMobile = useMediaQuery("(min-width: 768px)");
-  const NativeModalOverlay = isMobile ? DialogPrimitive.DialogOverlay : DrawerPrimitive.DrawerOverlay;
+  const NativeModalOverlay = isMobile ? DialogPrimitive.Overlay : DrawerPrimitive.Overlay;
   return (
     <NativeModalOverlay
       {...props}
@@ -66,12 +74,19 @@ const NativeModalOverlay = ({ className, ...props }: React.ComponentProps<typeof
 };
 NativeModalOverlay.displayName = "NativeModalOverlay";
 
+const NativeModalClose = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) => {
+  const isMobile = useMediaQuery("(min-width: 768px)");
+  const NativeModalClose = isMobile ? DialogPrimitive.Close : DrawerPrimitive.Close;
+  return <NativeModalClose aria-label="Close" {...props} />;
+};
+NativeModalClose.displayName = "NativeModalClose";
+
 const NativeModalContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof RadixDialogContent> & { hideCloseButton?: boolean }
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { hideCloseButton?: boolean }
 >(({ className, children, hideCloseButton = false, ...props }, ref) => {
   const isMobile = useMediaQuery("(min-width: 768px)");
-  const NativeModalContent = isMobile ? RadixDialogContent : VaulDrawerContent;
+  const NativeModalContent = isMobile ? DialogPrimitive.Content : VaulDrawerContent;
   return (
     <NativeModalPortal>
       <NativeModalOverlay />
@@ -81,8 +96,8 @@ const NativeModalContent = React.forwardRef<
         className={cn(
           "fixed z-50 bg-background",
           isMobile
-            ? "left-[50%] top-[50%] grid h-auto max-h-[min(640px,80vh)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]"
-            : "inset-x-0 bottom-0 mt-24 flex h-fit max-h-[80%] flex-col rounded-t-[10px] border pt-4",
+            ? "left-[50%] top-[50%] grid h-auto max-h-[min(640px,80dvh)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]"
+            : "inset-x-0 bottom-0 mt-24 flex h-fit max-h-[85%] flex-col rounded-t-[10px] border pt-4",
           className
         )}
       >
@@ -102,13 +117,6 @@ const NativeModalContent = React.forwardRef<
 });
 NativeModalContent.displayName = "NativeModalContent";
 
-const NativeModalClose = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.DialogClose>) => {
-  const isMobile = useMediaQuery("(min-width: 768px)");
-  const NativeModalClose = isMobile ? DialogPrimitive.DialogClose : DrawerPrimitive.DrawerClose;
-  return <NativeModalClose {...props} />;
-};
-NativeModalClose.displayName = "NativeModalClose";
-
 const NativeModalHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return <div className={cn("flex flex-col gap-1.5 p-4 text-center md:p-0 md:text-left", className)} {...props} />;
 };
@@ -125,11 +133,11 @@ const NativeModalFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDiv
 NativeModalFooter.displayName = "NativeModalFooter";
 
 const NativeModalTitle = React.forwardRef<
-  React.ComponentRef<typeof DialogPrimitive.DialogTitle>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.DialogTitle>
+  React.ComponentRef<typeof DialogPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
 >(({ className, ...props }, ref) => {
   const isMobile = useMediaQuery("(min-width: 768px)");
-  const NativeModalTitle = isMobile ? DialogPrimitive.DialogTitle : DrawerPrimitive.DrawerTitle;
+  const NativeModalTitle = isMobile ? DialogPrimitive.Title : DrawerPrimitive.Title;
   return (
     <NativeModalTitle
       ref={ref}
@@ -142,11 +150,11 @@ const NativeModalTitle = React.forwardRef<
 NativeModalTitle.displayName = "NativeModalTitle";
 
 const NativeModalDescription = React.forwardRef<
-  React.ComponentRef<typeof DialogPrimitive.DialogDescription>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.DialogDescription>
+  React.ComponentRef<typeof DialogPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => {
   const isMobile = useMediaQuery("(min-width: 768px)");
-  const NativeModalDescription = isMobile ? DialogPrimitive.DialogDescription : DrawerPrimitive.DrawerDescription;
+  const NativeModalDescription = isMobile ? DialogPrimitive.Description : DrawerPrimitive.Description;
   return <NativeModalDescription ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />;
 });
 
