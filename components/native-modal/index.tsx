@@ -86,7 +86,9 @@ const NativeModalContent = React.forwardRef<
           className
         )}
       >
-        {!isMobile && <div className="mx-auto mb-4 h-1.5 w-12 rounded-full bg-muted-foreground/25 dark:bg-muted" />}
+        {!isMobile && (
+          <DrawerPrimitive.Handle className="mb-4 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-2.5 data-[vaul-handle]:w-14 dark:bg-muted" />
+        )}
         {!hideCloseButton && (
           <NativeModalClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity focus:outline-none focus:ring focus:ring-ring disabled:pointer-events-none">
             <X className="size-4" />
