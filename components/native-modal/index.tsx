@@ -90,7 +90,7 @@ const NativeModalContent = React.forwardRef<
           <DrawerPrimitive.Handle className="mb-4 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-2.5 data-[vaul-handle]:w-14 dark:bg-muted" />
         )}
         {!hideCloseButton && (
-          <NativeModalClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity focus:outline-none focus:ring focus:ring-ring disabled:pointer-events-none">
+          <NativeModalClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
             <X className="size-4" />
             <span className="sr-only">close</span>
           </NativeModalClose>
