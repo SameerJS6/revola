@@ -15,7 +15,9 @@ type DrawerType = {
 } & React.ComponentProps<typeof DrawerPrimitive.Root>;
 type NativeModalContextProps = {
   modal?: boolean;
+  dismissible?: boolean;
   breakPoint?: number;
+  direction?: "top" | "right" | "bottom" | "left";
 };
 type NativeModalProviderProps = {
   children: React.ReactNode;
@@ -23,8 +25,18 @@ type NativeModalProviderProps = {
 
 const NativeModalContext = React.createContext<NativeModalContextProps>({});
 
-const NativeModalProvider = ({ breakPoint, modal = true, children }: NativeModalProviderProps) => {
-  return <NativeModalContext.Provider value={{ breakPoint, modal }}>{children}</NativeModalContext.Provider>;
+const NativeModalProvider = ({
+  breakPoint,
+  modal = true,
+  dismissible = true,
+  children,
+  direction = "bottom",
+}: NativeModalProviderProps) => {
+  return (
+    <NativeModalContext.Provider value={{ breakPoint, modal, dismissible, direction }}>
+      {children}
+    </NativeModalContext.Provider>
+  );
 };
 
 const useNativeModal = () => {
@@ -39,6 +51,8 @@ const useNativeModal = () => {
 
 const NativeModal = ({
   modal = true,
+  dismissible = true,
+  direction = "bottom",
   shouldScaleBackground = true,
   open: controlledOpen,
   onOpenChange: controlledOnOpenChange,
@@ -55,9 +69,11 @@ const NativeModal = ({
   const isMobile = useMediaQuery("(min-width: 640px)");
   const NativeModal = isMobile ? DialogPrimitive.Root : DrawerPrimitive.Root;
   return (
-    <NativeModalProvider modal={modal} breakPoint={640}>
+    <NativeModalProvider modal={modal} breakPoint={640} dismissible={dismissible} direction={direction}>
       <NativeModal
         modal={modal}
+        direction={direction}
+        dismissible={dismissible}
         shouldScaleBackground={shouldScaleBackground}
         open={open}
         onOpenChange={onOpenChange}
@@ -99,9 +115,12 @@ const NativeModalOverlay = ({ className, ...props }: React.ComponentProps<typeof
 NativeModalOverlay.displayName = "NativeModalOverlay";
 
 const NativeModalClose = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) => {
+  const { dismissible } = useNativeModal();
   const isMobile = useMediaQuery("(min-width: 640px)");
   const NativeModalClose = isMobile ? DialogPrimitive.Close : DrawerPrimitive.Close;
-  return <NativeModalClose aria-label="Close" {...props} />;
+  return (
+    <NativeModalClose aria-label="Close" {...(!dismissible && { onClick: (e) => e.preventDefault() })} {...props} />
+  );
 };
 NativeModalClose.displayName = "NativeModalClose";
 
@@ -109,32 +128,39 @@ const NativeModalContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { hideCloseButton?: boolean }
 >(({ className, children, hideCloseButton = false, ...props }, ref) => {
-  const { modal } = useNativeModal();
+  const { direction, modal, dismissible } = useNativeModal();
   const isMobile = useMediaQuery("(min-width: 640px)");
   const NativeModalContent = isMobile ? DialogPrimitive.Content : VaulDrawerContent;
+  const isDisabled = !modal || !dismissible;
+
   return (
     <NativeModalPortal>
       <NativeModalOverlay />
       <NativeModalContent
         ref={ref}
+        // style={{ "--initial-transform": "calc(100% + 8px)" } as React.CSSProperties}
         {...props}
-        {...(!modal && {
-          onInteractOutside: (e) => {
-            if (!modal) {
-              e.preventDefault();
-            }
-          },
-        })}
+        {...(!dismissible && isMobile && { onEscapeKeyDown: (e) => e.preventDefault() })}
+        {...(isDisabled &&
+          isMobile && {
+            onInteractOutside: (e) => e.preventDefault(),
+          })}
         className={cn(
           "fixed z-50 bg-background",
           isMobile
             ? "left-[50%] top-[50%] grid h-auto max-h-[min(640px,80dvh)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]"
-            : "inset-x-0 bottom-0 mt-24 flex h-fit max-h-[85%] flex-col rounded-t-[10px] border border-b-0 border-primary/10 pt-4",
+            : direction === "bottom"
+              ? "inset-x-0 bottom-0 mt-24 flex h-fit max-h-[85%] flex-col rounded-t-[10px] border border-b-0 border-primary/10 pt-4"
+              : direction === "right"
+                ? "bottom-2 right-2 top-2 flex w-[310px] bg-transparent outline-none [--initial-transform:calc(100%+8px)]"
+                : direction === "left"
+                  ? "bottom-2 left-2 top-2 flex w-[310px] bg-transparent outline-none [--initial-transform:calc(100%+8px)]"
+                  : "",
           className
         )}
       >
-        {!isMobile && (
-          <DrawerPrimitive.Handle className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
+        {!isMobile && direction === "bottom" && (
+          <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
         )}
         {!hideCloseButton && (
           <NativeModalClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
