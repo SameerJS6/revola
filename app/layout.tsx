@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import ThemeToggle from "@/components/theme-toggle";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { RootProvider } from "fumadocs-ui/provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,14 +23,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} antialiased`}>
-        <ThemeProvider enableSystem attribute="class" defaultTheme="dark" disableTransitionOnChange>
-          <div data-vaul-drawer-wrapper="">
-            <div className="absolute right-4 top-4 flex items-center gap-2">
-              <ThemeToggle />
+        <RootProvider>
+          <ThemeProvider enableSystem attribute="class" defaultTheme="dark" disableTransitionOnChange>
+            <div data-vaul-drawer-wrapper="">
+              <div className="absolute right-4 top-4 z-50 flex items-center gap-2 max-lg:hidden">
+                <ThemeToggle />
+              </div>
+              {children}
             </div>
-            {children}
-          </div>
-        </ThemeProvider>
+          </ThemeProvider>
+        </RootProvider>
       </body>
     </html>
   );
