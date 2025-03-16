@@ -70,6 +70,6 @@
     @apply border-border;
   }
   body {
-    @apply !bg-background font-inter text-foreground selection:bg-foreground selection:text-background;
+    @apply font-inter text-foreground selection:bg-foreground selection:text-background;
   }
 }
