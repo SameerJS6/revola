@@ -1,11 +1,17 @@
 import type { Config } from "tailwindcss";
 import tailwindAnimate from "tailwindcss-animate";
+import { createPreset } from "fumadocs-ui/tailwind-plugin";
+
 export default {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./content/**/*.mdx",
+    "./mdx-components.tsx",
+    "./node_modules/fumadocs-ui/dist/**/*.js",
+    "./node_modules/fumadocs-openapi/dist/**/*.js",
   ],
   theme: {
     extend: {
@@ -76,4 +82,5 @@ export default {
     },
   },
   plugins: [tailwindAnimate],
+  presets: [createPreset({ preset: "default" })],
 } satisfies Config;
