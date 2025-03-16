@@ -194,18 +194,6 @@ const NativeModalContent = React.forwardRef<
             onInteractOutside: (e) => e.preventDefault(),
           })}
         className={cn(
-          // "fixed z-50 bg-background",
-          // isMobile
-          // ? ""
-          // : // : direction === "bottom"
-          //   ? "inset-x-0 bottom-0 mt-24 flex h-fit max-h-[85%] flex-col rounded-t-[10px] border border-b-0 border-primary/10 pt-4"
-          //   : direction === "right"
-          //     ? "bottom-2 right-2 top-2 flex w-[310px] bg-transparent outline-none [--initial-transform:calc(100%+8px)]"
-          //     : direction === "left"
-          //       ? "bottom-2 left-2 top-2 flex w-[310px] bg-transparent outline-none [--initial-transform:calc(100%+8px)]"
-          //       : direction === "top"
-          //         ? "inset-x-0 top-0 mb-24 flex h-fit max-h-[85%] flex-col rounded-b-[10px] border border-b-0 border-primary/10"
-          //         : "",
           NativeModalContentVariants({
             device: isMobile ? "desktop" : "mobile",
             direction,
