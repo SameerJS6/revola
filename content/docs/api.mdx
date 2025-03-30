@@ -1,0 +1,207 @@
+---
+title: API Reference
+description: What components are available in Native Modal and how to use them.
+icon: Code
+links: 
+  dialog: https://www.radix-ui.com/primitives/docs/components/dialog#api-reference
+  drawer: https://vaul.emilkowal.ski/api#components-api
+---
+
+### Anatomy
+Import all parts and piece them together.
+
+```tsx 
+import {
+  NativeModal, 
+  NativeModalTrigger, 
+  NativeModalContent, 
+  NativeModalHeader, 
+  NativeModalTitle, 
+  NativeModalDescription, 
+  NativeModalFooter
+  } from '@/components/ui/native-modal'
+```
+
+```tsx title="native-modal"
+export function MyNativeModal() {
+  return (
+    <NativeModal>
+        <NativeModalTrigger />
+        <NativeModalContent>
+          <NativeModalHeader>
+            <NativeModalTitle />
+            <NativeModalDescription />
+          </NativeModalHeader>
+          <NativeModalFooter />
+        </NativeModalContent>
+    </NativeModal>)
+}
+```
+
+### Components API
+Description of props of each component.
+
+#### Root
+Contains all the parts of a Native Modal.
+
+<TypeTable
+  type={{
+    defaultOpen: {
+      description: 'The open state of the Native Modal when it is initially rendered. Use when you do not need to control its open state.',
+      type: 'boolean',
+      default: 'false'
+    },
+    open: {
+      description: 'The controlled open state of the native modal',
+      type: 'boolean',
+      default: 'false'
+    },
+    onOpenChange: {
+      description: 'Event handler called when the open state of the drawer changes.',
+      type: 'function',
+      typeDescription: '(open: boolean) => void',
+      default: '',
+    },
+    modal: {
+      description: 'The modality of the dialog. When set to `true`, interaction with the outside elements will be disabled and only dialog content will be visible to screen readers.',
+      type: 'boolean',
+      default: 'true'
+    },
+    direction: {
+      description: 'Direction of the drawer on mobile. This adjust the animations and the drag direction.',
+      type: 'directionType',
+      typeDescription: '"top" | "bottom" | "left" | "right"',
+      default: 'bottom'
+    },
+    dismissible: {
+      description: "When `false` dragging, clicking outside, pressing `Esc`, etc. will not close the drawer. Use this in combination with the open prop, otherwise you won't be able to open/close the native modal.",
+      type: 'boolean',
+      default: 'true'
+    },
+    repositionInputs: {
+      description: "When `true` Vaul will reposition inputs rather than scroll then into view if the keyboard is in the way. Setting it to `false`will fall back to browser's default behaviour.",
+      type: 'boolean',
+      default: 'true'
+    }
+  }}
+/>
+
+{/* Additional props for snap points (This props only apply to drawer on mobile): */}
+These props only apply when Native Modal is rendered as a drawer on mobile.
+
+<TypeTable type={{
+  snapPoints: {
+    description: "Array of numbers from 0 to 1 that corresponds to % of the screen a given snap point should take up. You can also use px values, which doesn't take screen height into account.",
+    type: 'array',
+    typeDescription: 'Array<number | string>',
+    default: ''
+  },
+  activeSnapPoint: {
+    description: "The controlled snap point state",
+    type: 'boolean'
+  },
+  setActiveSnapPoint: {
+    description: "Event handler called when the snap point state changes.",
+    type: 'function',
+    typeDescription: "(open: boolean) => void",
+  },
+  fadeFromIndex: {
+    description: "Index of snapPoint from which the overlay fade should be applied. Defaults to the last step of snapPoints",
+    type: 'number',
+    default: 'snapPoints.length'
+  },
+  snapSequentialPoint: {
+    description: "Disabled velocity based swiping for snap points. This means that a snap point won't be skipped even if the velocity is high enough. Useful if each snap point in a drawer is equally important.",
+    type: 'boolean',
+    default: 'false'
+  }
+}}/>
+
+Native Modal provides additional props to control its behavior across devices. 
+<TypeTable  type={{
+    alert: {
+      description:
+        'Diables close on interaction with background feature, making it behave similar to a Alert Dialog',
+      type: 'boolean',
+      default: "false",
+    },
+   onlyDrawer: {
+      description:
+        'Forces the modal to always render as a drawer, regardless of screen size.',
+      type: 'boolean',
+      default: "false",
+    },
+    onlyDialog: {
+      description:
+        'Forces the modal to always render as a dialog, regardless of screen size.',
+      type: 'boolean',
+      default: "false",
+    },
+ }}/>
+
+
+#### Trigger
+The button that opens the drawer.
+<TypeTable
+  type={{
+    "asChild?": {
+      description:
+        'Change the default rendered element for the one passed as a child, merging their props and behavior.',
+      type: 'boolean',
+      default: "false",
+    },
+  }}
+/>
+
+#### Content
+Contains content to be rendered in the open native modal.
+<TypeTable type={{
+  "asChild?": {
+    description: 'Change the default rendered element for the one passed as a child, merging their props and behavior.',
+    type: 'boolean',
+    default: "false",
+  },
+  "hideCloseButton?": {
+    description: 'Hide default close button from drawer and dialog',
+    type: 'boolean',
+    default: 'false'
+  }
+}} />
+
+#### Close
+The button that closes the drawer.
+<TypeTable type={{
+  "asChild?": {
+     description: 'Change the default rendered element for the one passed as a child, merging their props and behavior.',
+    type: 'boolean',
+    default: "false",
+  }
+}}/>
+
+#### Header
+An wrapping header component for title and description to ensure action buttons are placed properly in native modal. No Props
+
+#### Title
+An optional accessible title to be announced when the drawer is opened.
+
+<TypeTable type={{
+  "asChild?": {
+    description: "Change the default rendered element for the one passed as a child, merging their props and behavior.",
+    type: 'boolean',
+    default: 'false'
+  } 
+}}/>
+
+#### Description
+An optional accessible description to be announced when the drawer is opened.
+
+<TypeTable type={{
+  "asChild?": {
+    description: "Change the default rendered element for the one passed as a child, merging their props and behavior.",
+    type: 'boolean',
+    default: 'false'
+  }
+}}/>
+
+#### Footer
+An wrapping footer component to ensure action buttons are placed properly in native modal. No Props
