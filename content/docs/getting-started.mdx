@@ -1,0 +1,75 @@
+---
+title: Getting Started
+description: Get started with Native Modal in matter of seconds
+icon: Play
+---
+
+## Installation
+
+Native Modal is built using:  
+- **[Radix UI Dialog](https://www.radix-ui.com/docs/primitives/components/dialog)** for modals on larger screens.  
+- **[Vaul](https://vaul.emilkowal.ski/)** for drawers on mobile devices.  
+
+While it does **not require shadcn**, it integrates seamlessly with shadcn's styling and uses its CLI for quick installation.  
+
+### Install via Shadcn CLI 
+
+If you already have **shadcn** installed in your project, you can install **Native Modal** with:  
+
+```bash title="Install native-modal"
+pnpm dlx shadcn add native-modal
+```
+
+<Callout>
+Note: If you haven’t set up shadcn, you can install it first: 
+```bash title="terminal"
+pnpm dlx shadcn-ui@latest init
+```
+</Callout>
+
+
+### Manual Installation (Without Shadcn)
+If you prefer not to use shadcn, you can install the required dependencies manually:
+
+```bash
+pnpm add @radix-ui/react-dialog vaul
+```
+
+Then, copy the `native-modal.tsx` component into your project manually.
+
+
+## Create a Native Modal Component
+
+Once installed, you can use Native Modal anywhere in your app:
+
+```tsx 
+import { 
+  NativeModal, 
+  NativeModalTrigger, 
+  NativeModalContent, 
+  NativeModalHeader, 
+  NativeModalTitle, 
+  NativeModalDescription 
+  } from "@/components/ui/native-modal";
+```
+
+```tsx
+
+export default function Demo() {
+  return (
+    <NativeModal>
+      <NativeModalTrigger>Open Native Modal</NativeModalTrigger>
+      <NativeModalContent>
+        <div className="bg-background p-4">
+          <NativeModalHeader>
+            <NativeModalTitle>Welcome</NativeModalTitle>
+            <NativeModalDescription>
+              This is a responsive modal that adapts between drawer & modal.
+            </NativeModalDescription>
+          </NativeModalHeader>
+        </div>
+      </NativeModalContent> 
+    </NativeModal> 
+  );
+}
+``` 
