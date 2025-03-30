@@ -15,20 +15,20 @@ interface Registry {
 }
 
 export const Index: Record<string, Registry> = {
-  "origin-credit-card-demo": {
-    name: "origin-credit-card-demo",
+  demo: {
+    name: "demo",
     description: "",
     type: "registry:demo",
     registryDependencies: undefined,
     files: [
       {
-        path: "components/native-modal/examples/credit-card-native-modal-example.tsx",
+        path: "components/native-modal/index.tsx",
         type: "registry:demo",
         target: "",
       },
     ],
     categories: undefined,
-    component: React.lazy(() => import("@/components/native-modal/examples/credit-card-native-modal-example")),
+    component: React.lazy(() => import("@/components/mobile-preview")),
     source: "",
     meta: undefined,
   },
