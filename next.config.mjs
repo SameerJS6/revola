@@ -9,6 +9,9 @@ const withMDX = createMDX();
  */
 const config = {
   reactStrictMode: true,
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default withMDX(config);

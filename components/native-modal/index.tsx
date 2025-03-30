@@ -11,14 +11,11 @@ import { X } from "lucide-react";
 import { Drawer as DrawerPrimitive, Content as VaulDrawerContent } from "vaul";
 import { cva } from "class-variance-authority";
 
-type DrawerType = {
-  drawerBreakPoint?: number;
-} & React.ComponentProps<typeof DrawerPrimitive.Root>;
+type DrawerType = React.ComponentProps<typeof DrawerPrimitive.Root>;
 
 type NativeModalContextProps = {
   modal?: boolean;
   dismissible?: boolean;
-  breakPoint?: number;
   direction?: "top" | "right" | "bottom" | "left";
 };
 
@@ -29,16 +26,13 @@ type NativeModalProviderProps = {
 const NativeModalContext = React.createContext<NativeModalContextProps>({});
 
 const NativeModalProvider = ({
-  breakPoint,
   modal = true,
   dismissible = true,
   direction = "bottom",
   children,
 }: NativeModalProviderProps) => {
   return (
-    <NativeModalContext.Provider value={{ breakPoint, modal, dismissible, direction }}>
-      {children}
-    </NativeModalContext.Provider>
+    <NativeModalContext.Provider value={{ modal, dismissible, direction }}>{children}</NativeModalContext.Provider>
   );
 };
 
@@ -72,7 +66,7 @@ const NativeModal = ({
   const isMobile = useMediaQuery("(min-width: 640px)");
   const NativeModal = isMobile ? DialogPrimitive.Root : DrawerPrimitive.Root;
   return (
-    <NativeModalProvider modal={modal} breakPoint={640} dismissible={dismissible} direction={direction}>
+    <NativeModalProvider modal={modal} dismissible={dismissible} direction={direction}>
       <NativeModal
         modal={modal}
         direction={direction}
@@ -109,7 +103,7 @@ const NativeModalOverlay = ({ className, ...props }: React.ComponentProps<typeof
     <NativeModalOverlay
       {...props}
       className={cn(
-        "fixed inset-0 z-20 bg-black/40 sm:data-[state=open]:animate-in sm:data-[state=closed]:animate-out sm:data-[state=closed]:fade-out-0 sm:data-[state=open]:fade-in-0",
+        "fixed inset-0 z-50 bg-black/40 sm:data-[state=open]:animate-in sm:data-[state=closed]:animate-out sm:data-[state=closed]:fade-out-0 sm:data-[state=open]:fade-in-0",
         className
       )}
     />
@@ -127,7 +121,7 @@ const NativeModalClose = ({ ...props }: React.ComponentProps<typeof DialogPrimit
 };
 NativeModalClose.displayName = "NativeModalClose";
 
-const NativeModalContentVariants = cva("fixed z-50 bg-background", {
+const NativeModalContentVariants = cva("fixed z-[9999] bg-fd-background", {
   variants: {
     device: {
       desktop:

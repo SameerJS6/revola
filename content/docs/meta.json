@@ -1,0 +1,16 @@
+{
+  "title": "Native Modal React",
+  "description": "Native Modal for React",
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "index",
+    "roadmap",
+    "why",
+    "---Setup---",
+    "getting-started",
+    "api",
+    "---Examples---",
+    "vaul"
+  ]
+}

@@ -1,0 +1,143 @@
+---
+title: Why
+description: Why does Native Modal even exist?
+icon: CircleHelp
+---
+
+## The Problem: Why I Built *Native Modal*
+
+You might ask: why create a **drawer component for mobile** when a **modal/dialog** already exists?    
+The answer stems from my experience during a project approximately **8-9 months ago**.
+
+### The Personal Experience
+
+About 8-9 months ago, I was involved in a website migration project, specifically moving a company's WordPress-based website to **Next.js with Builder.io**. As the project neared completion, a critical UI issue emerged:
+
+#### The "Buy Modal" UX Problem
+
+The website featured a **Buy Modal**—a **dialog component** embedding a **third-party widget via an `iframe`**. This widget displayed:
+
+* **Product details**
+* **A pharmacy search tab**
+* **A list of pharmacies selling the product**
+
+#### The Issues?
+
+* It functioned adequately on desktop but presented a poor user experience on mobile.
+* The modal felt cramped, clunky, and difficult to interact with.
+* It wasted vertical space, leading to frustrating navigation.
+* The overall experience felt unnatural and broken.
+
+![](/bio-h-tin.png)
+
+While I wasn't directly responsible for this component, the experience was a key motivator. I recognized the potential for a better solution.
+
+### How This Led to Native Modal
+
+Few months later, I had the opportunity to address this issue in a different project (Vulniphan).
+
+My objectives were:
+
+1.  **Resolve the inadequate modal experience on mobile** by implementing a drawer component.
+2.  **Maintain API simplicity**, similar to `@radix-ui/react-dialog` and `vaul` drawers.
+3.  **Ensure seamless integration for developers**, enabling automatic adaptation between modal (desktop) and drawer (mobile) without requiring additional code.
+
+![](/vulniphan.png)
+
+This led to the development of the first version of **Native Modal**—a component designed to automatically adapt between a drawer on mobile and a modal on desktop.
+
+---
+
+## The UX Perspective: Why Drawers Are Preferred on Mobile
+
+The fundamental issue with modals on mobile is their disruption of context (they mess with the flow).
+
+Native mobile UIs (iOS & Android) predominantly utilize drawers, bottom sheets, or full-page transitions instead of modals for specific content types.
+
+A drawer often stands out as the superior choice because:
+
+### 1. Mobile OS Standards Favor Drawers
+
+* **Apple's iOS** employs sheets (bottom drawers) for navigation and secondary tasks.
+* **Google's Material Design** advocates for bottom sheets for actions and progressive disclosure.
+
+>   'Use a non-modal view when presenting supplementary items that affect the main task in the parent view.' — Apple HIG
+
+---
+
+### 2. Drawers Maximize Screen Space
+
+Modals/dialogs on mobile often have fixed dimensions and limited space.
+
+* A drawer (bottom sheet) utilizes the full width of the screen and expands vertically, providing increased space for content.
+* This proves advantageous for content-heavy interactions, such as search, form inputs, or multi-step flows.
+
+---
+
+### 3. Dialogs Are Designed for Interruptions, Not Fluid UI
+
+Dialogs are designed to demand immediate attention by blocking interaction with the background.
+
+* On desktop, this behavior is generally acceptable due to larger screen sizes and multiple focus areas.
+* However, on mobile, a dialog obstructs the entire screen, which can feel jarring and disrupt the user's flow.
+
+<Callout title="But isn't that interruptive behavior sometimes necessary?">  
+Yes, it is. For example, when a user action will result in deleting an item, a dialog is appropriate to confirm the action and prevent accidental data loss.
+
+Native Modal can handle these specific use-cases using `alert` and `defaultModal` props.
+</Callout>
+
+
+With a **drawer**, the experience stays **smooth**—users can:  
+
+* Scroll naturally
+* Keep their context
+* Maintain a sense of control
+
+---
+
+### 4. Drawers Are Better for Complex User Flows
+
+Both **Apple** and **Google** discourage the use of dialogs for complex interactions.
+
+* When a modal requires multi-step input (e.g., a form), a drawer provides a more natural interaction.
+* Drawers facilitate progressive disclosure without creating a sense of an "app within an app."
+
+---
+
+### 5. Studies Indicate Drawers Can Improve User Experience
+
+Research on modal vs. drawer usability supports the use of drawers in many mobile contexts:
+
+{/* 📄   **[Google Material Design Guidelines on Bottom Sheets](https://m3.material.io/components/bottom-sheets/guidelines)**
+
+📄   **[Apple Human Interface Guidelines (HIG) on Sheets](https://developer.apple.com/design/human-interface-guidelines/sheets)**
+ */}
+
+📄 **[Material Design on Bottom Sheets](https://m3.material.io/components/bottom-sheets/guidelines)**  
+📄 **[Apple HIG on Sheets](https://developer.apple.com/design/human-interface-guidelines/sheets)**  
+
+---
+
+## Conclusion: Why Native Modal Matters
+
+Instead of requiring developers to choose between modals and drawers, `native-modal` automatically selects the optimal UX based on screen size.
+
+* Zero additional setup is required.
+* It delivers an enhanced mobile UX by mitigating modal-related frustrations.
+* It aligns with native OS design patterns, resulting in a more intuitive feel.
+
+### Give it a try—your users will appreciate it!
+
+```tsx
+export const Demo = () => {
+  return (
+    <NativeModal>
+      <NativeModalTrigger>Open</NativeModalTrigger>
+      <NativeModalContent>
+        <div className="p-4 bg-background">Hello from Native Modal!</div>
+      </NativeModalContent>
+    </NativeModal>
+  )
+}
+```

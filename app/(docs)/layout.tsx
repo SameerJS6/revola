@@ -1,13 +1,19 @@
-import React, { PropsWithChildren } from "react";
-import { DocsLayout } from "fumadocs-ui/layouts/docs";
+"use client";
+
 import { source } from "@/lib/source";
+import { DocsLayout } from "fumadocs-ui/layouts/docs";
+import { PropsWithChildren } from "react";
 
 export default function DocLayout({ children }: PropsWithChildren) {
   return (
     <DocsLayout
-      githubUrl="https://github.com/SameerJS6"
-      sidebar={{ hideSearch: true, defaultOpenLevel: 1 }}
-      nav={{ title: "Native-modal" }}
+      sidebar={{
+        collapsible: true,
+        className: "[--fd-sidebar-width:250px]",
+      }}
+      nav={{
+        title: "Native Modal",
+      }}
       tree={source.pageTree}
     >
       {children}
