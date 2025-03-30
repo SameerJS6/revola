@@ -17,6 +17,7 @@ export default {
     extend: {
       fontFamily: {
         inter: ["var(--font-inter)"],
+        "geist-mono": ["var(--font-geist-mono)"],
       },
       colors: {
         background: "hsl(var(--background))",
