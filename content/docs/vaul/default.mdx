@@ -1,0 +1,24 @@
+---
+title: Default
+description: The most basic setup for a Native Modal.
+---
+
+<ComponentPreview name="default-demo" mobilePreviewLink="/vaul/default" />
+
+
+### Side drawer
+Set the direction prop to `"right"` or `"left"` to change the position of the drawer. Use the `--initial-transform` CSS variable to adjust the animation, useful when the drawer does not touch the edge of the screen (like in this case).
+
+<ComponentPreview name="side-drawer-demo" mobilePreviewLink="/vaul/default/side-drawer" />
+
+
+### Scrollable
+A scrollable native modal.
+
+<ComponentPreview name="scrollable-demo" mobilePreviewLink="/vaul/default/scrollable"/>
+
+
+### Controlled
+You can use the `open` prop to programmatically open or close the drawer. You can also pass the `onOpenChange` prop which will be called when the open state of the native modal changes, it's useful if you want to react to esc/outside clicks when controlled.
+
+<ComponentPreview name="controlled-demo" mobilePreviewLink="/vaul/default/controlled"/>
