@@ -17,6 +17,8 @@ type NativeModalContextProps = {
   modal?: boolean;
   dismissible?: boolean;
   direction?: "top" | "right" | "bottom" | "left";
+  onlyDrawer?: boolean;
+  onlyDialog?: boolean;
 };
 
 type NativeModalProviderProps = {
@@ -29,10 +31,14 @@ const NativeModalProvider = ({
   modal = true,
   dismissible = true,
   direction = "bottom",
+  onlyDrawer = false,
+  onlyDialog = false,
   children,
 }: NativeModalProviderProps) => {
   return (
-    <NativeModalContext.Provider value={{ modal, dismissible, direction }}>{children}</NativeModalContext.Provider>
+    <NativeModalContext.Provider value={{ modal, dismissible, direction, onlyDrawer, onlyDialog }}>
+      {children}
+    </NativeModalContext.Provider>
   );
 };
 
@@ -50,11 +56,13 @@ const NativeModal = ({
   modal = true,
   dismissible = true,
   direction = "bottom",
+  onlyDrawer = false,
+  onlyDialog = false,
   shouldScaleBackground = true,
   open: controlledOpen,
   onOpenChange: controlledOnOpenChange,
   ...props
-}: DrawerType) => {
+}: DrawerType & { onlyDrawer?: boolean; onlyDialog?: boolean }) => {
   const [internalState, setInternalState] = React.useState<boolean>(false);
 
   const isControlledOpen = typeof controlledOpen === "undefined";
@@ -64,9 +72,19 @@ const NativeModal = ({
   const onOpenChange = isControlledOpen ? toggleInternalState : controlledOnOpenChange;
 
   const isMobile = useMediaQuery("(min-width: 640px)");
-  const NativeModal = isMobile ? DialogPrimitive.Root : DrawerPrimitive.Root;
+
+  // Determine which component to use based on props and media query
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const NativeModal = shouldUseDialog ? DialogPrimitive.Root : DrawerPrimitive.Root;
+
   return (
-    <NativeModalProvider modal={modal} dismissible={dismissible} direction={direction}>
+    <NativeModalProvider
+      modal={modal}
+      dismissible={dismissible}
+      direction={direction}
+      onlyDrawer={onlyDrawer}
+      onlyDialog={onlyDialog}
+    >
       <NativeModal
         modal={modal}
         direction={direction}
@@ -75,7 +93,7 @@ const NativeModal = ({
         open={open}
         onOpenChange={onOpenChange}
         {...props}
-        {...(!isMobile && { autoFocus: true })}
+        {...(!shouldUseDialog && { autoFocus: true })}
       />
     </NativeModalProvider>
   );
@@ -83,22 +101,31 @@ const NativeModal = ({
 NativeModal.displayName = "NativeModal";
 
 const NativeModalTrigger = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) => {
+  const { onlyDrawer, onlyDialog } = useNativeModal();
   const isMobile = useMediaQuery("(min-width: 640px)");
-  const NativeModalTrigger = isMobile ? DialogPrimitive.Trigger : DrawerPrimitive.Trigger;
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const NativeModalTrigger = shouldUseDialog ? DialogPrimitive.Trigger : DrawerPrimitive.Trigger;
   return <NativeModalTrigger {...props} />;
 };
 NativeModalTrigger.displayName = "NativeModalTrigger";
 
 const NativeModalPortal = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Portal>) => {
+  const { onlyDrawer, onlyDialog } = useNativeModal();
   const isMobile = useMediaQuery("(min-width: 640px)");
-  const NativeModalPortal = isMobile ? DialogPrimitive.Portal : DrawerPrimitive.Portal;
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const NativeModalPortal = shouldUseDialog ? DialogPrimitive.Portal : DrawerPrimitive.Portal;
   return <NativeModalPortal {...props} />;
 };
 NativeModalPortal.displayName = "NativeModalPortal";
 
 const NativeModalOverlay = ({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Overlay>) => {
+  const { onlyDrawer, onlyDialog } = useNativeModal();
   const isMobile = useMediaQuery("(min-width: 640px)");
-  const NativeModalOverlay = isMobile ? DialogPrimitive.Overlay : DrawerPrimitive.Overlay;
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const NativeModalOverlay = shouldUseDialog ? DialogPrimitive.Overlay : DrawerPrimitive.Overlay;
   return (
     <NativeModalOverlay
       {...props}
@@ -112,9 +139,11 @@ const NativeModalOverlay = ({ className, ...props }: React.ComponentProps<typeof
 NativeModalOverlay.displayName = "NativeModalOverlay";
 
 const NativeModalClose = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) => {
-  const { dismissible } = useNativeModal();
+  const { dismissible, onlyDrawer, onlyDialog } = useNativeModal();
   const isMobile = useMediaQuery("(min-width: 640px)");
-  const NativeModalClose = isMobile ? DialogPrimitive.Close : DrawerPrimitive.Close;
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const NativeModalClose = shouldUseDialog ? DialogPrimitive.Close : DrawerPrimitive.Close;
   return (
     <NativeModalClose aria-label="Close" {...(!dismissible && { onClick: (e) => e.preventDefault() })} {...props} />
   );
@@ -125,7 +154,7 @@ const NativeModalContentVariants = cva("fixed z-[9999] bg-fd-background", {
   variants: {
     device: {
       desktop:
-        "left-[50%] top-[50%] grid h-auto max-h-[min(640px,80dvh)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
+        "left-[50%] top-[50%] grid h-auto max-h-[min(640px,80dvh)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
       mobile: "flex ",
     },
     direction: {
@@ -170,10 +199,11 @@ const NativeModalContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { hideCloseButton?: boolean }
 >(({ className, children, hideCloseButton = false, ...props }, ref) => {
-  const { direction, modal, dismissible } = useNativeModal();
+  const { direction, modal, dismissible, onlyDrawer, onlyDialog } = useNativeModal();
 
   const isMobile = useMediaQuery("(min-width: 640px)");
-  const NativeModalContent = isMobile ? DialogPrimitive.Content : VaulDrawerContent;
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const NativeModalContent = shouldUseDialog ? DialogPrimitive.Content : VaulDrawerContent;
 
   const isDisabled = !modal || !dismissible;
   return (
@@ -182,20 +212,20 @@ const NativeModalContent = React.forwardRef<
       <NativeModalContent
         ref={ref}
         {...props}
-        {...(!dismissible && isMobile && { onEscapeKeyDown: (e) => e.preventDefault() })}
+        {...(!dismissible && shouldUseDialog && { onEscapeKeyDown: (e) => e.preventDefault() })}
         {...(isDisabled &&
-          isMobile && {
+          shouldUseDialog && {
             onInteractOutside: (e) => e.preventDefault(),
           })}
         className={cn(
           NativeModalContentVariants({
-            device: isMobile ? "desktop" : "mobile",
+            device: shouldUseDialog ? "desktop" : "mobile",
             direction,
           }),
           className
         )}
       >
-        {!isMobile && direction === "bottom" && (
+        {!shouldUseDialog && direction === "bottom" && (
           <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
         )}
         {!hideCloseButton && (
@@ -230,8 +260,11 @@ const NativeModalTitle = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
 >(({ className, ...props }, ref) => {
+  const { onlyDrawer, onlyDialog } = useNativeModal();
   const isMobile = useMediaQuery("(min-width: 640px)");
-  const NativeModalTitle = isMobile ? DialogPrimitive.Title : DrawerPrimitive.Title;
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const NativeModalTitle = shouldUseDialog ? DialogPrimitive.Title : DrawerPrimitive.Title;
   return (
     <NativeModalTitle
       ref={ref}
@@ -247,8 +280,11 @@ const NativeModalDescription = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => {
+  const { onlyDrawer, onlyDialog } = useNativeModal();
   const isMobile = useMediaQuery("(min-width: 640px)");
-  const NativeModalDescription = isMobile ? DialogPrimitive.Description : DrawerPrimitive.Description;
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const NativeModalDescription = shouldUseDialog ? DialogPrimitive.Description : DrawerPrimitive.Description;
   return <NativeModalDescription ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />;
 });
 
