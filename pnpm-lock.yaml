@@ -89,9 +89,6 @@ importers:
       shadcn:
         specifier: 2.5.0-canary.1
         version: 2.5.0-canary.1(@types/node@20.17.23)(typescript@5.8.2)
-      shiki:
-        specifier: ^3.2.1
-        version: 3.2.1
       tailwind-merge:
         specifier: ^3.0.2
         version: 3.0.2
