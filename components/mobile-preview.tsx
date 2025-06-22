@@ -1,4 +1,5 @@
 "use client";
+
 import IphoneMockup from "@/components/iphone-mockup";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import useMediaQuery from "@/hooks/use-media-query";
@@ -7,9 +8,10 @@ import { Smartphone } from "lucide-react";
 import { useState } from "react";
 import { Drawer } from "vaul";
 
-export default function MobilePreview() {
+export default function MobilePreview({ previewLink }: { previewLink: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const isRequiredHeight = useMediaQuery("(min-height: 750px)");
+  const preview = `${process.env.NEXT_PUBLIC_BASE_URL}/iphone-preview${previewLink}`;
 
   return (
     <Drawer.Root open={isOpen} onOpenChange={setIsOpen} direction="right" modal={false}>
@@ -59,7 +61,7 @@ export default function MobilePreview() {
           <div className="flex size-full grow flex-col justify-center">
             <IphoneMockup fullScreen className="h-full [&_div[data-canvas]]:bg-border/50">
               <div className="flex h-[calc(100%-(-1px))] flex-col justify-between">
-                <iframe src="http://localhost:3000/iphone-preview/vaul/default" className="size-full border-none" />
+                <iframe src={preview} className="size-full border-none" />
               </div>
             </IphoneMockup>
           </div>

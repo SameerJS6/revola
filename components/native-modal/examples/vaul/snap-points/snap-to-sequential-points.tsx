@@ -1,0 +1,113 @@
+"use client";
+
+import {
+  NativeModal,
+  NativeModalContent,
+  NativeModalHeader,
+  NativeModalTitle,
+  NativeModalTrigger,
+} from "@/components/native-modal";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import React, { useState } from "react";
+
+export default function VaulSnapToSequentialPointsDemo() {
+  const snapPoints = ["148px", "355px", 1];
+  const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
+
+  return (
+    <NativeModal
+      shouldScaleBackground={false}
+      snapToSequentialPoint
+      snapPoints={snapPoints}
+      activeSnapPoint={snap}
+      setActiveSnapPoint={setSnap}
+    >
+      <NativeModalTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
+        Snap To Sequential Points Native Modal
+      </NativeModalTrigger>
+      <NativeModalContent data-testid="content" className="flex flex-col max-sm:max-h-[97%] sm:p-0">
+        <div
+          className={cn("mx-auto flex w-full flex-col p-6 pt-5 sm:overflow-y-auto", {
+            "overflow-y-auto": snap === 1,
+            "overflow-hidden": snap !== 1,
+          })}
+        >
+          <div className="flex items-center">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <svg
+                key={index}
+                className="h-5 w-5 flex-shrink-0 text-yellow-400"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            ))}
+          </div>
+          <NativeModalHeader className="px-0 text-left">
+            <NativeModalTitle className="mt-2 text-2xl font-medium">The Hidden Details</NativeModalTitle>
+            <p className="mb-6 mt-1 text-sm">40 videos, 20+ exercises</p>
+          </NativeModalHeader>
+
+          <p className="text-muted-foreground">
+            The world of user interface design is an intricate landscape filled with hidden details and nuance. In this
+            course, you will learn something cool. To the untrained eye, a beautifully designed UI.
+          </p>
+          <Button className="mt-8">Buy for $199</Button>
+          {/* <button className="h-[48px] flex-shrink-0 rounded-md bg-black font-medium text-gray-50">Buy for $199</button> */}
+          <div className="mt-12">
+            <h2 className="text-xl font-medium">Module 01. The Details</h2>
+            <div className="mt-4 space-y-4">
+              <div>
+                <span className="block">Layers of UI</span>
+                <span className="text-muted-foreground">A basic introduction to Layers of Design.</span>
+              </div>
+              <div>
+                <span className="block">Typography</span>
+                <span className="text-muted-foreground">The fundamentals of type.</span>
+              </div>
+              <div>
+                <span className="block">UI Animations</span>
+                <span className="text-muted-foreground">Going through the right easings and durations.</span>
+              </div>
+            </div>
+          </div>
+          <div className="mt-12">
+            <figure>
+              <blockquote className="font-serif">
+                “I especially loved the hidden details video. That was so useful, learned a lot by just reading it.
+                Can&rsquo;t wait for more course content!”
+              </blockquote>
+              <figcaption>
+                <span className="mt-2 block text-sm text-muted-foreground">Yvonne Ray, Frontend Developer</span>
+              </figcaption>
+            </figure>
+          </div>
+          <div className="mt-12">
+            <h2 className="text-xl font-medium">Module 02. The Process</h2>
+            <div className="mt-4 space-y-4">
+              <div>
+                <span className="block">Build</span>
+                <span className="text-muted-foreground">Create cool components to practice.</span>
+              </div>
+              <div>
+                <span className="block">User Insight</span>
+                <span className="text-muted-foreground">Find out what users think and fine-tune.</span>
+              </div>
+              <div>
+                <span className="block">Putting it all together</span>
+                <span className="text-muted-foreground">Let&apos;s build an app together and apply everything.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </NativeModalContent>
+    </NativeModal>
+  );
+}

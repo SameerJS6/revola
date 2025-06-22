@@ -8,39 +8,240 @@ icon: Play
 
 Native Modal is built using:  
 - **[Radix UI Dialog](https://www.radix-ui.com/docs/primitives/components/dialog)** for modals on larger screens.  
-- **[Vaul](https://vaul.emilkowal.ski/)** for drawers on mobile devices.  
+- **[Vaul](https://vaul.emilkowal.ski/)** for drawers on mobile.  
 
-While it does **not require shadcn**, it integrates seamlessly with shadcn's styling and uses its CLI for quick installation.  
+
+It doesn’t require shadcn/ui, but it integrates seamlessly with its styling system and supports installation via the shadcn CLI.
 
 ### Install via Shadcn CLI 
 
-If you already have **shadcn** installed in your project, you can install **Native Modal** with:  
+If you're already using **shadcn** in your project, you can install Native Modal with:  
 
-```bash title="Install native-modal"
-pnpm dlx shadcn add native-modal
+```package-install
+npx shadcn@latest add http://localhost:3000/r/native-modal.json
 ```
 
-<Callout>
-Note: If you haven’t set up shadcn, you can install it first: 
-```bash title="terminal"
-pnpm dlx shadcn-ui@latest init
-```
-</Callout>
+<MarkdownAccordion title="If you haven't installed shadcn yet">
+<Steps>
+<Step>
+#### Create the project
 
+Run the `init` command to create a new Next.js project or to setup an existing one:
 
-### Manual Installation (Without Shadcn)
-If you prefer not to use shadcn, you can install the required dependencies manually:
-
-```bash
-pnpm add @radix-ui/react-dialog vaul
+```package-install
+npx shadcn@latest init
 ```
 
-Then, copy the `native-modal.tsx` component into your project manually.
+Choose between a Next.js project or a Monorepo.
+</Step>
+
+<Step>
+#### Add Components
+You can now start adding components to your project.
+
+```package-install
+npx shadcn@latest add button
+```
+
+The command above will add the Button component to your project. You can then import it like this:
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export default function Home() {
+  return (
+    <div>
+      <Button>Click me</Button>
+    </div>
+  )
+}
+
+```
+</Step>
+</Steps>
+</MarkdownAccordion>
 
 
-## Create a Native Modal Component
+### Manual Installation (without shadcn)
+If you’d rather not use the shadcn CLI, you can install **Native Modal** manually with just a few steps.
 
-Once installed, you can use Native Modal anywhere in your app:
+<Steps>
+<Step>
+#### Install dependencies
+
+Install the required packages:
+
+```package-install
+npm install @radix-ui/react-dialog vaul tailwindcss-animate
+```
+</Step>
+
+<Step>
+#### Update `tailwind.config.ts`
+
+Add the animation plugin to your Tailwind config:
+
+```ts title="tailwind.config.ts"
+import type { Config } from "tailwindcss";
+import tailwindAnimate from "tailwindcss-animate";
+
+export default {
+// All you existing configs....
+
+  plugins: [tailwindAnimate],
+} satisfies Config;
+```
+</Step>
+
+<Step>
+#### Add the `useMediaQuery` hook
+
+This hook is used internally by Native Modal to detect screen size.
+
+```tsx title="use-media-query.tsx"
+"use client";
+
+import { useEffect, useState } from "react";
+
+const useMediaQuery = (query: string) => {
+  const [matches, setMatches] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia(query);
+
+    if (media.matches !== matches) setMatches(media.matches);
+
+    const listener = () => setMatches(media.matches);
+
+    window.addEventListener("resize", listener);
+    return () => window.removeEventListener("resize", listener);
+  }, [query, matches]);
+
+  return matches;
+};
+
+export default useMediaQuery;
+
+```
+</Step>
+
+<Step>
+#### Add the component
+
+Copy the full `native-modal.tsx` component into your project:
+
+```tsx title="native-modal.tsx"
+// TODO: Replace the content with actual Native-Modal component's code.
+
+"use client";
+
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  NativeModal,
+  NativeModalTrigger,
+  NativeModalContent,
+  NativeModalHeader,
+  NativeModalTitle,
+  NativeModalDescription,
+  NativeModalFooter,
+} from "@/components/native-modal";
+
+export default function NativeModalVaulDefaultControlledDemo() {
+  const [open, setOpen] = useState(false);
+  return (
+    <NativeModal open={open} onOpenChange={setOpen}>
+      <NativeModalTrigger asChild>
+        <Button variant="outline" className="h-12 rounded-full px-6">
+          Vaul Default Controlled Demo
+        </Button>
+      </NativeModalTrigger>
+
+      <NativeModalContent>
+        <div className="mx-auto mb-2 max-w-md bg-fd-background">
+          <NativeModalHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
+            <NativeModalTitle className="text-base font-medium leading-6 tracking-normal">
+              A controlled drawer.
+            </NativeModalTitle>
+            <NativeModalDescription className="space-y-2 max-md:text-base">
+              <span className="block">
+                This means that the drawer no longer manages its own state. Instead, you can control it programmatically
+                from the outside.
+              </span>
+              <span className="block">
+                But you can still let the drawer help you a bit by passing the `onOpenChange` prop. This way, the drawer
+                will change your open state when the user clicks outside of it, or when they press the escape key for
+                example.
+              </span>
+            </NativeModalDescription>
+          </NativeModalHeader>
+        </div>
+
+        <NativeModalFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
+          <div className="mx-auto flex w-full max-w-md justify-end gap-6">
+            <a
+              className="gap-0.25 flex items-center text-xs text-secondary-foreground"
+              href="https://github.com/SameerJS6/native-modal"
+              target="_blank"
+            >
+              GitHub
+              <svg
+                fill="none"
+                height="16"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                width="16"
+                aria-hidden="true"
+                className="ml-1 h-3 w-3"
+              >
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                <path d="M15 3h6v6"></path>
+                <path d="M10 14L21 3"></path>
+              </svg>
+            </a>
+            <a
+              className="gap-0.25 flex items-center text-xs text-secondary-foreground"
+              href="https://twitter.com/sameerjs6"
+              target="_blank"
+            >
+              Twitter
+              <svg
+                fill="none"
+                height="16"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                viewBox="0 0 24 24"
+                width="16"
+                aria-hidden="true"
+                className="ml-1 h-3 w-3"
+              >
+                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                <path d="M15 3h6v6"></path>
+                <path d="M10 14L21 3"></path>
+              </svg>
+            </a>
+          </div>
+        </NativeModalFooter>
+      </NativeModalContent>
+    </NativeModal>
+  );
+}
+```
+</Step>
+
+<Step>
+#### Update import paths
+Make sure your import paths match your project structure.
+</Step>
+</Steps>
+---
+
+## Usage
 
 ```tsx 
 import { 
@@ -54,9 +255,6 @@ import {
 ```
 
 ```tsx
-
-export default function Demo() {
-  return (
     <NativeModal>
       <NativeModalTrigger>Open Native Modal</NativeModalTrigger>
       <NativeModalContent>
@@ -70,6 +268,14 @@ export default function Demo() {
         </div>
       </NativeModalContent> 
     </NativeModal> 
-  );
-}
 ``` 
+---
+
+## Examples
+
+
+### Simple Example
+
+<ComponentPreview name="default-demo" mobilePreviewLink="/vaul/default" />
+
+

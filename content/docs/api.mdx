@@ -22,7 +22,7 @@ import {
   } from '@/components/ui/native-modal'
 ```
 
-```tsx title="native-modal"
+```tsx
 export function MyNativeModal() {
   return (
     <NativeModal>
@@ -39,7 +39,7 @@ export function MyNativeModal() {
 ```
 
 ### Components API
-Description of props of each component.
+Description of props for each component.
 
 #### Root
 Contains all the parts of a Native Modal.
@@ -118,20 +118,14 @@ These props only apply when Native Modal is rendered as a drawer on mobile.
 }}/>
 
 Native Modal provides additional props to control its behavior across devices. 
-<TypeTable  type={{
-    alert: {
-      description:
-        'Diables close on interaction with background feature, making it behave similar to a Alert Dialog',
-      type: 'boolean',
-      default: "false",
-    },
-   onlyDrawer: {
+<TypeTable type={{
+   "onlyDrawer?": {
       description:
         'Forces the modal to always render as a drawer, regardless of screen size.',
       type: 'boolean',
       default: "false",
     },
-    onlyDialog: {
+    "onlyDialog?": {
       description:
         'Forces the modal to always render as a dialog, regardless of screen size.',
       type: 'boolean',
