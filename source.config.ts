@@ -18,6 +18,7 @@ export const docs = defineDocs({
           drawer: z.string().optional(),
         })
         .optional(),
+      subdescription: z.string().optional(),
     }),
   },
 });
@@ -33,11 +34,11 @@ export default defineConfig({
         {
           theme: {
             dark: "github-dark",
-            light: "github-light",
+            light: "github-light-default",
           },
           getHighlighter: () =>
             getHighlighter({
-              themes: ["github-dark", "github-light"],
+              themes: ["github-dark", "github-light-default"],
             }),
           onVisitLine(node: { children: { length: number } }) {
             // Prevent lines from collapsing in `display: grid` mode, and allow empty
@@ -61,11 +62,5 @@ export default defineConfig({
       [remarkInstall, { persist: { id: "package-manager" } }],
       [remarkDocGen, { generators: [fileGenerator()] }],
     ],
-    // rehypeCodeOptions: {
-    //   themes: {
-    //     dark: "github-dark",
-    //     light: "github-light",
-    //   },
-    // },
   },
 });
