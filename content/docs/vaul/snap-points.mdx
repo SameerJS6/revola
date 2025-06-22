@@ -1,0 +1,26 @@
+---
+title: Snap Points
+description: All the Snap Points Examples ported to Native Modal
+---
+
+
+A way to define a set of points that the drawer can snap to during a drag operation. This means that a drawer no longer only has to be open or closed, but can also be partially open. Native Modal, uses snap points for drawer and If content is large, then it uses scrollable dialog on desktop.
+
+<ComponentPreview name="default-snap-points-demo" mobilePreviewLink="/vaul/snap-points" />
+
+### Interact with background
+Combine `modal={false}{:ts}` with snap points to be able to interact with the background while the native modal is open.
+
+<ComponentPreview name="interact-with-background-snap-points-demo" mobilePreviewLink="/vaul/snap-points/interact-with-background" />
+
+
+### Snap to sequential points
+Disable velocity-based snapping by using `snapToSequentialPoint` prop. This means that a snap point won't be skipped even if the velocity is high enough. Useful if each snap point in a drawer is equally important.
+
+<ComponentPreview name="snap-to-sequential-points-snap-points-demo" mobilePreviewLink="/vaul/snap-points/snap-to-sequential-points" />
+
+
+### Custom fade index
+Use the `fadeFromIndex` prop to specify the snap point index from which the drawer should start fading. It defaults to the last point, but in the demo below we change it to the second point.
+
+<ComponentPreview name="custom-fade-index-snap-points-demo" mobilePreviewLink="/vaul/snap-points/custom-fade-index" />
