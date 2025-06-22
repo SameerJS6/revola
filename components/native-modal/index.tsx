@@ -226,7 +226,7 @@ const NativeModalContent = React.forwardRef<
         )}
       >
         {!shouldUseDialog && direction === "bottom" && (
-          <div className="mx-auto mb-4 md:my-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
+          <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
         )}
         {!hideCloseButton && (
           <NativeModalClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
