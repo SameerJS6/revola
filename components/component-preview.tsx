@@ -12,6 +12,7 @@ interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   align?: "center" | "start" | "end";
   hideCode?: boolean;
+  mobilePreviewLink: string;
 }
 
 interface Code extends React.ReactElement {
@@ -25,6 +26,7 @@ export default function ComponentPreview({
   className,
   align = "center",
   hideCode = false,
+  mobilePreviewLink,
   ...props
 }: ComponentPreviewProps) {
   const Codes = React.Children.toArray(children) as Code[];
@@ -69,7 +71,7 @@ export default function ComponentPreview({
         </div>
         <TabsContent value="preview" className="relative rounded-md border bg-border/50">
           <div className="absolute right-4 top-4 max-lg:hidden">
-            <MobilePreview />
+            <MobilePreview previewLink={mobilePreviewLink} />
           </div>
           <div
             className={cn("preview flex min-h-[350px] w-full justify-center p-10", {
