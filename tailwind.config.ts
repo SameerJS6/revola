@@ -6,6 +6,7 @@ export default {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./registry/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./content/**/*.mdx",
@@ -69,15 +70,41 @@ export default {
       animation: {
         "line-shadow": "line-shadow 15s linear infinite",
         rainbow: "rainbow var(--speed, 2s) infinite linear",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       keyframes: {
         "line-shadow": {
-          "0%": { "background-position": "0 0" },
-          "100%": { "background-position": "100% -100%" },
+          "0%": {
+            "background-position": "0 0",
+          },
+          "100%": {
+            "background-position": "100% -100%",
+          },
         },
         rainbow: {
-          "0%": { "background-position": "0%" },
-          "100%": { "background-position": "200%" },
+          "0%": {
+            "background-position": "0%",
+          },
+          "100%": {
+            "background-position": "200%",
+          },
+        },
+        "accordion-down": {
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
+        },
+        "accordion-up": {
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
         },
       },
     },
