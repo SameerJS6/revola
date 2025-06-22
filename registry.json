@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "native-modal",
+  "homepage": "https://native-modal.com",
+  "items": [
+    {
+      "name": "native-modal",
+      "type": "registry:ui",
+      "title": "Native Modal",
+      "description": "A responsive modal component built using Radix Dialog & Vaul.",
+      "dependencies": ["@radix-ui/react-dialog", "vaul", "class-variance-authority"],
+      "files": [
+        { "path": "registry/native-modal.tsx", "type": "registry:ui" },
+        { "path": "hooks/use-media-query.tsx", "type": "registry:hook" }
+      ]
+    }
+  ]
+}
