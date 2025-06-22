@@ -1,18 +1,21 @@
-import { source } from "@/lib/source";
-// import { AutoTypeTable } from "fumadocs-typescript/ui";
 import ComponentPreview from "@/components/component-preview";
+import MarkdownAccordion from "@/components/markdown-accordion";
 import { Button } from "@/components/ui/button";
+import { source } from "@/lib/source";
+import { cn } from "@/lib/utils";
+import { findNeighbour } from "fumadocs-core/server";
+import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
+import { Step, Steps } from "fumadocs-ui/components/steps";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { TypeTable } from "fumadocs-ui/components/type-table";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "fumadocs-ui/page";
 import { SquareArrowOutUpRight } from "lucide-react";
 import { Metadata } from "next";
 import { Link } from "next-view-transitions";
 import { notFound } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { TypeTable } from "fumadocs-ui/components/type-table";
 
 export async function generateStaticParams() {
   return source.generateParams();
@@ -49,12 +52,17 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
           : {}
       }
       full={page.data.full}
-      article={{ className: "max-w-[800px] mt-4" }}
+      article={{ className: "mx-auto max-w-[800px] mt-4" }}
     >
       <div className="mb-8 space-y-3 lg:space-y-4">
         <DocsTitle className="font-semibold">{page.data.title}</DocsTitle>
         <div className={cn(referenceLinks && "space-y-2.5")}>
-          <DocsDescription className={cn("mb-0 text-base")}>{page.data.description}</DocsDescription>
+          <div className="space-y-1">
+            <DocsDescription className={cn("mb-0 text-base")}>{page.data.description}</DocsDescription>
+            {page.data?.subdescription && (
+              <DocsDescription className={cn("mb-0 text-base")}>{page.data?.subdescription}</DocsDescription>
+            )}
+          </div>
           <div className="flex items-center gap-2">
             {referenceLinks && referenceLinks.dialog && (
               <Link
@@ -79,11 +87,15 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
           </div>
         </div>
       </div>
-
       <DocsBody>
         <MDXContent
           components={{
             ...defaultMdxComponents,
+            Accordions,
+            Accordion,
+            MarkdownAccordion,
+            Steps,
+            Step,
             Tab,
             Tabs,
             a: (props) => <Link target={props.href.startsWith("https") ? "_blank" : "_self"} {...props} />,
@@ -98,7 +110,9 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
             ),
             pre: ({ ref, children, ...props }) => (
               <CodeBlock ref={ref} {...props}>
-                <Pre className="*:border-none *:bg-transparent *:py-[3px]">{children}</Pre>
+                <Pre className="*:border-none *:bg-transparent *:py-[3px] has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0">
+                  {children}
+                </Pre>
               </CodeBlock>
             ),
             TypeTable,
@@ -107,6 +121,18 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
           }}
         />
       </DocsBody>
+      {/* <Cards>
+        <Card title="" href={neighbour.previous?.url}>
+          <h2 className="flex items-center gap-0.5 text-foreground">
+            <ChevronLeft size={16} />
+            Previous
+          </h2>
+          {neighbour.previous?.name}
+        </Card>
+        <Card title="Next >" href={neighbour.next?.url}>
+          {neighbour.next?.name}
+        </Card>
+      </Cards> */}
     </DocsPage>
   );
 }
