@@ -1,6 +1,7 @@
 "use client";
 
-import IphoneMockup from "@/components/iphone-mockup";
+import IphoneMockup, { Size } from "@/components/iphone-mockup";
+import { ResponsiveDialog, ResponsiveDialogContent, ResponsiveDialogTrigger } from "@/components/native-modal";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import useMediaQuery from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
@@ -10,14 +11,38 @@ import { Drawer } from "vaul";
 
 export default function MobilePreview({ previewLink }: { previewLink: string }) {
   const [isOpen, setIsOpen] = useState(false);
-  const isRequiredHeight = useMediaQuery("(min-height: 750px)");
-  const preview = `${process.env.NEXT_PUBLIC_BASE_URL}/iphone-preview${previewLink}`;
+
+  // Multiple media queries for different screen heights
+  const isMinHeight600 = useMediaQuery("(min-height: 600px)");
+  const isMinHeight680 = useMediaQuery("(min-height: 680px)");
+  const isMinHeight750 = useMediaQuery("(min-height: 750px)");
+  // const isMinHeight820 = useMediaQuery("(min-height: 820px)");
+  const isMinHeight900 = useMediaQuery("(min-height: 900px)");
+
+  // Determine the appropriate size based on screen height
+  const getMockupSize = (): Size | null => {
+    if (!isMinHeight600) return null; // Too small, don't show preview
+    if (!isMinHeight680) return "sm"; // 600-679px height
+    if (!isMinHeight750) return "md"; // 680-749px height
+    // if (!isMinHeight820) return "md"; // 750-819px height
+    if (!isMinHeight900) return "lg"; // 820-899px height
+    return "xl"; // 900px+ height
+  };
+
+  const mockupSize = getMockupSize();
+  const showPreview = mockupSize !== null;
 
   return (
-    <Drawer.Root open={isOpen} onOpenChange={setIsOpen} direction="right" modal={false}>
-      {isRequiredHeight ? (
-        <Drawer.Trigger
-          disabled={!isRequiredHeight}
+    <ResponsiveDialog
+      onlyDrawer
+      open={showPreview && isOpen}
+      modal={false}
+      direction="right"
+      onOpenChange={setIsOpen}
+      shouldScaleBackground={false}
+    >
+      {showPreview ? (
+        <ResponsiveDialogTrigger
           className={cn(
             "relative flex size-9 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full text-sm font-medium shadow-sm transition-all disabled:pointer-events-none disabled:opacity-70",
             isOpen
@@ -26,47 +51,47 @@ export default function MobilePreview({ previewLink }: { previewLink: string }) 
           )}
         >
           <Smartphone className="size-4" />
-        </Drawer.Trigger>
+        </ResponsiveDialogTrigger>
       ) : (
         <TooltipProvider>
           <Tooltip delayDuration={150}>
             <TooltipTrigger>
-              <Drawer.Trigger
-                disabled={!isRequiredHeight}
+              <div
                 className={cn(
                   "relative flex size-9 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full text-sm font-medium shadow-sm transition-all disabled:pointer-events-none disabled:opacity-70",
-                  isOpen
-                    ? "bg-[#161615] text-white hover:bg-[#313130] dark:bg-white dark:text-[#161615]"
-                    : "bg-white hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]"
+                  "cursor-not-allowed bg-white opacity-50 hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]"
                 )}
               >
                 <Smartphone className="size-4" />
-              </Drawer.Trigger>
+              </div>
             </TooltipTrigger>
             <TooltipContent className="max-w-96">
               <p>
-                Mobile Preview requires minimum view port height of <code>750px</code>. Try to zoom out your page to
+                Mobile Preview requires minimum viewport height of <code>600px</code>. Try to zoom out your page to
                 enable this preview feature.
               </p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
       )}
-      <Drawer.Portal>
-        <Drawer.Overlay className="fixed inset-0 bg-black/40" />
-        <Drawer.Content
-          className="fixed bottom-2 right-4 top-2 z-10 flex aspect-[8/16] h-full w-[375px] outline-none"
-          style={{ "--initial-transform": "calc(100% + 8px)" } as React.CSSProperties}
-        >
-          <div className="flex size-full grow flex-col justify-center">
-            <IphoneMockup fullScreen className="h-full [&_div[data-canvas]]:bg-border/50">
-              <div className="flex h-[calc(100%-(-1px))] flex-col justify-between">
-                <iframe src={preview} className="size-full border-none" />
-              </div>
-            </IphoneMockup>
-          </div>
-        </Drawer.Content>
-      </Drawer.Portal>
-    </Drawer.Root>
+      <ResponsiveDialogContent
+        hideCloseButton
+        className={cn(
+          "z-10 aspect-[8/16] h-full w-[375px]",
+          mockupSize === "sm" && "-right-6",
+          mockupSize === "md" && "-right-2",
+          mockupSize === "lg" && "right-4",
+          mockupSize === "xl" && "right-8"
+        )}
+      >
+        <div className="flex size-full items-center justify-center">
+          <IphoneMockup fullScreen size={mockupSize ?? "sm"} className="h-full [&_div[data-canvas]]:bg-border/50">
+            <div className="flex h-full flex-col justify-between">
+              <iframe src={previewLink} className="size-full border-none" />
+            </div>
+          </IphoneMockup>
+        </div>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   );
 }
