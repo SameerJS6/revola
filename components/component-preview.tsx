@@ -2,17 +2,17 @@
 
 import * as React from "react";
 
-import { Index } from "@/components/registry";
+import MobilePreview from "@/components/mobile-preview";
+import { Index, type RegistryKeys } from "@/components/registry";
+import { generateMobilePreviewLink } from "@/lib/mobile-preview";
 import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Loader } from "lucide-react";
-import MobilePreview from "@/components/mobile-preview";
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
-  name: string;
+  name: RegistryKeys;
   align?: "center" | "start" | "end";
   hideCode?: boolean;
-  mobilePreviewLink: string;
 }
 
 interface Code extends React.ReactElement {
@@ -26,12 +26,14 @@ export default function ComponentPreview({
   className,
   align = "center",
   hideCode = false,
-  mobilePreviewLink,
   ...props
 }: ComponentPreviewProps) {
   const Codes = React.Children.toArray(children) as Code[];
-  console.log("Codes: ", Codes);
   const Code = Codes[0];
+
+  const generatedMobilePreviewLink = React.useMemo(() => {
+    return generateMobilePreviewLink(name);
+  }, [name]);
 
   const Preview = React.useMemo(() => {
     const Component = Index[name]?.component;
@@ -70,9 +72,11 @@ export default function ComponentPreview({
           )}
         </div>
         <TabsContent value="preview" className="relative rounded-md border bg-border/50">
-          <div className="absolute right-4 top-4 max-lg:hidden">
-            <MobilePreview previewLink={mobilePreviewLink} />
-          </div>
+          {generatedMobilePreviewLink && (
+            <div className="absolute right-4 top-4 max-lg:hidden">
+              <MobilePreview previewLink={generatedMobilePreviewLink} />
+            </div>
+          )}
           <div
             className={cn("preview flex min-h-[350px] w-full justify-center p-10", {
               "items-center": align === "center",
