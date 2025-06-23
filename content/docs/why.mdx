@@ -1,17 +1,17 @@
 ---
 title: Why
-description: Why does Native Modal even exist?
+description: Why does Revola even exist?
 icon: CircleHelp
 ---
 
-## The Problem: Why I Built *Native Modal*
+## The Problem: Why I Built *Revola*
 
 You might ask: why create a **drawer component for mobile** when a **modal/dialog** already exists?    
 The answer stems from my experience during a project approximately **8-9 months ago**.
 
 ### The Personal Experience
 
-About 8-9 months ago, I was involved in a website migration project, specifically moving a company's WordPress-based website to **Next.js with Builder.io**. As the project neared completion, a critical UI issue emerged:
+About 11-12 months ago, I was involved in a website migration project, specifically moving a company's WordPress-based website to **Next.js with Builder.io**. As the project neared completion, a critical UI issue emerged:
 
 #### The "Buy Modal" UX Problem
 
@@ -32,7 +32,7 @@ The website featured a **Buy Modal**—a **dialog component** embedding a **thir
 
 While I wasn't directly responsible for this component, the experience was a key motivator. I recognized the potential for a better solution.
 
-### How This Led to Native Modal
+### How This Led to Revola
 
 Few months later, I had the opportunity to address this issue in a different project (Vulniphan).
 
@@ -44,7 +44,7 @@ My objectives were:
 
 ![](/vulniphan.png)
 
-This led to the development of the first version of **Native Modal**—a component designed to automatically adapt between a drawer on mobile and a modal on desktop.
+This led to the development of the first version of **Revola**—a component designed to automatically adapt between a drawer on mobile and a modal on desktop.
 
 ---
 
@@ -84,7 +84,8 @@ Dialogs are designed to demand immediate attention by blocking interaction with 
 <Callout title="But isn't that interruptive behavior sometimes necessary?">  
 Yes, it is. For example, when a user action will result in deleting an item, a dialog is appropriate to confirm the action and prevent accidental data loss.
 
-Native Modal can handle these specific use-cases using `alert` and `defaultModal` props.
+// TODO: FIX THIS WITH PROPER INSTRUCTIONS TO GET THE DESCRIBED BEHAVIOR
+Revola can handle these specific use-cases using `onlyDialog` and `modal={false}` props.
 </Callout>
 
 
@@ -119,9 +120,9 @@ Research on modal vs. drawer usability supports the use of drawers in many mobil
 
 ---
 
-## Conclusion: Why Native Modal Matters
+## Conclusion: Why Revola Matters
 
-Instead of requiring developers to choose between modals and drawers, `native-modal` automatically selects the optimal UX based on screen size.
+Instead of requiring developers to choose between modals and drawers, `Revola` automatically selects the optimal UX based on screen size.
 
 * Zero additional setup is required.
 * It delivers an enhanced mobile UX by mitigating modal-related frustrations.
@@ -132,12 +133,12 @@ Instead of requiring developers to choose between modals and drawers, `native-mo
 ```tsx
 export const Demo = () => {
   return (
-    <NativeModal>
-      <NativeModalTrigger>Open</NativeModalTrigger>
-      <NativeModalContent>
-        <div className="p-4 bg-background">Hello from Native Modal!</div>
-      </NativeModalContent>
-    </NativeModal>
+    <ResponsiveDialog>
+      <ResponsiveDialogTrigger>Open</ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
+        <div className="p-4 bg-background">Hello from Revola!</div>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   )
 }
 ```

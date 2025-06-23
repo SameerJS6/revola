@@ -1,12 +1,12 @@
 ---
 title: Getting Started
-description: Get started with Native Modal in matter of seconds
+description: Get started with Revola in matter of seconds
 icon: Play
 ---
 
 ## Installation
 
-Native Modal is built using:  
+Revola is built using:  
 - **[Radix UI Dialog](https://www.radix-ui.com/docs/primitives/components/dialog)** for modals on larger screens.  
 - **[Vaul](https://vaul.emilkowal.ski/)** for drawers on mobile.  
 
@@ -15,10 +15,10 @@ It doesn’t require shadcn/ui, but it integrates seamlessly with its styling sy
 
 ### Install via Shadcn CLI 
 
-If you're already using **shadcn** in your project, you can install Native Modal with:  
+If you're already using **shadcn** in your project, you can install Revola with:  
 
 ```package-install
-npx shadcn@latest add http://localhost:3000/r/native-modal.json
+npx shadcn@latest add http://revola.sameerjs.com/r/revola.json
 ```
 
 <MarkdownAccordion title="If you haven't installed shadcn yet">
@@ -63,7 +63,7 @@ export default function Home() {
 
 
 ### Manual Installation (without shadcn)
-If you’d rather not use the shadcn CLI, you can install **Native Modal** manually with just a few steps.
+If you’d rather not use the shadcn CLI, you can install **Revola** manually with just a few steps.
 
 <Steps>
 <Step>
@@ -96,7 +96,7 @@ export default {
 <Step>
 #### Add the `useMediaQuery` hook
 
-This hook is used internally by Native Modal to detect screen size.
+This hook is used internally by Revola to detect screen size.
 
 ```tsx title="use-media-query.tsx"
 "use client";
@@ -138,32 +138,32 @@ Copy the full `native-modal.tsx` component into your project:
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
-  NativeModal,
-  NativeModalTrigger,
-  NativeModalContent,
-  NativeModalHeader,
-  NativeModalTitle,
-  NativeModalDescription,
-  NativeModalFooter,
-} from "@/components/native-modal";
+  ResponsiveDialog,
+  ResponsiveDialogTrigger,
+  ResponsiveDialogContent,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+} from "@/components/ui/native-modal";
 
-export default function NativeModalVaulDefaultControlledDemo() {
+export default function VaulDefaultControlledDemo() {
   const [open, setOpen] = useState(false);
   return (
-    <NativeModal open={open} onOpenChange={setOpen}>
-      <NativeModalTrigger asChild>
+    <ResponsiveDialog open={open} onOpenChange={setOpen}>
+      <ResponsiveDialogTrigger asChild>
         <Button variant="outline" className="h-12 rounded-full px-6">
           Vaul Default Controlled Demo
         </Button>
-      </NativeModalTrigger>
+      </ResponsiveDialogTrigger>
 
-      <NativeModalContent>
+      <ResponsiveDialogContent>
         <div className="mx-auto mb-2 max-w-md bg-fd-background">
-          <NativeModalHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
-            <NativeModalTitle className="text-base font-medium leading-6 tracking-normal">
+          <ResponsiveDialogHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
+            <ResponsiveDialogTitle className="text-base font-medium leading-6 tracking-normal">
               A controlled drawer.
-            </NativeModalTitle>
-            <NativeModalDescription className="space-y-2 max-md:text-base">
+            </ResponsiveDialogTitle>
+            <ResponsiveDialogDescription className="space-y-2 max-md:text-base">
               <span className="block">
                 This means that the drawer no longer manages its own state. Instead, you can control it programmatically
                 from the outside.
@@ -173,11 +173,11 @@ export default function NativeModalVaulDefaultControlledDemo() {
                 will change your open state when the user clicks outside of it, or when they press the escape key for
                 example.
               </span>
-            </NativeModalDescription>
-          </NativeModalHeader>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
         </div>
 
-        <NativeModalFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
+        <ResponsiveDialogFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
           <div className="mx-auto flex w-full max-w-md justify-end gap-6">
             <a
               className="gap-0.25 flex items-center text-xs text-secondary-foreground"
@@ -226,9 +226,9 @@ export default function NativeModalVaulDefaultControlledDemo() {
               </svg>
             </a>
           </div>
-        </NativeModalFooter>
-      </NativeModalContent>
-    </NativeModal>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   );
 }
 ```
@@ -245,29 +245,29 @@ Make sure your import paths match your project structure.
 
 ```tsx 
 import { 
-  NativeModal, 
-  NativeModalTrigger, 
-  NativeModalContent, 
-  NativeModalHeader, 
-  NativeModalTitle, 
-  NativeModalDescription 
+  ResponsiveDialog, 
+  ResponsiveDialogTrigger, 
+  ResponsiveDialogContent, 
+  ResponsiveDialogHeader, 
+  ResponsiveDialogTitle, 
+  ResponsiveDialogDescription 
   } from "@/components/ui/native-modal";
 ```
 
 ```tsx
-    <NativeModal>
-      <NativeModalTrigger>Open Native Modal</NativeModalTrigger>
-      <NativeModalContent>
+    <ResponsiveDialog>
+      <ResponsiveDialogTrigger>Open Revola</ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
         <div className="bg-background p-4">
-          <NativeModalHeader>
-            <NativeModalTitle>Welcome</NativeModalTitle>
-            <NativeModalDescription>
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle>Welcome</ResponsiveDialogTitle>
+            <ResponsiveDialogDescription>
               This is a responsive modal that adapts between drawer & modal.
-            </NativeModalDescription>
-          </NativeModalHeader>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
         </div>
-      </NativeModalContent> 
-    </NativeModal> 
+      </ResponsiveDialogContent> 
+    </ResponsiveDialog> 
 ``` 
 ---
 
@@ -276,6 +276,6 @@ import {
 
 ### Simple Example
 
-<ComponentPreview name="default-demo" mobilePreviewLink="/vaul/default" />
+<ComponentPreview name="default-demo" />
 
 

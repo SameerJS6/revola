@@ -1,6 +1,6 @@
 ---
 title: API Reference
-description: What components are available in Native Modal and how to use them.
+description: What components are available in Revola and how to use them.
 icon: Code
 links: 
   dialog: https://www.radix-ui.com/primitives/docs/components/dialog#api-reference
@@ -12,29 +12,29 @@ Import all parts and piece them together.
 
 ```tsx 
 import {
-  NativeModal, 
-  NativeModalTrigger, 
-  NativeModalContent, 
-  NativeModalHeader, 
-  NativeModalTitle, 
-  NativeModalDescription, 
-  NativeModalFooter
+  ResponsiveDialog, 
+  ResponsiveDialogTrigger, 
+  ResponsiveDialogContent, 
+  ResponsiveDialogHeader, 
+  ResponsiveDialogTitle, 
+  ResponsiveDialogDescription, 
+  ResponsiveDialogFooter
   } from '@/components/ui/native-modal'
 ```
 
 ```tsx
 export function MyNativeModal() {
   return (
-    <NativeModal>
-        <NativeModalTrigger />
-        <NativeModalContent>
-          <NativeModalHeader>
-            <NativeModalTitle />
-            <NativeModalDescription />
-          </NativeModalHeader>
-          <NativeModalFooter />
-        </NativeModalContent>
-    </NativeModal>)
+    <ResponsiveDialog>
+        <ResponsiveDialogTrigger />
+        <ResponsiveDialogContent>
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle />
+            <ResponsiveDialogDescription />
+          </ResponsiveDialogHeader>
+          <ResponsiveDialogFooter />
+        </ResponsiveDialogContent>
+    </ResponsiveDialog>)
 }
 ```
 
@@ -42,17 +42,17 @@ export function MyNativeModal() {
 Description of props for each component.
 
 #### Root
-Contains all the parts of a Native Modal.
+Contains all the parts of a Revola.
 
 <TypeTable
   type={{
     defaultOpen: {
-      description: 'The open state of the Native Modal when it is initially rendered. Use when you do not need to control its open state.',
+      description: 'The open state of the Revola when it is initially rendered. Use when you do not need to control its open state.',
       type: 'boolean',
       default: 'false'
     },
     open: {
-      description: 'The controlled open state of the native modal',
+      description: 'The controlled open state of the Revola',
       type: 'boolean',
       default: 'false'
     },
@@ -74,7 +74,7 @@ Contains all the parts of a Native Modal.
       default: 'bottom'
     },
     dismissible: {
-      description: "When `false` dragging, clicking outside, pressing `Esc`, etc. will not close the drawer. Use this in combination with the open prop, otherwise you won't be able to open/close the native modal.",
+      description: "When `false` dragging, clicking outside, pressing `Esc`, etc. will not close the drawer. Use this in combination with the open prop, otherwise you won't be able to open/close the Revola.",
       type: 'boolean',
       default: 'true'
     },
@@ -87,7 +87,7 @@ Contains all the parts of a Native Modal.
 />
 
 {/* Additional props for snap points (This props only apply to drawer on mobile): */}
-These props only apply when Native Modal is rendered as a drawer on mobile.
+These props only apply when Revola is rendered as a drawer on mobile.
 
 <TypeTable type={{
   snapPoints: {
@@ -117,7 +117,7 @@ These props only apply when Native Modal is rendered as a drawer on mobile.
   }
 }}/>
 
-Native Modal provides additional props to control its behavior across devices. 
+Revola provides additional props to control its behavior across devices. 
 <TypeTable type={{
    "onlyDrawer?": {
       description:
@@ -148,7 +148,7 @@ The button that opens the drawer.
 />
 
 #### Content
-Contains content to be rendered in the open native modal.
+Contains content to be rendered in the open Revola.
 <TypeTable type={{
   "asChild?": {
     description: 'Change the default rendered element for the one passed as a child, merging their props and behavior.',
@@ -173,7 +173,7 @@ The button that closes the drawer.
 }}/>
 
 #### Header
-An wrapping header component for title and description to ensure action buttons are placed properly in native modal. No Props
+An wrapping header component for title and description to ensure action buttons are placed properly in Revola. No Props
 
 #### Title
 An optional accessible title to be announced when the drawer is opened.
@@ -198,4 +198,4 @@ An optional accessible description to be announced when the drawer is opened.
 }}/>
 
 #### Footer
-An wrapping footer component to ensure action buttons are placed properly in native modal. No Props
+An wrapping footer component to ensure action buttons are placed properly in Revola. No Props
