@@ -1,5 +1,5 @@
 {
-  "name": "native-modal",
+  "name": "revola",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -28,6 +28,7 @@
     "fumadocs-typescript": "^3.1.0",
     "fumadocs-ui": "^14.7.7",
     "lucide-react": "^0.477.0",
+    "motion": "^12.18.1",
     "next": "15.2.1",
     "next-themes": "^0.4.4",
     "next-view-transitions": "^0.3.4",
