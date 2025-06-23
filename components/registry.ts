@@ -14,7 +14,21 @@ interface Registry {
   meta?: string;
 }
 
-export const Index: Record<string, Registry> = {
+export type RegistryKeys = 
+  | "default-demo"
+  | "side-drawer-demo"
+  | "scrollable-demo"
+  | "controlled-demo"
+  | "default-snap-points-demo"
+  | "interact-with-background-snap-points-demo"
+  | "snap-to-sequential-points-snap-points-demo"
+  | "custom-fade-index-snap-points-demo"
+  | "default-input-demo"
+  | "no-repositioning-input-demo"
+  | "other-default-demo"
+  | "non-dismissible-default-demo";
+
+export const Index: Record<RegistryKeys, Registry> = {
   "default-demo": {
     name: "default-demo",
     description: "",
@@ -153,7 +167,6 @@ export const Index: Record<string, Registry> = {
     source: "",
     meta: undefined,
   },
-
   "default-input-demo": {
     name: "default-input-demo",
     description: "",

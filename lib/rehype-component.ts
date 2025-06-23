@@ -8,13 +8,13 @@ import type { UnistNode, UnistTree } from "@/types/unist";
 import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 
-import { Index } from "@/components/registry";
+import { Index, RegistryKeys } from "@/components/registry";
 
 export function rehypeComponent() {
   return async (tree: UnistTree) => {
     visit(tree, (node: UnistNode) => {
       if (node.name === "ComponentPreview") {
-        const name = getNodeAttributeByName(node, "name")?.value as string;
+        const name = getNodeAttributeByName(node, "name")?.value as RegistryKeys;
 
         if (!name) {
           return null;
