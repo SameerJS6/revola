@@ -10,7 +10,7 @@
       "description": "A responsive modal component built using Radix Dialog & Vaul.",
       "dependencies": ["@radix-ui/react-dialog", "vaul", "class-variance-authority"],
       "files": [
-        { "path": "registry/revola.tsx", "type": "registry:ui" },
+        { "path": "registry/revola/index.tsx", "type": "registry:ui" },
         { "path": "hooks/use-media-query.tsx", "type": "registry:hook" }
       ]
     }
