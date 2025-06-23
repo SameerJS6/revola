@@ -12,7 +12,8 @@ export default function DocLayout({ children }: PropsWithChildren) {
         className: "[--fd-sidebar-width:250px]",
       }}
       nav={{
-        title: "Native Modal",
+        title: "Revola",
+        url: "/",
       }}
       tree={source.pageTree}
     >
