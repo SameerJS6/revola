@@ -3,32 +3,32 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
-  NativeModal,
-  NativeModalTrigger,
-  NativeModalContent,
-  NativeModalHeader,
-  NativeModalTitle,
-  NativeModalDescription,
-  NativeModalFooter,
+  ResponsiveDialog,
+  ResponsiveDialogTrigger,
+  ResponsiveDialogContent,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
 } from "@/components/native-modal";
 
-export default function NativeModalVaulDefaultControlledDemo() {
+export default function VaulControlledDemo() {
   const [open, setOpen] = useState(false);
   return (
-    <NativeModal open={open} onOpenChange={setOpen}>
-      <NativeModalTrigger asChild>
+      <ResponsiveDialog open={open} onOpenChange={setOpen}>
+      <ResponsiveDialogTrigger asChild>
         <Button variant="outline" className="h-12 rounded-full px-6">
-          Vaul Default Controlled Demo
+          Vaul Controlled Demo
         </Button>
-      </NativeModalTrigger>
+        </ResponsiveDialogTrigger>
 
-      <NativeModalContent>
+      <ResponsiveDialogContent>
         <div className="mx-auto mb-2 max-w-md bg-fd-background">
-          <NativeModalHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
-            <NativeModalTitle className="text-base font-medium leading-6 tracking-normal">
+            <ResponsiveDialogHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
+            <ResponsiveDialogTitle className="text-base font-medium leading-6 tracking-normal">
               A controlled drawer.
-            </NativeModalTitle>
-            <NativeModalDescription className="space-y-2 max-md:text-base">
+            </ResponsiveDialogTitle>
+              <ResponsiveDialogDescription className="space-y-2 max-md:text-base">
               <span className="block">
                 This means that the drawer no longer manages its own state. Instead, you can control it programmatically
                 from the outside.
@@ -38,11 +38,11 @@ export default function NativeModalVaulDefaultControlledDemo() {
                 will change your open state when the user clicks outside of it, or when they press the escape key for
                 example.
               </span>
-            </NativeModalDescription>
-          </NativeModalHeader>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
         </div>
 
-        <NativeModalFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
+            <ResponsiveDialogFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
           <div className="mx-auto flex w-full max-w-md justify-end gap-6">
             <a
               className="gap-0.25 flex items-center text-xs text-secondary-foreground"
@@ -91,8 +91,8 @@ export default function NativeModalVaulDefaultControlledDemo() {
               </svg>
             </a>
           </div>
-        </NativeModalFooter>
-      </NativeModalContent>
-    </NativeModal>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   );
 }

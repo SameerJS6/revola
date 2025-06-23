@@ -1,32 +1,32 @@
 "use client";
 
 import {
-  NativeModal,
-  NativeModalContent,
-  NativeModalHeader,
-  NativeModalTitle,
-  NativeModalTrigger,
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
 } from "@/components/native-modal";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 
-export default function VaulSnapToSequentialPointsDemo() {
+export default function VaulSequentialSnapPointsDemo() {
   const snapPoints = ["148px", "355px", 1];
   const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
 
   return (
-    <NativeModal
+    <ResponsiveDialog
       shouldScaleBackground={false}
       snapToSequentialPoint
       snapPoints={snapPoints}
       activeSnapPoint={snap}
       setActiveSnapPoint={setSnap}
     >
-      <NativeModalTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
-        Snap To Sequential Points Native Modal
-      </NativeModalTrigger>
-      <NativeModalContent data-testid="content" className="flex flex-col max-sm:max-h-[97%] sm:p-0">
+      <ResponsiveDialogTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
+        Snap To Sequential Points Responsive Dialog
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent data-testid="content" className="flex flex-col max-sm:max-h-[97%] sm:p-0">
         <div
           className={cn("mx-auto flex w-full flex-col p-6 pt-5 sm:overflow-y-auto", {
             "overflow-y-auto": snap === 1,
@@ -50,10 +50,10 @@ export default function VaulSnapToSequentialPointsDemo() {
               </svg>
             ))}
           </div>
-          <NativeModalHeader className="px-0 text-left">
-            <NativeModalTitle className="mt-2 text-2xl font-medium">The Hidden Details</NativeModalTitle>
+          <ResponsiveDialogHeader className="px-0 text-left">
+            <ResponsiveDialogTitle className="mt-2 text-2xl font-medium">The Hidden Details</ResponsiveDialogTitle>
             <p className="mb-6 mt-1 text-sm">40 videos, 20+ exercises</p>
-          </NativeModalHeader>
+          </ResponsiveDialogHeader>
 
           <p className="text-muted-foreground">
             The world of user interface design is an intricate landscape filled with hidden details and nuance. In this
@@ -81,8 +81,8 @@ export default function VaulSnapToSequentialPointsDemo() {
           <div className="mt-12">
             <figure>
               <blockquote className="font-serif">
-                “I especially loved the hidden details video. That was so useful, learned a lot by just reading it.
-                Can&rsquo;t wait for more course content!”
+                "I especially loved the hidden details video. That was so useful, learned a lot by just reading it.
+                Can&rsquo;t wait for more course content!"
               </blockquote>
               <figcaption>
                 <span className="mt-2 block text-sm text-muted-foreground">Yvonne Ray, Frontend Developer</span>
@@ -107,7 +107,7 @@ export default function VaulSnapToSequentialPointsDemo() {
             </div>
           </div>
         </div>
-      </NativeModalContent>
-    </NativeModal>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   );
 }

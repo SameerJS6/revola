@@ -1,42 +1,42 @@
 "use client";
 
 import {
-  NativeModal,
-  NativeModalContent,
-  NativeModalDescription,
-  NativeModalFooter,
-  NativeModalHeader,
-  NativeModalTitle,
-  NativeModalTrigger,
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
 } from "@/components/native-modal";
 import { Button } from "@/components/ui/button";
 
-export default function NativeModalVaulDefaultDemo() {
+export default function VaulDefaultDemo() {
   return (
-    <NativeModal>
-      <NativeModalTrigger asChild>
+    <ResponsiveDialog>
+      <ResponsiveDialogTrigger asChild>
         <Button variant="outline" className="h-12 rounded-full px-6">
           Vaul Default Demo
         </Button>
-      </NativeModalTrigger>
+      </ResponsiveDialogTrigger>
 
-      <NativeModalContent>
+      <ResponsiveDialogContent>
         <div className="mx-auto mb-2 max-w-md">
           {/* Todo: Add styling for drag handle  */}
-          <NativeModalHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
-            <NativeModalTitle className="text-base font-medium leading-6 tracking-normal">
+          <ResponsiveDialogHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
+            <ResponsiveDialogTitle className="text-base font-medium leading-6 tracking-normal">
               Drawer for React.
-            </NativeModalTitle>
-            <NativeModalDescription className="max-md:text-base">
+            </ResponsiveDialogTitle>
+            <ResponsiveDialogDescription className="max-md:text-base">
               This component can be used as a Dialog replacement on mobile and tablet devices.
               <span className="mt-2 block">
                 This one specifically is the most simplest setup you can have, just a simple drawer with a trigger.
               </span>
-            </NativeModalDescription>
-          </NativeModalHeader>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
         </div>
 
-        <NativeModalFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
+        <ResponsiveDialogFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
           <div className="mx-auto flex w-full max-w-md justify-end gap-6">
             <a
               className="gap-0.25 flex items-center text-xs text-secondary-foreground"
@@ -85,8 +85,8 @@ export default function NativeModalVaulDefaultDemo() {
               </svg>
             </a>
           </div>
-        </NativeModalFooter>
-      </NativeModalContent>
-    </NativeModal>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   );
 }

@@ -3,43 +3,43 @@
 import React from "react";
 import { buttonVariants } from "@/components/ui/button";
 import {
-  NativeModal,
-  NativeModalClose,
-  NativeModalContent,
-  NativeModalDescription,
-  NativeModalFooter,
-  NativeModalHeader,
-  NativeModalTitle,
-  NativeModalTrigger,
+  ResponsiveDialog,
+  ResponsiveDialogClose,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger
 } from "@/components/native-modal";
 
-export default function VaulNonDismissiableDemo() {
+export default function VaulNonDismissibleDemo() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <NativeModal dismissible={false} open={isOpen} onOpenChange={setIsOpen}>
-      <NativeModalTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
-        Non dismissible Native Modal
-      </NativeModalTrigger>
-      <NativeModalContent hideCloseButton>
+      <ResponsiveDialog dismissible={false} open={isOpen} onOpenChange={setIsOpen}>
+      <ResponsiveDialogTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
+        Vaul Non-Dismissible Demo
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent hideCloseButton>
         <div className="p-6">
-          <NativeModalHeader className="space-y-4 p-0 text-left">
-            <NativeModalTitle className="font-medium">A non-dismissible drawer.</NativeModalTitle>
-            <NativeModalDescription className="space-y-2 text-base">
+          <ResponsiveDialogHeader className="space-y-4 p-0 text-left">
+            <ResponsiveDialogTitle className="font-medium">A non-dismissible drawer.</ResponsiveDialogTitle>
+            <ResponsiveDialogDescription className="space-y-2 text-base">
               <span className="block">For cases when your drawer has to be always visible.</span>
               <span className="block">
                 Nothing will close it unless you make it controlled and close it programmatically.
               </span>
-            </NativeModalDescription>
-          </NativeModalHeader>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
 
-          <NativeModalFooter className="px-0">
-            <NativeModalClose onClick={() => setIsOpen(false)} className={buttonVariants()}>
+          <ResponsiveDialogFooter className="px-0">
+            <ResponsiveDialogClose onClick={() => setIsOpen(false)} className={buttonVariants()}>
               Close Drawer
-            </NativeModalClose>
-          </NativeModalFooter>
+            </ResponsiveDialogClose>
+          </ResponsiveDialogFooter>
         </div>
-      </NativeModalContent>
-    </NativeModal>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   );
 }

@@ -1,28 +1,28 @@
 import {
-  NativeModal,
-  NativeModalContent,
-  NativeModalDescription,
-  NativeModalFooter,
-  NativeModalHeader,
-  NativeModalTitle,
-  NativeModalTrigger,
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
 } from "@/components/native-modal";
 import { Button } from "@/components/ui/button";
 
-export default function VaulNoRepositioningDemo() {
+  export default function VaulNoRepositioningDemo() {
   return (
-    <NativeModal repositionInputs={false}>
-      <NativeModalTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
-        No Repositioning Input Native Modal
-      </NativeModalTrigger>
-      <NativeModalContent className="flex max-h-[82vh] flex-col sm:p-0">
+      <ResponsiveDialog repositionInputs={false}>
+      <ResponsiveDialogTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
+        Vaul No Repositioning Demo
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent className="flex max-h-[82vh] flex-col sm:p-0">
         <form className="overflow-auto rounded-t-[10px] px-6 sm:p-6">
-          <NativeModalHeader className="mb-2 px-0 text-left sm:mb-6">
-            <NativeModalTitle className="font-medium">New Project</NativeModalTitle>
-            <NativeModalDescription className="leading-6">
+          <ResponsiveDialogHeader className="mb-2 px-0 text-left sm:mb-6">
+            <ResponsiveDialogTitle className="font-medium">New Project</ResponsiveDialogTitle>
+            <ResponsiveDialogDescription className="leading-6">
               Get started by filling in the information below to create your new project.
-            </NativeModalDescription>
-          </NativeModalHeader>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
 
           <div className="space-y-4">
             <div className="space-y-2">
@@ -44,11 +44,11 @@ export default function VaulNoRepositioningDemo() {
               />
             </div>
           </div>
-          <NativeModalFooter className="px-0 sm:pt-4">
+          <ResponsiveDialogFooter className="px-0 sm:pt-4">
             <Button className="font-medium">Submit</Button>
-          </NativeModalFooter>
+          </ResponsiveDialogFooter>
         </form>
-      </NativeModalContent>
-    </NativeModal>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
   );
 }
