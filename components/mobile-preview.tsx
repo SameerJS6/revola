@@ -1,7 +1,7 @@
 "use client";
 
 import IphoneMockup, { Size } from "@/components/iphone-mockup";
-import { ResponsiveDialog, ResponsiveDialogContent, ResponsiveDialogTrigger } from "@/components/native-modal";
+import { ResponsiveDialog, ResponsiveDialogContent, ResponsiveDialogTrigger } from "@/registry/revola";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import useMediaQuery from "@/hooks/use-media-query";
 import { cn } from "@/lib/utils";
