@@ -28,11 +28,7 @@ export function rehypeComponent() {
           const filePath = src;
           let source = fs.readFileSync(filePath, "utf8");
 
-          source = source.replaceAll("react-payment-inputs/lib/images/index.js", "react-payment-inputs/images");
-          source = source.replaceAll(
-            "// Using this import \(ES import\) to fix the `ERR_UNSUPPORTED_DIR_IMPORT` error from `rehype-component\.ts`, as it throws an error while parsing all imports at run/build time\. This workaround specifically addresses the Node\.js ES modules limitation\.",
-            ""
-          );
+          source = source.replaceAll("registry/revola", "components/ui/revola");
           source = source.replaceAll("export default", "export");
 
           // Add code as children so that rehype can take over at build time.
