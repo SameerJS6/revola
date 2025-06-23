@@ -13,7 +13,7 @@ import { cva } from "class-variance-authority";
 
 type DrawerType = React.ComponentProps<typeof DrawerPrimitive.Root>;
 
-type NativeModalContextProps = {
+type ResponsiveDialogContextProps = {
   modal?: boolean;
   dismissible?: boolean;
   direction?: "top" | "right" | "bottom" | "left";
@@ -21,38 +21,38 @@ type NativeModalContextProps = {
   onlyDialog?: boolean;
 };
 
-type NativeModalProviderProps = {
+type ResponsiveDialogProviderProps = {
   children: React.ReactNode;
-} & NativeModalContextProps;
+} & ResponsiveDialogContextProps;
 
-const NativeModalContext = React.createContext<NativeModalContextProps>({});
+const ResponsiveDialogContext = React.createContext<ResponsiveDialogContextProps>({});
 
-const NativeModalProvider = ({
+const ResponsiveDialogProvider = ({
   modal = true,
   dismissible = true,
   direction = "bottom",
   onlyDrawer = false,
   onlyDialog = false,
   children,
-}: NativeModalProviderProps) => {
+}: ResponsiveDialogProviderProps) => {
   return (
-    <NativeModalContext.Provider value={{ modal, dismissible, direction, onlyDrawer, onlyDialog }}>
+    <ResponsiveDialogContext.Provider value={{ modal, dismissible, direction, onlyDrawer, onlyDialog }}>
       {children}
-    </NativeModalContext.Provider>
+    </ResponsiveDialogContext.Provider>
   );
 };
 
-const useNativeModal = () => {
-  const context = React.useContext(NativeModalContext);
+const useResponsiveDialog = () => {
+  const context = React.useContext(ResponsiveDialogContext);
 
   if (!context) {
-    throw new Error("useNativeModal must be used within a <NativeModal />");
+    throw new Error("useResponsiveDialog must be used within a <ResponsiveDialog />");
   }
 
   return context;
 };
 
-const NativeModal = ({
+const ResponsiveDialog = ({
   modal = true,
   dismissible = true,
   direction = "bottom",
@@ -75,17 +75,17 @@ const NativeModal = ({
 
   // Determine which component to use based on props and media query
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
-  const NativeModal = shouldUseDialog ? DialogPrimitive.Root : DrawerPrimitive.Root;
+  const ResponsiveDialog = shouldUseDialog ? DialogPrimitive.Root : DrawerPrimitive.Root;
 
   return (
-    <NativeModalProvider
+    <ResponsiveDialogProvider
       modal={modal}
       dismissible={dismissible}
       direction={direction}
       onlyDrawer={onlyDrawer}
       onlyDialog={onlyDialog}
     >
-      <NativeModal
+      <ResponsiveDialog
         modal={modal}
         direction={direction}
         dismissible={dismissible}
@@ -95,39 +95,39 @@ const NativeModal = ({
         {...props}
         {...(!shouldUseDialog && { autoFocus: true })}
       />
-    </NativeModalProvider>
+    </ResponsiveDialogProvider>
   );
 };
-NativeModal.displayName = "NativeModal";
+ResponsiveDialog.displayName = "ResponsiveDialog";
 
-const NativeModalTrigger = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) => {
-  const { onlyDrawer, onlyDialog } = useNativeModal();
+const ResponsiveDialogTrigger = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) => {
+  const { onlyDrawer, onlyDialog } = useResponsiveDialog();
   const isMobile = useMediaQuery("(min-width: 640px)");
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
-  const NativeModalTrigger = shouldUseDialog ? DialogPrimitive.Trigger : DrawerPrimitive.Trigger;
-  return <NativeModalTrigger {...props} />;
+  const ResponsiveDialogTrigger = shouldUseDialog ? DialogPrimitive.Trigger : DrawerPrimitive.Trigger;
+  return <ResponsiveDialogTrigger {...props} />;
 };
-NativeModalTrigger.displayName = "NativeModalTrigger";
+ResponsiveDialogTrigger.displayName = "ResponsiveDialogTrigger";
 
-const NativeModalPortal = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Portal>) => {
-  const { onlyDrawer, onlyDialog } = useNativeModal();
+const ResponsiveDialogPortal = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Portal>) => {
+  const { onlyDrawer, onlyDialog } = useResponsiveDialog();
   const isMobile = useMediaQuery("(min-width: 640px)");
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
-  const NativeModalPortal = shouldUseDialog ? DialogPrimitive.Portal : DrawerPrimitive.Portal;
-  return <NativeModalPortal {...props} />;
+  const ResponsiveDialogPortal = shouldUseDialog ? DialogPrimitive.Portal : DrawerPrimitive.Portal;
+  return <ResponsiveDialogPortal {...props} />;
 };
-NativeModalPortal.displayName = "NativeModalPortal";
+ResponsiveDialogPortal.displayName = "ResponsiveDialogPortal";
 
-const NativeModalOverlay = ({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Overlay>) => {
-  const { onlyDrawer, onlyDialog } = useNativeModal();
+const ResponsiveDialogOverlay = ({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Overlay>) => {
+  const { onlyDrawer, onlyDialog } = useResponsiveDialog();
   const isMobile = useMediaQuery("(min-width: 640px)");
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
-  const NativeModalOverlay = shouldUseDialog ? DialogPrimitive.Overlay : DrawerPrimitive.Overlay;
+  const ResponsiveDialogOverlay = shouldUseDialog ? DialogPrimitive.Overlay : DrawerPrimitive.Overlay;
   return (
-    <NativeModalOverlay
+    <ResponsiveDialogOverlay
       {...props}
       className={cn(
         "fixed inset-0 z-50 bg-black/40 sm:data-[state=open]:animate-in sm:data-[state=closed]:animate-out sm:data-[state=closed]:fade-out-0 sm:data-[state=open]:fade-in-0",
@@ -136,21 +136,21 @@ const NativeModalOverlay = ({ className, ...props }: React.ComponentProps<typeof
     />
   );
 };
-NativeModalOverlay.displayName = "NativeModalOverlay";
+ResponsiveDialogOverlay.displayName = "ResponsiveDialogOverlay";
 
-const NativeModalClose = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) => {
-  const { dismissible, onlyDrawer, onlyDialog } = useNativeModal();
+const ResponsiveDialogClose = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) => {
+  const { dismissible, onlyDrawer, onlyDialog } = useResponsiveDialog();
   const isMobile = useMediaQuery("(min-width: 640px)");
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
-  const NativeModalClose = shouldUseDialog ? DialogPrimitive.Close : DrawerPrimitive.Close;
+  const ResponsiveDialogClose = shouldUseDialog ? DialogPrimitive.Close : DrawerPrimitive.Close;
   return (
-    <NativeModalClose aria-label="Close" {...(!dismissible && { onClick: (e) => e.preventDefault() })} {...props} />
+    <ResponsiveDialogClose aria-label="Close" {...(!dismissible && { onClick: (e) => e.preventDefault() })} {...props} />
   );
 };
-NativeModalClose.displayName = "NativeModalClose";
+ResponsiveDialogClose.displayName = "ResponsiveDialogClose";
 
-const NativeModalContentVariants = cva("fixed z-[9999] bg-fd-background", {
+const ResponsiveDialogContentVariants = cva("fixed z-[9999] bg-fd-background", {
   variants: {
     device: {
       desktop:
@@ -195,21 +195,21 @@ const NativeModalContentVariants = cva("fixed z-[9999] bg-fd-background", {
   ],
 });
 
-const NativeModalContent = React.forwardRef<
+const ResponsiveDialogContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { hideCloseButton?: boolean }
 >(({ className, children, hideCloseButton = false, ...props }, ref) => {
-  const { direction, modal, dismissible, onlyDrawer, onlyDialog } = useNativeModal();
+  const { direction, modal, dismissible, onlyDrawer, onlyDialog } = useResponsiveDialog();
 
   const isMobile = useMediaQuery("(min-width: 640px)");
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
-  const NativeModalContent = shouldUseDialog ? DialogPrimitive.Content : VaulDrawerContent;
+  const ResponsiveDialogContent = shouldUseDialog ? DialogPrimitive.Content : VaulDrawerContent;
 
   const isDisabled = !modal || !dismissible;
   return (
-    <NativeModalPortal>
-      <NativeModalOverlay />
-      <NativeModalContent
+    <ResponsiveDialogPortal>
+      <ResponsiveDialogOverlay />
+      <ResponsiveDialogContent
         ref={ref}
         {...props}
         {...(!dismissible && shouldUseDialog && { onEscapeKeyDown: (e) => e.preventDefault() })}
@@ -218,7 +218,7 @@ const NativeModalContent = React.forwardRef<
             onInteractOutside: (e) => e.preventDefault(),
           })}
         className={cn(
-          NativeModalContentVariants({
+          ResponsiveDialogContentVariants({
             device: shouldUseDialog ? "desktop" : "mobile",
             direction,
           }),
@@ -229,24 +229,24 @@ const NativeModalContent = React.forwardRef<
           <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
         )}
         {!hideCloseButton && (
-          <NativeModalClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+          <ResponsiveDialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
             <X className="size-4" />
             <span className="sr-only">close</span>
-          </NativeModalClose>
+          </ResponsiveDialogClose>
         )}
         {children}
-      </NativeModalContent>
-    </NativeModalPortal>
+      </ResponsiveDialogContent>
+    </ResponsiveDialogPortal>
   );
 });
-NativeModalContent.displayName = "NativeModalContent";
+ResponsiveDialogContent.displayName = "ResponsiveDialogContent";
 
-const NativeModalHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+const ResponsiveDialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return <div className={cn("flex flex-col gap-1.5 p-4 text-center sm:p-0 sm:text-left", className)} {...props} />;
 };
-NativeModalHeader.displayName = "NativeModalHeader";
+ResponsiveDialogHeader.displayName = "ResponsiveDialogHeader";
 
-const NativeModalFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+const ResponsiveDialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <footer
       className={cn("flex flex-col gap-4 p-4 max-sm:mt-auto sm:flex-row sm:justify-end sm:gap-2 sm:p-0", className)}
@@ -254,19 +254,19 @@ const NativeModalFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDiv
     />
   );
 };
-NativeModalFooter.displayName = "NativeModalFooter";
+ResponsiveDialogFooter.displayName = "ResponsiveDialogFooter";
 
-const NativeModalTitle = React.forwardRef<
+const ResponsiveDialogTitle = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Title>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
 >(({ className, ...props }, ref) => {
-  const { onlyDrawer, onlyDialog } = useNativeModal();
+  const { onlyDrawer, onlyDialog } = useResponsiveDialog();
   const isMobile = useMediaQuery("(min-width: 640px)");
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
-  const NativeModalTitle = shouldUseDialog ? DialogPrimitive.Title : DrawerPrimitive.Title;
+  const ResponsiveDialogTitle = shouldUseDialog ? DialogPrimitive.Title : DrawerPrimitive.Title;
   return (
-    <NativeModalTitle
+    <ResponsiveDialogTitle
       ref={ref}
       className={cn("text-lg font-semibold leading-none tracking-tight", className)}
       {...props}
@@ -274,31 +274,31 @@ const NativeModalTitle = React.forwardRef<
   );
 });
 
-NativeModalTitle.displayName = "NativeModalTitle";
+ResponsiveDialogTitle.displayName = "ResponsiveDialogTitle";
 
-const NativeModalDescription = React.forwardRef<
+const ResponsiveDialogDescription = React.forwardRef<
   React.ComponentRef<typeof DialogPrimitive.Description>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => {
-  const { onlyDrawer, onlyDialog } = useNativeModal();
+  const { onlyDrawer, onlyDialog } = useResponsiveDialog();
   const isMobile = useMediaQuery("(min-width: 640px)");
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
-  const NativeModalDescription = shouldUseDialog ? DialogPrimitive.Description : DrawerPrimitive.Description;
-  return <NativeModalDescription ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />;
+  const ResponsiveDialogDescription = shouldUseDialog ? DialogPrimitive.Description : DrawerPrimitive.Description;
+  return <ResponsiveDialogDescription ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />;
 });
 
-NativeModalDescription.displayName = "NativeModalDescription";
+ResponsiveDialogDescription.displayName = "ResponsiveDialogDescription";
 
 export {
-  NativeModal,
-  NativeModalClose,
-  NativeModalContent,
-  NativeModalDescription,
-  NativeModalFooter,
-  NativeModalHeader,
-  NativeModalOverlay,
-  NativeModalPortal,
-  NativeModalTitle,
-  NativeModalTrigger,
+  ResponsiveDialog,
+  ResponsiveDialogClose,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogOverlay,
+  ResponsiveDialogPortal,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
 };
