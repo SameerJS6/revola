@@ -6,16 +6,16 @@ icon: Play
 
 ## Installation
 
-Revola is built using:  
-- **[Radix UI Dialog](https://www.radix-ui.com/docs/primitives/components/dialog)** for modals on larger screens.  
-- **[Vaul](https://vaul.emilkowal.ski/)** for drawers on mobile.  
+Revola is built using:
 
+- **[Radix UI Dialog](https://www.radix-ui.com/docs/primitives/components/dialog)** for modals on larger screens.
+- **[Vaul](https://vaul.emilkowal.ski/)** for drawers on mobile.
 
 It doesn’t require shadcn/ui, but it integrates seamlessly with its styling system and supports installation via the shadcn CLI.
 
-### Install via Shadcn CLI 
+### Install via Shadcn CLI
 
-If you're already using **shadcn** in your project, you can install Revola with:  
+If you're already using **shadcn** in your project, you can install Revola with:
 
 ```package-install
 npx shadcn@latest add http://revola.sameerjs.com/r/revola.json
@@ -33,6 +33,7 @@ npx shadcn@latest init
 ```
 
 Choose between a Next.js project or a Monorepo.
+
 </Step>
 
 <Step>
@@ -46,23 +47,23 @@ npx shadcn@latest add button
 The command above will add the Button component to your project. You can then import it like this:
 
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
     <div>
       <Button>Click me</Button>
     </div>
-  )
+  );
 }
-
 ```
+
 </Step>
 </Steps>
 </MarkdownAccordion>
 
-
 ### Manual Installation (without shadcn)
+
 If you’d rather not use the shadcn CLI, you can install **Revola** manually with just a few steps.
 
 <Steps>
@@ -74,6 +75,7 @@ Install the required packages:
 ```package-install
 npm install @radix-ui/react-dialog vaul tailwindcss-animate
 ```
+
 </Step>
 
 <Step>
@@ -86,11 +88,12 @@ import type { Config } from "tailwindcss";
 import tailwindAnimate from "tailwindcss-animate";
 
 export default {
-// All you existing configs....
+  // All you existing configs....
 
   plugins: [tailwindAnimate],
 } satisfies Config;
 ```
+
 </Step>
 
 <Step>
@@ -98,7 +101,7 @@ export default {
 
 This hook is used internally by Revola to detect screen size.
 
-```tsx title="use-media-query.tsx"
+```tsx lineNumbers title="use-media-query.tsx"
 "use client";
 
 import { useEffect, useState } from "react";
@@ -121,8 +124,8 @@ const useMediaQuery = (query: string) => {
 };
 
 export default useMediaQuery;
-
 ```
+
 </Step>
 
 <Step>
@@ -135,17 +138,17 @@ Copy the full `native-modal.tsx` component into your project:
 
 "use client";
 
-import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   ResponsiveDialog,
-  ResponsiveDialogTrigger,
   ResponsiveDialogContent,
-  ResponsiveDialogHeader,
-  ResponsiveDialogTitle,
   ResponsiveDialogDescription,
   ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
 } from "@/components/ui/native-modal";
+import React, { useState } from "react";
 
 export default function VaulDefaultControlledDemo() {
   const [open, setOpen] = useState(false);
@@ -232,6 +235,7 @@ export default function VaulDefaultControlledDemo() {
   );
 }
 ```
+
 </Step>
 
 <Step>
@@ -243,39 +247,37 @@ Make sure your import paths match your project structure.
 
 ## Usage
 
-```tsx 
-import { 
-  ResponsiveDialog, 
-  ResponsiveDialogTrigger, 
-  ResponsiveDialogContent, 
-  ResponsiveDialogHeader, 
-  ResponsiveDialogTitle, 
-  ResponsiveDialogDescription 
-  } from "@/components/ui/native-modal";
+```tsx
+import {
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
+} from "@/components/ui/native-modal";
 ```
 
 ```tsx
-    <ResponsiveDialog>
-      <ResponsiveDialogTrigger>Open Revola</ResponsiveDialogTrigger>
-      <ResponsiveDialogContent>
-        <div className="bg-background p-4">
-          <ResponsiveDialogHeader>
-            <ResponsiveDialogTitle>Welcome</ResponsiveDialogTitle>
-            <ResponsiveDialogDescription>
-              This is a responsive modal that adapts between drawer & modal.
-            </ResponsiveDialogDescription>
-          </ResponsiveDialogHeader>
-        </div>
-      </ResponsiveDialogContent> 
-    </ResponsiveDialog> 
-``` 
+<ResponsiveDialog>
+  <ResponsiveDialogTrigger>Open Revola</ResponsiveDialogTrigger>
+  <ResponsiveDialogContent>
+    <div className="bg-background p-4">
+      <ResponsiveDialogHeader>
+        <ResponsiveDialogTitle>Welcome</ResponsiveDialogTitle>
+        <ResponsiveDialogDescription>
+          This is a responsive modal that adapts between drawer & modal.
+        </ResponsiveDialogDescription>
+      </ResponsiveDialogHeader>
+    </div>
+  </ResponsiveDialogContent>
+</ResponsiveDialog>
+```
+
 ---
 
 ## Examples
 
-
 ### Simple Example
 
 <ComponentPreview name="default-demo" />
-
-

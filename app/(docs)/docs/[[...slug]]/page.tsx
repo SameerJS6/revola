@@ -3,7 +3,6 @@ import MarkdownAccordion from "@/components/markdown-accordion";
 import { Button } from "@/components/ui/button";
 import { source } from "@/lib/source";
 import { cn } from "@/lib/utils";
-import { findNeighbour } from "fumadocs-core/server";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
