@@ -7,8 +7,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "typecheck": "tsc --noEmit",
     "postinstall": "fumadocs-mdx",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.8",
@@ -48,6 +52,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.2",
     "@types/mdx": "^2.0.13",
     "@types/node": "^20",
     "@types/react": "^19",
