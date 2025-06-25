@@ -1,6 +1,7 @@
 {
   "name": "revola",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "A responsive, drop-in replacement for modal and drawer components - behaves as a modal on desktop and a drawer on mobile.",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
