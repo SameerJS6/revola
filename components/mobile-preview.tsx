@@ -1,13 +1,15 @@
 "use client";
 
-import IphoneMockup, { Size } from "@/components/iphone-mockup";
-import { ResponsiveDialog, ResponsiveDialogContent, ResponsiveDialogTrigger } from "@/registry/revola";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import useMediaQuery from "@/hooks/use-media-query";
-import { cn } from "@/lib/utils";
-import { Smartphone } from "lucide-react";
 import { useState } from "react";
-import { Drawer } from "vaul";
+
+import { Smartphone } from "lucide-react";
+
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import IphoneMockup, { type Size } from "@/components/iphone-mockup";
+import { ResponsiveDialog, ResponsiveDialogContent, ResponsiveDialogTrigger } from "@/registry/revola";
+import { cn } from "@/lib/utils";
+
+import useMediaQuery from "@/hooks/use-media-query";
 
 export default function MobilePreview({ previewLink }: { previewLink: string }) {
   const [isOpen, setIsOpen] = useState(false);

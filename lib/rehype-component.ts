@@ -4,11 +4,13 @@
 
 import fs from "node:fs";
 import path from "node:path";
-import type { UnistNode, UnistTree } from "@/types/unist";
+
 import { u } from "unist-builder";
 import { visit } from "unist-util-visit";
 
-import { Index, RegistryKeys } from "@/components/registry";
+import { Index, type RegistryKeys } from "@/components/registry";
+
+import type { UnistNode, UnistTree } from "@/types/unist";
 
 export function rehypeComponent() {
   return async (tree: UnistTree) => {
