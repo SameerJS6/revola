@@ -1,0 +1,88 @@
+import { ExternalLinkIcon } from "lucide-react";
+import { cva } from "class-variance-authority";
+
+import { Button } from "@/components/ui/button";
+import { focusRingVariants, textVariants } from "@/components/hero";
+import {
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
+} from "@/registry/revola";
+import { cn } from "@/lib/utils";
+
+export default function RevolaHeroDemo() {
+  const linkVariants = cva(
+    "gap-0.25 flex items-center text-xs text-secondary-foreground transition-colors duration-200 hover:text-zinc-900",
+    {
+      variants: {
+        focus: {
+          default:
+            "focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-1",
+        },
+      },
+      defaultVariants: {
+        focus: "default",
+      },
+    }
+  );
+
+  return (
+    <ResponsiveDialog>
+      <ResponsiveDialogTrigger asChild>
+        <Button
+          size="lg"
+          variant="outline"
+          className={cn(
+            "rounded-full border-gray-300 bg-white px-6 py-2 text-zinc-900 transition-all duration-200 hover:bg-zinc-100 hover:text-zinc-900",
+            textVariants({ selection: "dark" }),
+            focusRingVariants()
+          )}
+        >
+          Open Revola
+        </Button>
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
+        <div className="mx-auto mb-2 max-w-md">
+          <ResponsiveDialogHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
+            <ResponsiveDialogTitle className="text-base font-medium leading-6 tracking-normal">
+              Drawer for React.
+            </ResponsiveDialogTitle>
+            <ResponsiveDialogDescription className="max-md:text-base">
+              This component can be used as a Dialog replacement on mobile and tablet devices.
+              <span className="mt-2 block">
+                This one specifically is the most simplest setup you can have, just a simple drawer with a trigger.
+              </span>
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
+        </div>
+
+        <ResponsiveDialogFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
+          <div className="mx-auto flex w-full max-w-md justify-end gap-6">
+            <a
+              className={linkVariants()}
+              href="https://github.com/SameerJS6/revola"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+              <ExternalLinkIcon className="ml-1 size-3" />
+            </a>
+            <a
+              className={linkVariants()}
+              href="https://twitter.com/sameerjs6"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Twitter
+              <ExternalLinkIcon className="ml-1 size-3" />
+            </a>
+          </div>
+        </ResponsiveDialogFooter>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  );
+}
