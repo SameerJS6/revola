@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
@@ -6,8 +7,6 @@ import {
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
 } from "@/registry/revola";
-import { Button } from "@/components/ui/button";
-import React from "react";
 
 export default function VaulScrollableDemo() {
   return (

@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
@@ -9,12 +10,14 @@ import {
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
 } from "@/registry/revola";
-import { Button } from "@/components/ui/button";
+
 export default function VaulInputDefaultDemo() {
   return (
     <ResponsiveDialog>
-      <ResponsiveDialogTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
-        Vaul Input Default Demo
+      <ResponsiveDialogTrigger asChild>
+        <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
+          Vaul Input Default Demo
+        </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent className="flex max-h-[97vh] flex-col sm:p-0">
         <form className="overflow-auto rounded-t-[10px] px-6 sm:p-6">

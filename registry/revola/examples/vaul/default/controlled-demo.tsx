@@ -1,15 +1,16 @@
 "use client";
 
 import React, { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   ResponsiveDialog,
-  ResponsiveDialogTrigger,
   ResponsiveDialogContent,
-  ResponsiveDialogHeader,
-  ResponsiveDialogTitle,
   ResponsiveDialogDescription,
   ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
 } from "@/registry/revola";
 
 export default function VaulControlledDemo() {

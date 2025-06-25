@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
@@ -7,9 +10,7 @@ import {
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
 } from "@/registry/revola";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
 
 export default function VaulDefaultSnapPointsDemo() {
   const snapPoints = ["148px", "355px", 1];
@@ -22,8 +23,10 @@ export default function VaulDefaultSnapPointsDemo() {
       activeSnapPoint={snap}
       setActiveSnapPoint={setSnap}
     >
-      <ResponsiveDialogTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
-        Default Snap Points Responsive Dialog
+      <ResponsiveDialogTrigger asChild>
+        <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
+          Default Snap Points Revola
+        </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent data-testid="content" className="flex flex-col max-sm:max-h-[97%] sm:p-0">
         <div

@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
@@ -10,11 +11,13 @@ import {
 export default function VaulOtherDemo() {
   return (
     <ResponsiveDialog modal={false}>
-      <ResponsiveDialogTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
-        Vaul Non-Modal Demo
+      <ResponsiveDialogTrigger asChild>
+        <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
+          Vaul Non-Modal Demo
+        </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent>
-        <div className="flex flex-col border-t border-border p-6 sm:border">
+        <div className="flex flex-col p-6">
           <ResponsiveDialogHeader className="space-y-4 p-0 text-left">
             <ResponsiveDialogTitle className="font-medium">What does non-modal mean?</ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="space-y-2 text-base">

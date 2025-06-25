@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
@@ -6,7 +7,6 @@ import {
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
 } from "@/registry/revola";
-import { Button } from "@/components/ui/button";
 
 export default function VaulSideDrawerDemo() {
   return (
@@ -16,7 +16,6 @@ export default function VaulSideDrawerDemo() {
           Vaul Side Drawer Demo
         </Button>
       </ResponsiveDialogTrigger>
-      {/* When using direction props, never use Modal's content directly, always use a wrapper element and then have all the modal's content or else, it will cause a weird background attached to entire drawer  */}
       <ResponsiveDialogContent hideCloseButton>
         <div className="flex size-full grow flex-col rounded-2xl bg-fd-background p-6">
           <ResponsiveDialogHeader className="space-y-2 text-left">

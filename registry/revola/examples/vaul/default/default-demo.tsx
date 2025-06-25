@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
@@ -9,7 +10,6 @@ import {
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
 } from "@/registry/revola";
-import { Button } from "@/components/ui/button";
 
 export default function VaulDefaultDemo() {
   return (
@@ -22,7 +22,6 @@ export default function VaulDefaultDemo() {
 
       <ResponsiveDialogContent>
         <div className="mx-auto mb-2 max-w-md">
-          {/* Todo: Add styling for drag handle  */}
           <ResponsiveDialogHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
             <ResponsiveDialogTitle className="text-base font-medium leading-6 tracking-normal">
               Drawer for React.

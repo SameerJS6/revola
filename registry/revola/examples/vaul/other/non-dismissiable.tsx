@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { buttonVariants } from "@/components/ui/button";
+
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   ResponsiveDialog,
   ResponsiveDialogClose,
@@ -18,8 +19,10 @@ export default function VaulNonDismissibleDemo() {
 
   return (
     <ResponsiveDialog dismissible={false} open={isOpen} onOpenChange={setIsOpen}>
-      <ResponsiveDialogTrigger className="relative flex h-10 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full bg-white px-4 text-sm font-medium shadow-sm transition-all hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]">
-        Vaul Non-Dismissible Demo
+      <ResponsiveDialogTrigger asChild>
+        <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
+          Vaul Non-Dismissible Demo
+        </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent hideCloseButton>
         <div className="p-6">
