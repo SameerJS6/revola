@@ -11,7 +11,12 @@ import { cn } from "@/lib/utils";
 
 import useMediaQuery from "@/hooks/use-media-query";
 
-export default function MobilePreview({ previewLink }: { previewLink: string }) {
+type MobilePreviewProps = {
+  previewLink: string;
+  className?: string;
+};
+
+export default function MobilePreview({ previewLink, className }: MobilePreviewProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Multiple media queries for different screen heights
@@ -49,7 +54,8 @@ export default function MobilePreview({ previewLink }: { previewLink: string }) 
             "relative flex size-9 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full text-sm font-medium shadow-sm transition-all disabled:pointer-events-none disabled:opacity-70",
             isOpen
               ? "bg-[#161615] text-white hover:bg-[#313130] dark:bg-white dark:text-[#161615]"
-              : "bg-white hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]"
+              : "bg-white hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]",
+            className
           )}
         >
           <Smartphone className="size-4" />
