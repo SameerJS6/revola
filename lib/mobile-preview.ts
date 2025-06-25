@@ -3,15 +3,16 @@ import { Index, type RegistryKeys } from "@/components/registry";
 /**
  * Generate a mobile preview link for a component
  * @param componentName The name of the component in the registry
+ * @param origin The origin of the page
  * @returns The mobile preview URL or null if component doesn't exist
  */
-export function generateMobilePreviewLink(componentName: RegistryKeys): string | null {
+export function generateMobilePreviewLink(componentName: RegistryKeys, origin: string): string | null {
   if (!Index[componentName]) {
     console.warn(`Component "${componentName}" not found in registry`);
     return null;
   }
 
-  return `${process.env.NEXT_PUBLIC_BASE_URL}/iphone-preview/${componentName}`;
+  return `${origin}/iphone-preview/${componentName}`;
 }
 
 /**

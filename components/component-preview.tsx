@@ -2,12 +2,13 @@
 
 import * as React from "react";
 
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
+import { Loader } from "lucide-react";
+
 import MobilePreview from "@/components/mobile-preview";
 import { Index, type RegistryKeys } from "@/components/registry";
 import { generateMobilePreviewLink } from "@/lib/mobile-preview";
 import { cn } from "@/lib/utils";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
-import { Loader } from "lucide-react";
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: RegistryKeys;
@@ -32,8 +33,12 @@ export default function ComponentPreview({
   const Code = Codes[0];
 
   const generatedMobilePreviewLink = React.useMemo(() => {
-    return generateMobilePreviewLink(name);
+    if (typeof window === "undefined") return;
+
+    return generateMobilePreviewLink(name, window.location.origin);
   }, [name]);
+
+  console.log("generatedMobilePreviewLink", generatedMobilePreviewLink);
 
   const Preview = React.useMemo(() => {
     const Component = Index[name]?.component;
