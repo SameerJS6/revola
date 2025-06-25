@@ -4,12 +4,12 @@ import * as React from "react";
 
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Drawer as DrawerPrimitive, Content as VaulDrawerContent } from "vaul";
-
 import { X } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { cva } from "class-variance-authority";
 
 import useMediaQuery from "@/hooks/use-media-query";
+
+import { cn } from "@/lib/utils";
 
 type DrawerType = React.ComponentProps<typeof DrawerPrimitive.Root>;
 
