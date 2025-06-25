@@ -1,9 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ExternalLink, Smartphone } from "lucide-react";
 import Link from "next/link";
+
 import { motion, type Variants } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import MobilePreview from "@/components/mobile-preview";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
@@ -87,11 +90,9 @@ export default function RevolaHero() {
         <rect width="100%" height="100%" strokeWidth="0" fill="url(#83fd4e5a-9d52-42fc-97b6-718e5d7ee527)"></rect>
       </svg>
 
-      {/* Additional bottom-to-top mask */}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
-          // background: `linear-gradient(to top, rgba(249, 250, 251, 1) 0%, rgba(249, 250, 251, 0.9) 20%, rgba(249, 250, 251, 0.6) 40%, transparent 65%)`,
           mask: "linear-gradient(to top, rgba(249, 250, 251, 1) 0%, rgba(249, 250, 251, 0.9) 20%, rgba(249, 250, 251, 0.6) 40%, transparent 65%)`",
         }}
       />
@@ -111,7 +112,10 @@ export default function RevolaHero() {
         </motion.h1>
 
         {/* Subtitle */}
-        <motion.p className="-mt-2 text-lg font-medium text-muted-foreground md:text-xl" variants={itemVariants}>
+        <motion.p
+          className="-mt-2 text-lg font-medium text-zinc-500 selection:bg-zinc-900 selection:text-zinc-50 md:text-xl"
+          variants={itemVariants}
+        >
           Dialogs that revolve around your screen.
         </motion.p>
 
@@ -120,25 +124,19 @@ export default function RevolaHero() {
           className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row"
           variants={buttonVariants}
         >
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.2 }}
-            tabIndex={-1}
-          >
+          <div className="transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]">
             <ResponsiveDialog>
               <ResponsiveDialogTrigger asChild>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="rounded-full border-gray-300 bg-white px-6 py-2 text-zinc-900 transition-all duration-200 hover:bg-zinc-100 hover:text-zinc-900 focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2"
+                  className="rounded-full border-gray-300 bg-white px-6 py-2 text-zinc-900 transition-all duration-200 selection:bg-zinc-900 selection:text-zinc-50 hover:bg-zinc-100 hover:text-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
                 >
                   Open Revola
                 </Button>
               </ResponsiveDialogTrigger>
               <ResponsiveDialogContent>
                 <div className="mx-auto mb-2 max-w-md">
-                  {/* Todo: Add styling for drag handle  */}
                   <ResponsiveDialogHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
                     <ResponsiveDialogTitle className="text-base font-medium leading-6 tracking-normal">
                       Drawer for React.
@@ -156,7 +154,7 @@ export default function RevolaHero() {
                 <ResponsiveDialogFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
                   <div className="mx-auto flex w-full max-w-md justify-end gap-6">
                     <a
-                      className="gap-0.25 flex items-center text-xs text-secondary-foreground"
+                      className="gap-0.25 flex items-center text-xs text-secondary-foreground transition-colors duration-200 hover:text-zinc-900 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-1"
                       href="https://github.com/SameerJS6/revola"
                       target="_blank"
                     >
@@ -179,7 +177,7 @@ export default function RevolaHero() {
                       </svg>
                     </a>
                     <a
-                      className="gap-0.25 flex items-center text-xs text-secondary-foreground"
+                      className="gap-0.25 flex items-center text-xs text-secondary-foreground transition-colors duration-200 hover:text-zinc-900 focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-1"
                       href="https://twitter.com/sameerjs6"
                       target="_blank"
                     >
@@ -205,44 +203,33 @@ export default function RevolaHero() {
                 </ResponsiveDialogFooter>
               </ResponsiveDialogContent>
             </ResponsiveDialog>
-          </motion.div>
-          <motion.div
-            tabIndex={-1}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.2 }}
+          </div>
+
+          <div className="transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]">
+            <MobilePreview
+              previewLink="http://localhost:3000/iphone-preview/default-demo"
+              className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
+            />
+          </div>
+
+          <Link
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/SameerJS6/revola"
+            className="inline-flex h-10 items-center gap-2 rounded-full pl-4 pr-3 font-medium text-zinc-900 transition-colors duration-200 selection:bg-zinc-900 selection:text-zinc-50 hover:bg-zinc-100 hover:text-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
           >
-            <Button
-              size="lg"
-              variant="default"
-              className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-2 text-white transition-all duration-200 hover:bg-zinc-800 focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2"
-            >
-              <Smartphone className="h-4 w-4" />
-              Mobile Preview
-            </Button>
-          </motion.div>
-          <motion.div tabIndex={-1} whileHover={{ x: 2 }} transition={{ duration: 0.2 }}>
-            <Link
-              target="_blank"
-              href="https://github.com/SameerJS6/revola"
-              className="inline-flex items-center gap-2 rounded font-medium text-zinc-900 transition-colors hover:text-gray-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2"
-            >
-              GitHub
-              <ExternalLink className="h-4 w-4" />
-            </Link>
-          </motion.div>
+            GitHub
+            <ArrowUpRight className="size-4" />
+          </Link>
         </motion.div>
 
-        {/* Documentation link */}
         <motion.div className="pt-2" variants={buttonVariants}>
-          <motion.div whileHover={{ y: -1 }} transition={{ duration: 0.2 }}>
-            <Link
-              href="/docs"
-              className="rounded text-gray-500 underline underline-offset-4 transition-colors hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2"
-            >
-              Documentation
-            </Link>
-          </motion.div>
+          <Link
+            href="/docs"
+            className="rounded px-2 py-1 text-zinc-500 underline underline-offset-4 transition-colors duration-200 selection:bg-zinc-900 selection:text-zinc-50 hover:text-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2"
+          >
+            Documentation
+          </Link>
         </motion.div>
       </motion.div>
     </div>
