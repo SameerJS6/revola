@@ -1,8 +1,9 @@
-import ComponentPreview from "@/components/component-preview";
-import MarkdownAccordion from "@/components/markdown-accordion";
-import { Button } from "@/components/ui/button";
-import { source } from "@/lib/source";
-import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { Link } from "next-view-transitions";
+
+import { SquareArrowOutUpRight } from "lucide-react";
+
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
@@ -11,10 +12,12 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "fumadocs-ui/page";
-import { SquareArrowOutUpRight } from "lucide-react";
-import { Metadata } from "next";
-import { Link } from "next-view-transitions";
-import { notFound } from "next/navigation";
+
+import { Button } from "@/components/ui/button";
+import ComponentPreview from "@/components/component-preview";
+import MarkdownAccordion from "@/components/markdown-accordion";
+import { source } from "@/lib/source";
+import { cn } from "@/lib/utils";
 
 export async function generateStaticParams() {
   return source.generateParams();
