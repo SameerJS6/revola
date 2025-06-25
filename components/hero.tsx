@@ -8,6 +8,7 @@ import { cva } from "class-variance-authority";
 
 import MobilePreview from "@/components/mobile-preview";
 import RevolaHeroDemo from "@/components/revola-hero-demo";
+import { generateMobilePreviewLink } from "@/lib/mobile-preview";
 import { cn } from "@/lib/utils";
 
 export const focusRingVariants = cva("focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900", {
@@ -84,6 +85,10 @@ export default function RevolaHero() {
     },
   };
 
+  if (typeof window === "undefined") return;
+
+  const previewLink = generateMobilePreviewLink("default-demo", window.location.origin);
+
   return (
     <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-white px-4">
       <BackgroundGrid />
@@ -117,10 +122,7 @@ export default function RevolaHero() {
           variants={buttonVariants}
         >
           <RevolaHeroDemo />
-          <MobilePreview
-            previewLink="http://localhost:3000/iphone-preview/default-demo"
-            className={focusRingVariants()}
-          />
+          <MobilePreview previewLink={previewLink ?? ""} className={focusRingVariants()} />
 
           <Link
             target="_blank"
