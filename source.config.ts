@@ -1,17 +1,20 @@
-import { rehypeComponent } from "@/lib/rehype-component";
-import { getHighlighter } from "@shikijs/compat";
+import { z } from "zod";
+
 import { rehypeCode, remarkGfm } from "fumadocs-core/mdx-plugins";
 import { fileGenerator, remarkDocGen, remarkInstall } from "fumadocs-docgen";
 import { defineConfig, defineDocs, frontmatterSchema } from "fumadocs-mdx/config";
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
-import { z } from "zod";
+import { getHighlighter } from "@shikijs/compat";
+
+import { rehypeComponent } from "@/lib/rehype-component";
 
 export const docs = defineDocs({
   dir: "content/docs",
   docs: {
     schema: frontmatterSchema.extend({
+      ogDescription: z.string().min(1),
       links: z
         .object({
           dialog: z.string().optional(),
