@@ -39,16 +39,6 @@ export async function GET(request: Request) {
   return new ImageResponse(
     (
       <div tw="flex h-full w-full bg-[#111110] text-[#EEEEEC]" style={{ fontFamily: "Geist Sans" }}>
-        <div tw="flex absolute flex-row top-24 left-24 text-white">
-          <img
-            src={`${new URL(request.url).origin}/logo.png`}
-            alt="logo"
-            width={64}
-            height={64}
-            style={{ objectFit: "contain" }}
-          />
-        </div>
-
         <div tw="flex flex-col absolute w-[1000px] justify-center left-24 bottom-24">
           <div
             tw="tracking-tight flex-grow-1 flex flex-col mb-4 justify-center leading-[1.1]"
