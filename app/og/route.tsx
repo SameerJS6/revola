@@ -41,7 +41,7 @@ export async function GET(request: Request) {
       <div tw="flex h-full w-full bg-[#111110] text-[#EEEEEC]" style={{ fontFamily: "Geist Sans" }}>
         <div tw="flex absolute flex-row top-24 left-24 text-white">
           <img
-            src={`${new URL(request.url).origin}/main-logo.png`}
+            src={`${new URL(request.url).origin}/logo.png`}
             alt="logo"
             width={64}
             height={64}
