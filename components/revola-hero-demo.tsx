@@ -16,12 +16,12 @@ import { cn } from "@/lib/utils";
 
 export default function RevolaHeroDemo() {
   const linkVariants = cva(
-    "gap-0.25 flex items-center text-xs text-secondary-foreground transition-colors duration-200 hover:text-zinc-900",
+    "gap-0.25 flex items-center text-xs text-fd-secondary-foreground transition-colors duration-200 hover:text-fd-secondary-foreground/65",
     {
       variants: {
         focus: {
           default:
-            "focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-1",
+            "focus-visible:rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
         },
       },
       defaultVariants: {
@@ -60,7 +60,7 @@ export default function RevolaHeroDemo() {
           </ResponsiveDialogHeader>
         </div>
 
-        <ResponsiveDialogFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
+        <ResponsiveDialogFooter className="border-t border-border bg-fd-secondary/25 px-6 dark:bg-fd-secondary/50 sm:pb-4 sm:pt-4">
           <div className="mx-auto flex w-full max-w-md justify-end gap-6">
             <a
               className={linkVariants()}
