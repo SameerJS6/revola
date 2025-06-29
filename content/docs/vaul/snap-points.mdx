@@ -4,23 +4,21 @@ description: Vaul snap point examples ported to Revola, demonstrating seamless m
 ogDescription: Drawer snap points for partially open states.
 ---
 
-A way to define a set of points that the drawer can snap to during a drag operation. This means that a drawer no longer only has to be open or closed, but can also be partially open. Revola, uses snap points for drawer and If content is large, then it uses scrollable dialog on desktop.
+Revola inherits Vaul's powerful snap points system - a way to define specific points that the drawer can snap to during drag operations. This means drawers can be partially open, not just fully open or closed. You can combine this with responsive classes like `sm:overflow-y-auto` to handle desktop scrolling behavior when needed.
 
 <ComponentPreview name="default-snap-points-demo" />
 
 ### Interact with background
-Combine `modal={false}{:ts}` with snap points to be able to interact with the background while the Revola is open.
+Combine Vaul's `modal={false}` with snap points to enable background interaction while Revola is partially open.
 
 <ComponentPreview name="interact-with-background-snap-points-demo" />
 
-
 ### Snap to sequential points
-Disable velocity-based snapping by using `snapToSequentialPoint` prop. This means that a snap point won't be skipped even if the velocity is high enough. Useful if each snap point in a drawer is equally important.
+Revola supports Vaul's sequential snapping control. Use `snapToSequentialPoint` to disable velocity-based snapping, ensuring no snap points are skipped regardless of gesture speed. Useful when each snap point is equally important.
 
 <ComponentPreview name="snap-to-sequential-points-snap-points-demo" />
 
-
 ### Custom fade index
-Use the `fadeFromIndex` prop to specify the snap point index from which the drawer should start fading. It defaults to the last point, but in the demo below we change it to the second point.
+Revola inherits Vaul's fade customization system. Use `fadeFromIndex` to specify which snap point should begin the fade effect. While it defaults to the last point, you can customize it for different visual effects.
 
 <ComponentPreview name="custom-fade-index-snap-points-demo" />

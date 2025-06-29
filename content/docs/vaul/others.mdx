@@ -5,11 +5,11 @@ ogDescription: Advanced Revola features and configurations.
 ---
 
 ### Non-modal
-Set the `modal` prop to `false` to allow interaction with the background while the drawer is open.
+By default, Revola blocks background interaction when open. Revola inherits Vaul's non-modal capability - set `modal={false}` to allow users to interact with the page behind Revola.
 
 <ComponentPreview name="other-default-demo" />
 
 ### Non-dismissible
-Set the `dismissible` prop to `false` to prevent the user from closing the drawer by clicking outside of it, pressing the escape key, or dragging it down. Don't open this one or else you'll have to refresh the page to close it.
+Revola supports Vaul's dismissible control system. Set `dismissible={false}` to prevent typical closure methods (clicking outside, escape key, swiping down). Useful for critical interactions that require explicit confirmation.
 
 <ComponentPreview name="non-dismissible-default-demo" />

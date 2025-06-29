@@ -8,18 +8,18 @@ ogDescription: Basic Revola examples and usage patterns.
 
 ### Side drawer
 
-Set the direction prop to `"right"` or `"left"` to change the position of the drawer. Use the `--initial-transform` CSS variable to adjust the animation, useful when the drawer does not touch the edge of the screen (like in this case).
+Revola supports Vaul's directional drawer system. Set the `direction` prop to `"right"` or `"left"` to change the drawer position. Use the `--initial-transform` CSS variable to adjust animations when the drawer doesn't touch the screen edge.
 
 <ComponentPreview name="side-drawer-demo" />
 
 ### Scrollable
 
-A scrollable Revola.
+Revola inherits Vaul's scrollable content handling for long content within drawers.
 
 <ComponentPreview name="scrollable-demo" />
 
 ### Controlled
 
-You can use the `open` prop to programmatically open or close the drawer. You can also pass the `onOpenChange` prop which will be called when the open state of the Revola changes, it's useful if you want to react to esc/outside clicks when controlled.
+Revola supports Vaul's controlled state management. Use the `open` prop to programmatically control the drawer state, and `onOpenChange` to respond to user interactions like escape key presses or outside clicks.
 
 <ComponentPreview name="controlled-demo" />
