@@ -26,7 +26,8 @@ export type RegistryKeys =
   | "default-input-demo"
   | "no-repositioning-input-demo"
   | "other-default-demo"
-  | "non-dismissible-default-demo";
+  | "non-dismissible-default-demo"
+  | "alert-revola-demo";
 
 export const Index: Record<RegistryKeys, Registry> = {
   "default-demo": {
@@ -230,6 +231,23 @@ export const Index: Record<RegistryKeys, Registry> = {
     ],
     categories: undefined,
     component: React.lazy(() => import("@/registry/revola/examples/vaul/other/non-dismissiable")),
+    source: "",
+    meta: undefined,
+  },
+  "alert-revola-demo": {
+    name: "alert-revola-demo",
+    description: "Alert responsive dialog demo",
+    type: "registry:demo",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/revola/examples/vaul/other/alert-revola.tsx",
+        type: "registry:demo",
+        target: "",
+      },
+    ],
+    categories: undefined,
+    component: React.lazy(() => import("@/registry/revola/examples/vaul/other/alert-revola")),
     source: "",
     meta: undefined,
   },
