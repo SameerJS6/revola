@@ -7,9 +7,9 @@ import { Drawer as DrawerPrimitive, Content as VaulDrawerContent } from "vaul";
 import { X } from "lucide-react";
 import { cva } from "class-variance-authority";
 
-import useMediaQuery from "@/hooks/use-media-query";
-
 import { cn } from "@/lib/utils";
+
+import useMediaQuery from "@/hooks/use-media-query";
 
 type DrawerType = React.ComponentProps<typeof DrawerPrimitive.Root>;
 
@@ -19,6 +19,7 @@ type ResponsiveDialogContextProps = {
   direction?: "top" | "right" | "bottom" | "left";
   onlyDrawer?: boolean;
   onlyDialog?: boolean;
+  alert?: boolean;
 };
 
 type ResponsiveDialogProviderProps = {
@@ -33,10 +34,11 @@ const ResponsiveDialogProvider = ({
   direction = "bottom",
   onlyDrawer = false,
   onlyDialog = false,
+  alert = false,
   children,
 }: ResponsiveDialogProviderProps) => {
   return (
-    <ResponsiveDialogContext.Provider value={{ modal, dismissible, direction, onlyDrawer, onlyDialog }}>
+    <ResponsiveDialogContext.Provider value={{ modal, dismissible, direction, onlyDrawer, onlyDialog, alert }}>
       {children}
     </ResponsiveDialogContext.Provider>
   );
@@ -58,11 +60,12 @@ const ResponsiveDialog = ({
   direction = "bottom",
   onlyDrawer = false,
   onlyDialog = false,
+  alert = false,
   shouldScaleBackground = true,
   open: controlledOpen,
   onOpenChange: controlledOnOpenChange,
   ...props
-}: DrawerType & { onlyDrawer?: boolean; onlyDialog?: boolean }) => {
+}: DrawerType & { onlyDrawer?: boolean; onlyDialog?: boolean; alert?: boolean }) => {
   const [internalState, setInternalState] = React.useState<boolean>(false);
 
   const isControlledOpen = typeof controlledOpen === "undefined";
@@ -77,18 +80,23 @@ const ResponsiveDialog = ({
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialog = shouldUseDialog ? DialogPrimitive.Root : DrawerPrimitive.Root;
 
+  // Alert dialog behavior: force modal=true and dismissible=true but handle interactions differently
+  const effectiveModal = alert ? true : modal;
+  const effectiveDismissible = alert ? true : dismissible;
+
   return (
     <ResponsiveDialogProvider
-      modal={modal}
-      dismissible={dismissible}
+      modal={effectiveModal}
+      dismissible={effectiveDismissible}
       direction={direction}
       onlyDrawer={onlyDrawer}
       onlyDialog={onlyDialog}
+      alert={alert}
     >
       <ResponsiveDialog
-        modal={modal}
+        modal={effectiveModal}
         direction={direction}
-        dismissible={dismissible}
+        dismissible={effectiveDismissible}
         shouldScaleBackground={shouldScaleBackground}
         open={open}
         onOpenChange={onOpenChange}
@@ -139,15 +147,19 @@ const ResponsiveDialogOverlay = ({ className, ...props }: React.ComponentProps<t
 ResponsiveDialogOverlay.displayName = "ResponsiveDialogOverlay";
 
 const ResponsiveDialogClose = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) => {
-  const { dismissible, onlyDrawer, onlyDialog } = useResponsiveDialog();
+  const { dismissible, alert, onlyDrawer, onlyDialog } = useResponsiveDialog();
   const isMobile = useMediaQuery("(min-width: 640px)");
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogClose = shouldUseDialog ? DialogPrimitive.Close : DrawerPrimitive.Close;
+
+  // Alert dialog: allow close button to work even if dismissible is false
+  const shouldPreventClose = !dismissible && !alert;
+
   return (
     <ResponsiveDialogClose
       aria-label="Close"
-      {...(!dismissible && { onClick: (e) => e.preventDefault() })}
+      {...(shouldPreventClose && { onClick: (e) => e.preventDefault() })}
       {...props}
     />
   );
@@ -203,22 +215,32 @@ const ResponsiveDialogContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { hideCloseButton?: boolean }
 >(({ className, children, hideCloseButton = false, ...props }, ref) => {
-  const { direction, modal, dismissible, onlyDrawer, onlyDialog } = useResponsiveDialog();
+  const { direction, modal, dismissible, alert, onlyDrawer, onlyDialog } = useResponsiveDialog();
 
   const isMobile = useMediaQuery("(min-width: 640px)");
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogContent = shouldUseDialog ? DialogPrimitive.Content : VaulDrawerContent;
 
-  const isDisabled = !modal || !dismissible;
+  // Alert behavior works for both dialog and drawer:
+  // - effectiveModal=true (set at root) prevents background interaction
+  // - effectiveDismissible=true (set at root) allows ESC key, close button, and swipe-to-close
+  const shouldPreventEscape = !dismissible && !alert;
+  const shouldPreventOutsideInteraction = !modal || (!dismissible && !alert) || alert;
+
   return (
     <ResponsiveDialogPortal>
       <ResponsiveDialogOverlay />
       <ResponsiveDialogContent
         ref={ref}
         {...props}
-        {...(!dismissible && shouldUseDialog && { onEscapeKeyDown: (e) => e.preventDefault() })}
-        {...(isDisabled &&
+        {...(shouldPreventEscape && shouldUseDialog && { onEscapeKeyDown: (e) => e.preventDefault() })}
+        {...(shouldPreventOutsideInteraction &&
           shouldUseDialog && {
+            onInteractOutside: (e) => e.preventDefault(),
+          })}
+        {...(!shouldUseDialog &&
+          shouldPreventOutsideInteraction && {
+            onPointerDownOutside: (e) => e.preventDefault(),
             onInteractOutside: (e) => e.preventDefault(),
           })}
         className={cn(
@@ -232,12 +254,13 @@ const ResponsiveDialogContent = React.forwardRef<
         {!shouldUseDialog && direction === "bottom" && (
           <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
         )}
-        {!hideCloseButton && (
-          <ResponsiveDialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-            <X className="size-4" />
-            <span className="sr-only">close</span>
-          </ResponsiveDialogClose>
-        )}
+        {!hideCloseButton ||
+          (alert && (
+            <ResponsiveDialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+              <X className="size-4" />
+              <span className="sr-only">close</span>
+            </ResponsiveDialogClose>
+          ))}
         {children}
       </ResponsiveDialogContent>
     </ResponsiveDialogPortal>
