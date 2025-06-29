@@ -12,39 +12,42 @@ export default function VaulScrollableDemo() {
   return (
     <ResponsiveDialog>
       <ResponsiveDialogTrigger asChild>
-        <Button variant="outline" className="h-12 rounded-full px-6">
-          Vaul Scrollable Demo
+        <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
+          Scrollable Revola
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent hideCloseButton className="flex flex-col">
         <div className="overflow-y-auto p-6 max-md:mx-auto max-md:max-w-md">
           <ResponsiveDialogHeader className="p-0 text-left sm:px-0">
-            <ResponsiveDialogTitle>Ira Glass on Taste</ResponsiveDialogTitle>
-            <ResponsiveDialogDescription>A scrollable example of responsive dialog</ResponsiveDialogDescription>
+            <ResponsiveDialogTitle>Scrollable Content in Revola</ResponsiveDialogTitle>
+            <ResponsiveDialogDescription>
+              Demonstrating how Revola handles long content with smooth scrolling behavior on both mobile and desktop.
+            </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
 
           <div className="mt-4 space-y-4">
             <p>
-              Nobody tells this to people who are beginners, I wish someone told me. All of us who do creative work, we
-              get into it because we have good taste.
+              Revola automatically handles scrollable content, providing a seamless experience across all devices. On
+              mobile, it renders as a smooth drawer, while on desktop it becomes a scrollable modal.
             </p>
             <p>
-              But there is this gap. For the first couple years you make stuff, it's just not that good. It's trying to
-              be good, it has potential, but it's not. But your taste, the thing that got you into the game, is still
-              killer. And your taste is why your work disappoints you. A lot of people never get past this phase, they
-              quit.{" "}
+              <strong>Mobile Experience:</strong> The drawer slides up from the bottom, with content that can be
+              scrolled naturally. Users can still interact with the familiar swipe-to-close gesture when they're done
+              reading.
             </p>
             <p>
-              Most people I know who do interesting, creative work went through years of this. We know our work doesn't
-              have this special thing that we want it to have. We all go through this. And if you are just starting out
-              or you are still in this phase, you gotta know its normal and the most important thing you can do is do a
-              lot of work
+              <strong>Desktop Experience:</strong> The modal appears centered on screen with a scrollable content area.
+              The familiar dialog patterns work as expected, with proper focus management and keyboard navigation.
             </p>
             <p>
-              Put yourself on a deadline so that every week you will finish one story. It is only by going through a
-              volume of work that you will close that gap, and your work will be as good as your ambitions. And I took
-              longer to figure out how to do this than anyone I've ever met. It's gonna take awhile. It's normal to take
-              awhile. You've just gotta fight your way through.
+              <strong>Developer Benefits:</strong> You write your content once, and Revola handles the responsive
+              behavior automatically. No need to write separate components for mobile and desktop - just use
+              ResponsiveDialog and focus on your content.
+            </p>
+            <p>
+              This example shows how Revola adapts to long content while maintaining optimal user experience patterns
+              for each device type. The same component code works perfectly on mobile phones, tablets, and desktop
+              computers.
             </p>
           </div>
         </div>

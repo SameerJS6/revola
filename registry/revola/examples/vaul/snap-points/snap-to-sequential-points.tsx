@@ -25,7 +25,7 @@ export default function VaulSequentialSnapPointsDemo() {
       setActiveSnapPoint={setSnap}
     >
       <ResponsiveDialogTrigger asChild>
-        <Button variant="outline" className="min-h-12 text-pretty rounded-full px-6 capitalize">
+        <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
           Snap To Sequential Points Revola
         </Button>
       </ResponsiveDialogTrigger>

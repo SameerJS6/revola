@@ -14,7 +14,7 @@ export default function VaulNoRepositioningDemo() {
     <ResponsiveDialog repositionInputs={false}>
       <ResponsiveDialogTrigger asChild>
         <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
-          Vaul No Repositioning Demo
+          No Repositioning Revola
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent className="flex max-h-[82vh] flex-col sm:p-0">

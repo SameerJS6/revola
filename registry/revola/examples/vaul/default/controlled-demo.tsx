@@ -18,8 +18,8 @@ export default function VaulControlledDemo() {
   return (
     <ResponsiveDialog open={open} onOpenChange={setOpen}>
       <ResponsiveDialogTrigger asChild>
-        <Button variant="outline" className="h-12 rounded-full px-6">
-          Vaul Controlled Demo
+        <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
+          Controlled Revola
         </Button>
       </ResponsiveDialogTrigger>
 

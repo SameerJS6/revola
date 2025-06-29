@@ -16,7 +16,7 @@ export default function VaulInputDefaultDemo() {
     <ResponsiveDialog>
       <ResponsiveDialogTrigger asChild>
         <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
-          Vaul Input Default Demo
+          Input Default Revola
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent className="flex max-h-[97vh] flex-col sm:p-0">

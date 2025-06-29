@@ -21,17 +21,23 @@ export default function VaulNonDismissibleDemo() {
     <ResponsiveDialog dismissible={false} open={isOpen} onOpenChange={setIsOpen}>
       <ResponsiveDialogTrigger asChild>
         <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
-          Vaul Non-Dismissible Demo
+          Non-Dismissible Revola
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent hideCloseButton>
         <div className="p-6">
           <ResponsiveDialogHeader className="space-y-4 p-0 text-left">
-            <ResponsiveDialogTitle className="font-medium">A non-dismissible drawer.</ResponsiveDialogTitle>
+            <ResponsiveDialogTitle className="font-medium">Non-Dismissible Revola</ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="space-y-2 text-base">
-              <span className="block">For cases when your drawer has to be always visible.</span>
               <span className="block">
-                Nothing will close it unless you make it controlled and close it programmatically.
+                Prevents users from closing Revola through typical gestures or interactions.
+              </span>
+              <span className="block">
+                With{" "}
+                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-geist-mono text-xs text-secondary-foreground">
+                  dismissible={"{false}"}
+                </kbd>
+                , only programmatic control can close it.
               </span>
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>

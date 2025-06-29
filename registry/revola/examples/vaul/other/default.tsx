@@ -13,28 +13,23 @@ export default function VaulOtherDemo() {
     <ResponsiveDialog shouldScaleBackground={false} modal={false}>
       <ResponsiveDialogTrigger asChild>
         <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
-          Vaul Non-Modal Demo
+          Non-Modal Revola
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent>
         <div className="flex flex-col p-6">
           <ResponsiveDialogHeader className="space-y-4 p-0 text-left">
-            <ResponsiveDialogTitle className="font-medium">What does non-modal mean?</ResponsiveDialogTitle>
+            <ResponsiveDialogTitle className="font-medium">Non-Modal Revola</ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="space-y-2">
               <span className="block">
-                The default behavior for the drawer is to restrict interactions to the dialog itself. This means that
-                you can&apos;t interact with other content on the page.
+                By default, Revola blocks interaction with background content when open, just like traditional modals.
               </span>
               <span className="block">
-                But sometimes you want to allow those interactions. Setting{" "}
+                Setting{" "}
                 <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-geist-mono text-xs text-secondary-foreground">
-                  modal
+                  modal={"{false}"}
                 </kbd>{" "}
-                to{" "}
-                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-geist-mono text-xs text-secondary-foreground">
-                  false
-                </kbd>{" "}
-                will let you scroll the page, click on other elements, etc.
+                allows users to interact with the page behind Revola - scroll, click buttons, navigate, etc.
               </span>
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
