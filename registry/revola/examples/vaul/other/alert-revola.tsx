@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import {
   ResponsiveDialog,
+  ResponsiveDialogClose,
   ResponsiveDialogContent,
   ResponsiveDialogDescription,
   ResponsiveDialogFooter,
@@ -28,7 +29,9 @@ export default function AlertRevolaDemo() {
           </ResponsiveDialogHeader>
 
           <ResponsiveDialogFooter className="flex-col-reverse md:mt-6">
-            <Button variant="secondary">Cancel</Button>
+            <ResponsiveDialogClose asChild>
+              <Button variant="secondary">Cancel</Button>
+            </ResponsiveDialogClose>
             <Button>Continue</Button>
           </ResponsiveDialogFooter>
         </div>
