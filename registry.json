@@ -4,10 +4,10 @@
   "homepage": "https://revola.sameerjs.com",
   "items": [
     {
-      "name": "native-modal",
+      "name": "revola",
       "type": "registry:ui",
       "title": "Revola",
-      "description": "A responsive modal component built using Radix Dialog & Vaul.",
+      "description": "A responsive dialog component that automatically adapts to screen size - drawer on mobile, modal on desktop.",
       "dependencies": ["@radix-ui/react-dialog", "vaul", "class-variance-authority"],
       "files": [
         { "path": "registry/revola/index.tsx", "type": "registry:ui" },
