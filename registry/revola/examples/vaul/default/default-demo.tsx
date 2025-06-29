@@ -24,12 +24,12 @@ export default function VaulDefaultDemo() {
         <div className="mx-auto mb-2 max-w-md">
           <ResponsiveDialogHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
             <ResponsiveDialogTitle className="text-base font-medium leading-6 tracking-normal">
-              Drawer for React.
+              Revola - Responsive Dialog
             </ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="max-md:text-base">
-              This component can be used as a Dialog replacement on mobile and tablet devices.
+              Automatically adapts to screen size - renders as a drawer on mobile and a modal on desktop.
               <span className="mt-2 block">
-                This one specifically is the most simplest setup you can have, just a simple drawer with a trigger.
+                This is the simplest setup: just add ResponsiveDialog and it handles the rest.
               </span>
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>

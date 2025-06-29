@@ -27,17 +27,22 @@ export default function VaulControlledDemo() {
         <div className="mx-auto mb-2 max-w-md bg-fd-background">
           <ResponsiveDialogHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
             <ResponsiveDialogTitle className="text-base font-medium leading-6 tracking-normal">
-              A controlled drawer.
+              Controlled Revola
             </ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="space-y-2 max-md:text-base">
               <span className="block">
-                This means that the drawer no longer manages its own state. Instead, you can control it programmatically
-                from the outside.
+                Control Revola's open state programmatically using the{" "}
+                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-geist-mono text-xs text-secondary-foreground">
+                  open
+                </kbd>{" "}
+                prop, just like any other dialog component.
               </span>
               <span className="block">
-                But you can still let the drawer help you a bit by passing the `onOpenChange` prop. This way, the drawer
-                will change your open state when the user clicks outside of it, or when they press the escape key for
-                example.
+                The{" "}
+                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-geist-mono text-xs text-secondary-foreground">
+                  onOpenChange
+                </kbd>{" "}
+                prop handles user interactions like clicking outside, pressing escape, or swiping down on mobile.
               </span>
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>

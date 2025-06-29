@@ -49,12 +49,12 @@ export default function RevolaHeroDemo() {
         <div className="mx-auto mb-2 max-w-md">
           <ResponsiveDialogHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
             <ResponsiveDialogTitle className="text-base font-medium leading-6 tracking-normal">
-              Drawer for React.
+              Welcome to Revola
             </ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="max-md:text-base">
-              This component can be used as a Dialog replacement on mobile and tablet devices.
+              A responsive dialog that automatically adapts to your device - drawer on mobile, modal on desktop.
               <span className="mt-2 block">
-                This one specifically is the most simplest setup you can have, just a simple drawer with a trigger.
+                Zero configuration needed. Just use it like any other dialog component.
               </span>
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
