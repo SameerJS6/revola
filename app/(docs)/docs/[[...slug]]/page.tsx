@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Link } from "next-view-transitions";
 
-import { SquareArrowOutUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, SquareArrowOutUpRight } from "lucide-react";
 
+import { findNeighbour } from "fumadocs-core/server";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
@@ -17,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import ComponentPreview from "@/components/component-preview";
 import MarkdownAccordion from "@/components/markdown-accordion";
 import { source } from "@/lib/source";
-import { cn } from "@/lib/utils";
+import { absoluteUrl, cn } from "@/lib/utils";
 
 export async function generateStaticParams() {
   return source.generateParams();
@@ -29,7 +30,32 @@ export async function generateMetadata(props: { params: Promise<{ slug?: string[
 
   if (!page) notFound();
 
-  return { title: page.data.title, description: page.data.description };
+  return {
+    title: page.data.title,
+    description: page.data.description,
+    openGraph: {
+      title: page.data.title,
+      description: page.data.ogDescription,
+      type: "article",
+      url: absoluteUrl(page.url),
+      images: [
+        {
+          url: `/og?title=${encodeURIComponent(page.data.title)}&description=${encodeURIComponent(page.data.ogDescription)}`,
+        },
+      ],
+    },
+    twitter: {
+      title: page.data.title,
+      description: page.data.ogDescription,
+      card: "summary_large_image",
+      images: [
+        {
+          url: `/og?title=${encodeURIComponent(page.data.title)}&description=${encodeURIComponent(page.data.ogDescription)}`,
+        },
+      ],
+      creator: "@sameerjs6",
+    },
+  };
 }
 
 export default async function DocIndividualPage(props: { params: Promise<{ slug?: string[] }> }) {
@@ -40,6 +66,7 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
 
   const MDXContent = page.data.body;
   const referenceLinks = page.data?.links;
+  const neighbours = findNeighbour(source.pageTree, page.url);
 
   return (
     <DocsPage
@@ -53,6 +80,7 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
             }
           : {}
       }
+      footer={{ enabled: false }}
       full={page.data.full}
       article={{ className: "mx-auto max-w-[800px] mt-4" }}
     >
@@ -123,18 +151,23 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
           }}
         />
       </DocsBody>
-      {/* <Cards>
-        <Card title="" href={neighbour.previous?.url}>
-          <h2 className="flex items-center gap-0.5 text-foreground">
-            <ChevronLeft size={16} />
-            Previous
-          </h2>
-          {neighbour.previous?.name}
-        </Card>
-        <Card title="Next >" href={neighbour.next?.url}>
-          {neighbour.next?.name}
-        </Card>
-      </Cards> */}
+
+      <div className="mx-auto flex h-16 w-full max-w-[800px] items-center gap-2 px-4">
+        {neighbours.previous && (
+          <Button variant="secondary" size="sm" asChild className="shadow-none">
+            <Link href={neighbours.previous.url}>
+              <ArrowLeft /> {neighbours.previous.name}
+            </Link>
+          </Button>
+        )}
+        {neighbours.next && (
+          <Button variant="secondary" size="sm" className="ml-auto shadow-none" asChild>
+            <Link href={neighbours.next.url}>
+              {neighbours.next.name} <ArrowRight />
+            </Link>
+          </Button>
+        )}
+      </div>
     </DocsPage>
   );
 }
