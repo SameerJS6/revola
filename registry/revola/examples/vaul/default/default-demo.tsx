@@ -39,7 +39,7 @@ export default function VaulDefaultDemo() {
           <div className="mx-auto flex w-full max-w-md justify-end gap-6">
             <a
               className="gap-0.25 flex items-center text-xs text-secondary-foreground"
-              href="https://github.com/SameerJS6/native-modal"
+              href="https://github.com/SameerJS6/revola"
               target="_blank"
             >
               GitHub
