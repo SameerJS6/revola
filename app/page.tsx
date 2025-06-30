@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 
 import RevolaHero from "@/components/hero";
 
+export const dynamic = "force-static";
+export const revalidate = false;
+
 export const metadata: Metadata = {
   title: "Revola",
   description: "One component. Modal on desktop, Drawer on mobile.",

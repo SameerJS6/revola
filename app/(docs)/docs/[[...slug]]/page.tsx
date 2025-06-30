@@ -20,6 +20,10 @@ import MarkdownAccordion from "@/components/markdown-accordion";
 import { source } from "@/lib/source";
 import { absoluteUrl, cn } from "@/lib/utils";
 
+export const revalidate = false;
+export const dynamic = "force-static";
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   return source.generateParams();
 }
