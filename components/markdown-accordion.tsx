@@ -1,6 +1,8 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { BadgeInfo } from "lucide-react";
 import { type ReactNode } from "react";
+
+import { BadgeInfo } from "lucide-react";
+
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
 export default function MarkdownAccordion({ children, title }: { children: ReactNode; title: string }) {
   return (

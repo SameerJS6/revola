@@ -9,7 +9,7 @@ ogDescription: Advanced Revola features and configurations.
 Revola supports alert dialog functionality for critical user interactions that require acknowledgment. When `alert={true}` is set, the dialog prevents background interaction (clicking outside or pressing overlay) while still allowing users to close via:
 
 - ESC key press
-- Close button interaction  
+- Close button interaction
 - Swipe-to-close gesture (on mobile)
 
 This is ideal for confirmations, warnings, or any content that requires user attention before proceeding.
@@ -19,11 +19,13 @@ You can use this to replace traditional alert dialogs. Combine `alert={true}` an
 <ComponentPreview name="alert-revola-demo" />
 
 ### Non-modal
+
 By default, Revola blocks background interaction when open. Revola inherits Vaul's non-modal capability - set `modal={false}` to allow users to interact with the page behind Revola.
 
 <ComponentPreview name="other-default-demo" />
 
 ### Non-dismissible
+
 Revola supports Vaul's dismissible control system. Set `dismissible={false}` to prevent typical closure methods (clicking outside, escape key, swiping down). Useful for critical interactions that require explicit confirmation.
 
 <ComponentPreview name="non-dismissible-default-demo" />

@@ -12,6 +12,9 @@
     "typecheck": "tsc --noEmit",
     "postinstall": "fumadocs-mdx",
     "registry:build": "shadcn build",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
@@ -52,6 +55,7 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.28.1",
     "@eslint/eslintrc": "^3",
     "@ianvs/prettier-plugin-sort-imports": "^4.4.2",
     "@types/mdx": "^2.0.13",
