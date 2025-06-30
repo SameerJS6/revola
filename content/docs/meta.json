@@ -1,0 +1,16 @@
+{
+  "title": "Revola",
+  "description": "Revola is a responsive dialog component for React. This responsive behavior improves usability without any extra work from you.",
+  "root": true,
+  "pages": [
+    "---Introduction---",
+    "index",
+    "roadmap",
+    "why",
+    "---Setup---",
+    "getting-started",
+    "api",
+    "---Examples---",
+    "vaul"
+  ]
+}

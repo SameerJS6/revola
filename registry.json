@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "revola",
+  "homepage": "https://revola.sameerjs.com",
+  "items": [
+    {
+      "name": "revola",
+      "type": "registry:ui",
+      "title": "Revola",
+      "description": "A responsive dialog component that automatically adapts to screen size - drawer on mobile, modal on desktop.",
+      "dependencies": ["@radix-ui/react-dialog", "vaul", "class-variance-authority"],
+      "files": [
+        { "path": "registry/revola/revola.tsx", "type": "registry:ui" },
+        { "path": "hooks/use-media-query.tsx", "type": "registry:hook" }
+      ]
+    }
+  ]
+}

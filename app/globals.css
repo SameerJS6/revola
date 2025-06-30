@@ -67,9 +67,21 @@
 
 @layer base {
   * {
-    @apply border-border;
+    @apply scroll-smooth border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply font-inter text-foreground selection:bg-foreground selection:text-background;
   }
+
+  table tbody tr td div code {
+    @apply !border !border-primary/10 !bg-secondary/25 !py-[1.5px] font-geist-mono !text-secondary-foreground;
+  }
+
+  img[data-rmiz-modal-img] {
+    @apply rounded-3xl;
+  }
+}
+
+[data-line] span {
+  @apply text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
 }

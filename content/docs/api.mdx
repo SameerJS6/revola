@@ -1,0 +1,230 @@
+---
+title: API Reference
+description: Complete component API reference with props, types, and usage examples.
+ogDescription: Complete Revola API reference and component props.
+icon: Code
+links: 
+  dialog: https://www.radix-ui.com/primitives/docs/components/dialog#api-reference
+  drawer: https://vaul.emilkowal.ski/api#components-api
+---
+
+### Anatomy
+Import all parts and piece them together.
+
+```tsx 
+import {
+  ResponsiveDialog, 
+  ResponsiveDialogTrigger, 
+  ResponsiveDialogContent, 
+  ResponsiveDialogHeader, 
+  ResponsiveDialogTitle, 
+  ResponsiveDialogDescription, 
+  ResponsiveDialogFooter
+  } from '@/components/ui/revola'
+```
+
+```tsx
+export function MyRevola() {
+  return (
+    <ResponsiveDialog>
+        <ResponsiveDialogTrigger />
+        <ResponsiveDialogContent>
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle />
+            <ResponsiveDialogDescription />
+          </ResponsiveDialogHeader>
+          <ResponsiveDialogFooter />
+        </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  );
+}
+```
+
+### Components API
+Description of props for each component.
+
+#### Root
+Contains all the parts of a Revola.
+
+**Core Props (Universal)**
+These props work across both desktop dialog and mobile drawer modes.
+
+<TypeTable
+  type={{
+    open: {
+      description: 'The controlled open state of Revola.',
+      type: 'boolean',
+      default: 'false'
+    },
+    defaultOpen: {
+      description: 'The open state of Revola when initially rendered. Use when you do not need to control its open state.',
+      type: 'boolean',
+      default: 'false'
+    },
+    onOpenChange: {
+      description: 'Event handler called when the open state of Revola changes.',
+      type: 'function',
+      typeDescription: '(open: boolean) => void',
+      default: '',
+    },
+    modal: {
+      description: 'Controls modality behavior. When `true`, background interaction is disabled and only dialog content is visible to screen readers.',
+      type: 'boolean',
+      default: 'true'
+    },
+    dismissible: {
+      description: "When `false`, dragging, clicking outside, or pressing Esc will not close Revola. Use with controlled `open` prop to manage state manually.",
+      type: 'boolean',
+      default: 'true'
+    }
+  }}
+/>
+
+**Mobile Drawer Props**
+These props only affect the drawer behavior on mobile devices.
+
+<TypeTable
+  type={{
+    direction: {
+      description: 'Direction of the drawer on mobile. Adjusts animations and drag direction.',
+      type: 'directionType',
+      typeDescription: '"top" | "bottom" | "left" | "right"',
+      default: 'bottom'
+    },
+    repositionInputs: {
+      description: "When `true`, inputs are repositioned rather than scrolled into view when keyboard appears. Setting to `false` uses browser's default behavior.",
+      type: 'boolean',
+      default: 'true'
+    },
+    shouldScaleBackground: {
+      description: "When `true`, the background is scaled down when the drawer opens. Creates a visual depth effect.",
+      type: 'boolean',
+      default: 'true'
+    }
+  }}
+/>
+
+#### Snap Points (Mobile Drawer Only)
+These props configure snap points and only apply when Revola renders as a drawer on mobile devices.
+
+<TypeTable type={{
+  snapPoints: {
+    description: "Array of numbers from 0 to 1 that corresponds to % of the screen a given snap point should take up. You can also use px values, which doesn't take screen height into account.",
+    type: 'array',
+    typeDescription: 'Array<number | string>',
+    default: ''
+  },
+  activeSnapPoint: {
+    description: "The controlled snap point state.",
+    type: 'string | number | null'
+  },
+  setActiveSnapPoint: {
+    description: "Event handler called when the snap point state changes.",
+    type: 'function',
+    typeDescription: "(snapPoint: string | number | null) => void",
+  },
+  fadeFromIndex: {
+    description: "Index of snapPoint from which the overlay fade should be applied. Defaults to the last step of snapPoints",
+    type: 'number',
+    default: 'snapPoints.length'
+  },
+  snapSequentialPoint: {
+    description: "Disables velocity-based swiping for snap points. Snap points won't be skipped even with high velocity. Useful when each snap point is equally important.",
+    type: 'boolean',
+    default: 'false'
+  }
+}}/>
+
+#### Device Control
+Revola provides additional props to control responsive behavior and force specific modes.
+
+<TypeTable type={{
+    "alert?": {
+      description:
+        'Creates alert dialog behavior by preventing background interactions while allowing ESC key, close button, and swipe-to-close. Works on both desktop dialogs and mobile drawers.',
+      type: 'boolean',
+      default: "false",
+    },
+   "onlyDrawer?": {
+      description:
+        'Forces drawer mode on all screen sizes. Useful for consistent drawer UI or testing mobile behavior on desktop.',
+      type: 'boolean',
+      default: "false",
+    },
+    "onlyDialog?": {
+      description:
+        'Forces dialog mode on all screen sizes. Useful for consistent modal UI or testing desktop behavior on mobile.',
+      type: 'boolean',
+      default: "false",
+    },
+ }}/>
+
+---
+
+### Component Props
+
+#### Trigger
+The button that opens the drawer.
+<TypeTable
+  type={{
+    "asChild?": {
+      description:
+        'Change the default rendered element for the one passed as a child, merging their props and behavior.',
+      type: 'boolean',
+      default: "false",
+    },
+  }}
+/>
+
+#### Content
+Contains the main content to be rendered inside Revola.
+<TypeTable type={{
+  "asChild?": {
+    description: 'Change the default rendered element for the one passed as a child, merging their props and behavior.',
+    type: 'boolean',
+    default: "false",
+  },
+  "hideCloseButton?": {
+    description: 'Hides the default close button from both drawer and dialog modes.',
+    type: 'boolean',
+    default: 'false'
+  }
+}} />
+
+#### Close
+The button that closes Revola.
+<TypeTable type={{
+  "asChild?": {
+     description: 'Change the default rendered element for the one passed as a child, merging their props and behavior.',
+    type: 'boolean',
+    default: "false",
+  }
+}}/>
+
+#### Header
+A wrapping header component for title and description that ensures proper layout in Revola. No additional props.
+
+#### Title
+An optional accessible title to be announced when the drawer is opened.
+
+<TypeTable type={{
+  "asChild?": {
+    description: "Change the default rendered element for the one passed as a child, merging their props and behavior.",
+    type: 'boolean',
+    default: 'false'
+  } 
+}}/>
+
+#### Description
+An optional accessible description to be announced when the drawer is opened.
+
+<TypeTable type={{
+  "asChild?": {
+    description: "Change the default rendered element for the one passed as a child, merging their props and behavior.",
+    type: 'boolean',
+    default: 'false'
+  }
+}}/>
+
+#### Footer
+A wrapping footer component that ensures proper action button placement in Revola. No additional props.

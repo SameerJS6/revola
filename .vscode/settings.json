@@ -6,5 +6,9 @@
   "javascript.updateImportsOnFileMove.enabled": "always",
   "typescript.preferences.importModuleSpecifierEnding": "minimal",
   "javascript.preferences.importModuleSpecifierEnding": "minimal",
-  "docwriter.hotkey.windows": "Alt + ."
+  "docwriter.hotkey.windows": "Alt + .",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.removeUnusedImports": "explicit"
+  }
 }

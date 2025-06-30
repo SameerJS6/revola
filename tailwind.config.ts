@@ -1,22 +1,29 @@
 import type { Config } from "tailwindcss";
 import tailwindAnimate from "tailwindcss-animate";
+
+import { createPreset } from "fumadocs-ui/tailwind-plugin";
+
 export default {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./registry/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./content/**/*.mdx",
+    "./mdx-components.tsx",
+    "./node_modules/fumadocs-ui/dist/**/*.js",
+    "./node_modules/fumadocs-openapi/dist/**/*.js",
   ],
   theme: {
     extend: {
       fontFamily: {
+        inter: ["var(--font-inter)"],
         "geist-mono": ["var(--font-geist-mono)"],
-        "geist-sans": ["var(--font-geist-sans)"],
-        "jet-brains-mono": ["var(--font-jetbrains-mono)"],
       },
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "hsl(var(--fd-background))",
+        foreground: "hsl(var(--fd-foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
@@ -64,18 +71,45 @@ export default {
       animation: {
         "line-shadow": "line-shadow 15s linear infinite",
         rainbow: "rainbow var(--speed, 2s) infinite linear",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       keyframes: {
         "line-shadow": {
-          "0%": { "background-position": "0 0" },
-          "100%": { "background-position": "100% -100%" },
+          "0%": {
+            "background-position": "0 0",
+          },
+          "100%": {
+            "background-position": "100% -100%",
+          },
         },
         rainbow: {
-          "0%": { "background-position": "0%" },
-          "100%": { "background-position": "200%" },
+          "0%": {
+            "background-position": "0%",
+          },
+          "100%": {
+            "background-position": "200%",
+          },
+        },
+        "accordion-down": {
+          from: {
+            height: "0",
+          },
+          to: {
+            height: "var(--radix-accordion-content-height)",
+          },
+        },
+        "accordion-up": {
+          from: {
+            height: "var(--radix-accordion-content-height)",
+          },
+          to: {
+            height: "0",
+          },
         },
       },
     },
   },
   plugins: [tailwindAnimate],
+  presets: [createPreset({ preset: "default" })],
 } satisfies Config;

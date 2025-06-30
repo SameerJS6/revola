@@ -1,0 +1,25 @@
+---
+title: Default
+description: Basic Vaul examples ported to Revola, showing how easy it is to migrate existing drawer implementations.
+ogDescription: Basic Revola examples and usage patterns.
+---
+
+<ComponentPreview name="default-demo" />
+
+### Side drawer
+
+Revola supports Vaul's directional drawer system. Set the `direction` prop to `"right"` or `"left"` to change the drawer position. Use the `--initial-transform` CSS variable to adjust animations when the drawer doesn't touch the screen edge.
+
+<ComponentPreview name="side-drawer-demo" />
+
+### Scrollable
+
+Revola inherits Vaul's scrollable content handling for long content within drawers.
+
+<ComponentPreview name="scrollable-demo" />
+
+### Controlled
+
+Revola supports Vaul's controlled state management. Use the `open` prop to programmatically control the drawer state, and `onOpenChange` to respond to user interactions like escape key presses or outside clicks.
+
+<ComponentPreview name="controlled-demo" />
