@@ -221,9 +221,6 @@ const ResponsiveDialogContent = React.forwardRef<
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogContent = shouldUseDialog ? DialogPrimitive.Content : VaulDrawerContent;
 
-  // Alert behavior works for both dialog and drawer:
-  // - effectiveModal=true (set at root) prevents background interaction
-  // - effectiveDismissible=true (set at root) allows ESC key, close button, and swipe-to-close
   const shouldPreventEscape = !dismissible && !alert;
   const shouldPreventOutsideInteraction = !modal || (!dismissible && !alert) || alert;
 
