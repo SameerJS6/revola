@@ -2,7 +2,9 @@
 
 One component. Modal on desktop, Drawer on mobile.
 
-A responsive dialog component that automatically adapts between drawer (mobile) and modal (desktop) modes. Revola can replace your dialog, drawer, and alert dialog components with a single and simple solution.
+A responsive dialog component that automatically adapts between drawer (mobile) and modal (desktop) modes.
+
+Revola can replace your dialog, drawer, and alert dialog components with a single and simple solution.
 
 ![](/main-mockup.png)
 
