@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
-  "changelog": ["@changesets/cli/changelog", { "repo": "sameerjs6/native-modal" }],
+  "changelog": ["@changesets/cli/changelog", { "repo": "SameerJS6/revola" }],
   "commit": false,
   "fixed": [],
   "linked": [],
