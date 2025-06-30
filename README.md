@@ -1,11 +1,71 @@
-## Todo
+# Revola
 
-- [x] Built the first common example of dialog & drawer component, which will be use as reference
-- [x] Develop the first working version of Native Modal
-- [x] Add Documention
-- [ ] Add `Changeset` for managing release's
-- [x] Setup GitHub actions & issue template
-- [x] Port all the examples of dialog & drawer from shadcn & drawer respectively
-- [x] Adapt `useContext` i.e. give end dev/user ability to change between dialog & drawer, which mean moving `useMediaQuery`'s in a context and accept switch value in `<NativeModal />` component as props and use that number in all the component below to switch its style by using CSS Variables.
-- [x] Add a props for styling `Drawer`'s only styles and `Dialog` only styles, something `drawerClassName` and `DialogClassName`. and in docs, add a small step explaining, how they can enable tailwind suggestions for these custom `classNames`, i.e. by just adding them in the settings.
-- [x] Fix weird focus ring in dialog of Native modal.
+One component. Modal on desktop, Drawer on mobile.
+
+A responsive dialog component that automatically adapts between drawer (mobile) and modal (desktop) modes. Revola can replace your dialog, drawer, and alert dialog components with a single and simple solution.
+
+![](/main-mockup.png)
+
+## Features
+
+- **Responsive by default** - Modal on desktop, drawer on mobile
+- **Replaces multiple components** - Dialog, drawer, and alert dialog in one
+- **Built on proven foundations** - Combines Radix UI Dialog and Vaul
+- **Accessible** - ARIA compliant with keyboard navigation
+- **Customizable** - Extensive API with snap points, directions, and styling options
+- **TypeScript** - Full type safety out of the box
+
+## Installation
+
+```bash
+npx shadcn@latest add https://revola.sameerjs.com/r/revola.json
+```
+
+## Usage
+
+```tsx
+import { Button } from "@/components/ui/button";
+import {
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
+} from "@/components/ui/revola";
+
+export function Example() {
+  return (
+    <ResponsiveDialog>
+      <ResponsiveDialogTrigger asChild>
+        <Button variant="outline">Open Revola</Button>
+      </ResponsiveDialogTrigger>
+      <ResponsiveDialogContent>
+        <div className="mx-auto mb-2 max-w-md">
+          <ResponsiveDialogHeader className="gap-4 px-6 text-left">
+            <ResponsiveDialogTitle>Responsive Dialog</ResponsiveDialogTitle>
+            <ResponsiveDialogDescription>
+              This dialog automatically adapts to screen size - drawer on mobile, modal on desktop.
+            </ResponsiveDialogDescription>
+          </ResponsiveDialogHeader>
+        </div>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  );
+}
+```
+
+## Documentation
+
+Visit [Docs](https://revola.sameerjs.com/docs) for full documentation, examples, and API reference.
+
+## Credits
+
+Built on top of:
+
+- [Radix UI Dialog](https://radix-ui.com/primitives/docs/components/dialog) by [Radix UI](https://radix-ui.com)
+- [Vaul](https://vaul.emilkowal.ski) by [Emil Kowalski](https://github.com/emilkowalski)
+
+## License
+
+MIT
