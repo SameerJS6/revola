@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import {
   ResponsiveDialog,
@@ -35,7 +33,7 @@ export default function VaulDefaultDemo() {
           </ResponsiveDialogHeader>
         </div>
 
-        <ResponsiveDialogFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
+        <ResponsiveDialogFooter className="border-t border-border bg-fd-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
           <div className="mx-auto flex w-full max-w-md justify-end gap-6">
             <a
               className="gap-0.25 flex items-center text-xs text-secondary-foreground"
