@@ -12,6 +12,9 @@
     "typecheck": "tsc --noEmit",
     "postinstall": "fumadocs-mdx",
     "registry:build": "shadcn build",
+    "changeset": "changeset",
+    "changeset:version": "changeset version",
+    "changeset:publish": "changeset publish",
     "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
     "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
