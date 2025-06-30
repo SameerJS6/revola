@@ -8,4 +8,7 @@
   "javascript.preferences.importModuleSpecifierEnding": "minimal",
   "docwriter.hotkey.windows": "Alt + .",
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.removeUnusedImports": "explicit"
+  }
 }

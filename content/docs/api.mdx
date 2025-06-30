@@ -1,6 +1,7 @@
 ---
 title: API Reference
-description: What components are available in Native Modal and how to use them.
+description: Complete component API reference with props, types, and usage examples.
+ogDescription: Complete Revola API reference and component props.
 icon: Code
 links: 
   dialog: https://www.radix-ui.com/primitives/docs/components/dialog#api-reference
@@ -12,29 +13,30 @@ Import all parts and piece them together.
 
 ```tsx 
 import {
-  NativeModal, 
-  NativeModalTrigger, 
-  NativeModalContent, 
-  NativeModalHeader, 
-  NativeModalTitle, 
-  NativeModalDescription, 
-  NativeModalFooter
-  } from '@/components/ui/native-modal'
+  ResponsiveDialog, 
+  ResponsiveDialogTrigger, 
+  ResponsiveDialogContent, 
+  ResponsiveDialogHeader, 
+  ResponsiveDialogTitle, 
+  ResponsiveDialogDescription, 
+  ResponsiveDialogFooter
+  } from '@/components/ui/revola'
 ```
 
 ```tsx
-export function MyNativeModal() {
+export function MyRevola() {
   return (
-    <NativeModal>
-        <NativeModalTrigger />
-        <NativeModalContent>
-          <NativeModalHeader>
-            <NativeModalTitle />
-            <NativeModalDescription />
-          </NativeModalHeader>
-          <NativeModalFooter />
-        </NativeModalContent>
-    </NativeModal>)
+    <ResponsiveDialog>
+        <ResponsiveDialogTrigger />
+        <ResponsiveDialogContent>
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle />
+            <ResponsiveDialogDescription />
+          </ResponsiveDialogHeader>
+          <ResponsiveDialogFooter />
+        </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  );
 }
 ```
 
@@ -42,52 +44,68 @@ export function MyNativeModal() {
 Description of props for each component.
 
 #### Root
-Contains all the parts of a Native Modal.
+Contains all the parts of a Revola.
+
+**Core Props (Universal)**
+These props work across both desktop dialog and mobile drawer modes.
 
 <TypeTable
   type={{
-    defaultOpen: {
-      description: 'The open state of the Native Modal when it is initially rendered. Use when you do not need to control its open state.',
+    open: {
+      description: 'The controlled open state of Revola.',
       type: 'boolean',
       default: 'false'
     },
-    open: {
-      description: 'The controlled open state of the native modal',
+    defaultOpen: {
+      description: 'The open state of Revola when initially rendered. Use when you do not need to control its open state.',
       type: 'boolean',
       default: 'false'
     },
     onOpenChange: {
-      description: 'Event handler called when the open state of the drawer changes.',
+      description: 'Event handler called when the open state of Revola changes.',
       type: 'function',
       typeDescription: '(open: boolean) => void',
       default: '',
     },
     modal: {
-      description: 'The modality of the dialog. When set to `true`, interaction with the outside elements will be disabled and only dialog content will be visible to screen readers.',
+      description: 'Controls modality behavior. When `true`, background interaction is disabled and only dialog content is visible to screen readers.',
       type: 'boolean',
       default: 'true'
-    },
-    direction: {
-      description: 'Direction of the drawer on mobile. This adjust the animations and the drag direction.',
-      type: 'directionType',
-      typeDescription: '"top" | "bottom" | "left" | "right"',
-      default: 'bottom'
     },
     dismissible: {
-      description: "When `false` dragging, clicking outside, pressing `Esc`, etc. will not close the drawer. Use this in combination with the open prop, otherwise you won't be able to open/close the native modal.",
-      type: 'boolean',
-      default: 'true'
-    },
-    repositionInputs: {
-      description: "When `true` Vaul will reposition inputs rather than scroll then into view if the keyboard is in the way. Setting it to `false`will fall back to browser's default behaviour.",
+      description: "When `false`, dragging, clicking outside, or pressing Esc will not close Revola. Use with controlled `open` prop to manage state manually.",
       type: 'boolean',
       default: 'true'
     }
   }}
 />
 
-{/* Additional props for snap points (This props only apply to drawer on mobile): */}
-These props only apply when Native Modal is rendered as a drawer on mobile.
+**Mobile Drawer Props**
+These props only affect the drawer behavior on mobile devices.
+
+<TypeTable
+  type={{
+    direction: {
+      description: 'Direction of the drawer on mobile. Adjusts animations and drag direction.',
+      type: 'directionType',
+      typeDescription: '"top" | "bottom" | "left" | "right"',
+      default: 'bottom'
+    },
+    repositionInputs: {
+      description: "When `true`, inputs are repositioned rather than scrolled into view when keyboard appears. Setting to `false` uses browser's default behavior.",
+      type: 'boolean',
+      default: 'true'
+    },
+    shouldScaleBackground: {
+      description: "When `true`, the background is scaled down when the drawer opens. Creates a visual depth effect.",
+      type: 'boolean',
+      default: 'true'
+    }
+  }}
+/>
+
+#### Snap Points (Mobile Drawer Only)
+These props configure snap points and only apply when Revola renders as a drawer on mobile devices.
 
 <TypeTable type={{
   snapPoints: {
@@ -97,13 +115,13 @@ These props only apply when Native Modal is rendered as a drawer on mobile.
     default: ''
   },
   activeSnapPoint: {
-    description: "The controlled snap point state",
-    type: 'boolean'
+    description: "The controlled snap point state.",
+    type: 'string | number | null'
   },
   setActiveSnapPoint: {
     description: "Event handler called when the snap point state changes.",
     type: 'function',
-    typeDescription: "(open: boolean) => void",
+    typeDescription: "(snapPoint: string | number | null) => void",
   },
   fadeFromIndex: {
     description: "Index of snapPoint from which the overlay fade should be applied. Defaults to the last step of snapPoints",
@@ -111,28 +129,39 @@ These props only apply when Native Modal is rendered as a drawer on mobile.
     default: 'snapPoints.length'
   },
   snapSequentialPoint: {
-    description: "Disabled velocity based swiping for snap points. This means that a snap point won't be skipped even if the velocity is high enough. Useful if each snap point in a drawer is equally important.",
+    description: "Disables velocity-based swiping for snap points. Snap points won't be skipped even with high velocity. Useful when each snap point is equally important.",
     type: 'boolean',
     default: 'false'
   }
 }}/>
 
-Native Modal provides additional props to control its behavior across devices. 
+#### Device Control
+Revola provides additional props to control responsive behavior and force specific modes.
+
 <TypeTable type={{
+    "alert?": {
+      description:
+        'Creates alert dialog behavior by preventing background interactions while allowing ESC key, close button, and swipe-to-close. Works on both desktop dialogs and mobile drawers.',
+      type: 'boolean',
+      default: "false",
+    },
    "onlyDrawer?": {
       description:
-        'Forces the modal to always render as a drawer, regardless of screen size.',
+        'Forces drawer mode on all screen sizes. Useful for consistent drawer UI or testing mobile behavior on desktop.',
       type: 'boolean',
       default: "false",
     },
     "onlyDialog?": {
       description:
-        'Forces the modal to always render as a dialog, regardless of screen size.',
+        'Forces dialog mode on all screen sizes. Useful for consistent modal UI or testing desktop behavior on mobile.',
       type: 'boolean',
       default: "false",
     },
  }}/>
 
+---
+
+### Component Props
 
 #### Trigger
 The button that opens the drawer.
@@ -148,7 +177,7 @@ The button that opens the drawer.
 />
 
 #### Content
-Contains content to be rendered in the open native modal.
+Contains the main content to be rendered inside Revola.
 <TypeTable type={{
   "asChild?": {
     description: 'Change the default rendered element for the one passed as a child, merging their props and behavior.',
@@ -156,14 +185,14 @@ Contains content to be rendered in the open native modal.
     default: "false",
   },
   "hideCloseButton?": {
-    description: 'Hide default close button from drawer and dialog',
+    description: 'Hides the default close button from both drawer and dialog modes.',
     type: 'boolean',
     default: 'false'
   }
 }} />
 
 #### Close
-The button that closes the drawer.
+The button that closes Revola.
 <TypeTable type={{
   "asChild?": {
      description: 'Change the default rendered element for the one passed as a child, merging their props and behavior.',
@@ -173,7 +202,7 @@ The button that closes the drawer.
 }}/>
 
 #### Header
-An wrapping header component for title and description to ensure action buttons are placed properly in native modal. No Props
+A wrapping header component for title and description that ensures proper layout in Revola. No additional props.
 
 #### Title
 An optional accessible title to be announced when the drawer is opened.
@@ -198,4 +227,4 @@ An optional accessible description to be announced when the drawer is opened.
 }}/>
 
 #### Footer
-An wrapping footer component to ensure action buttons are placed properly in native modal. No Props
+A wrapping footer component that ensures proper action button placement in Revola. No additional props.

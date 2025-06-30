@@ -1,14 +1,19 @@
 {
-  "name": "native-modal",
-  "version": "0.1.0",
+  "name": "revola",
+  "version": "1.0.0",
+  "description": "A responsive, drop-in replacement for modal and drawer components - behaves as a modal on desktop and a drawer on mobile.",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "typecheck": "tsc --noEmit",
     "postinstall": "fumadocs-mdx",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
+    "format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.8",
@@ -28,6 +33,7 @@
     "fumadocs-typescript": "^3.1.0",
     "fumadocs-ui": "^14.7.7",
     "lucide-react": "^0.477.0",
+    "motion": "^12.18.1",
     "next": "15.2.1",
     "next-themes": "^0.4.4",
     "next-view-transitions": "^0.3.4",
@@ -47,6 +53,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.2",
     "@types/mdx": "^2.0.13",
     "@types/node": "^20",
     "@types/react": "^19",

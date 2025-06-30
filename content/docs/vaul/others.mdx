@@ -1,14 +1,29 @@
 ---
 title: Others
-description: All the Others Examples ported to Native Modal
+description: Advanced Vaul examples ported to Revola, showcasing complex drawer configurations and behaviors.
+ogDescription: Advanced Revola features and configurations.
 ---
 
-### Non-modal
-Set the `modal` prop to `false` to allow interaction with the background while the drawer is open.
+### Alert Dialog
 
-<ComponentPreview name="other-default-demo" mobilePreviewLink="/vaul/other" />
+Revola supports alert dialog functionality for critical user interactions that require acknowledgment. When `alert={true}` is set, the dialog prevents background interaction (clicking outside or pressing overlay) while still allowing users to close via:
+
+- ESC key press
+- Close button interaction  
+- Swipe-to-close gesture (on mobile)
+
+This is ideal for confirmations, warnings, or any content that requires user attention before proceeding.
+
+You can use this to replace traditional alert dialogs. Combine `alert={true}` and `onlyDialog={true}` to get proper alert dialog component behavior, which will render a dialog on all screen sizes instead of being responsive.
+
+<ComponentPreview name="alert-revola-demo" />
+
+### Non-modal
+By default, Revola blocks background interaction when open. Revola inherits Vaul's non-modal capability - set `modal={false}` to allow users to interact with the page behind Revola.
+
+<ComponentPreview name="other-default-demo" />
 
 ### Non-dismissible
-Set the `dismissible` prop to `false` to prevent the user from closing the drawer by clicking outside of it, pressing the escape key, or dragging it down. Don't open this one or else you'll have to refresh the page to close it.
+Revola supports Vaul's dismissible control system. Set `dismissible={false}` to prevent typical closure methods (clicking outside, escape key, swiping down). Useful for critical interactions that require explicit confirmation.
 
-<ComponentPreview name="non-dismissible-default-demo" mobilePreviewLink="/vaul/other/non-dismissible" />
+<ComponentPreview name="non-dismissible-default-demo" />

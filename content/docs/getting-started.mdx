@@ -1,24 +1,25 @@
 ---
 title: Getting Started
-description: Get started with Native Modal in matter of seconds
+description: Install Revola via shadcn CLI or manual setup. Quick integration guide for React projects.
+ogDescription: Install Revola via shadcn CLI or manually in minutes.
 icon: Play
 ---
 
 ## Installation
 
-Native Modal is built using:  
-- **[Radix UI Dialog](https://www.radix-ui.com/docs/primitives/components/dialog)** for modals on larger screens.  
-- **[Vaul](https://vaul.emilkowal.ski/)** for drawers on mobile.  
+Revola is built using:
 
+- **[Radix UI Dialog](https://www.radix-ui.com/docs/primitives/components/dialog)** for modals on larger screens.
+- **[Vaul](https://vaul.emilkowal.ski/)** for drawers on mobile.
 
 It doesn’t require shadcn/ui, but it integrates seamlessly with its styling system and supports installation via the shadcn CLI.
 
-### Install via Shadcn CLI 
+### Install via Shadcn CLI
 
-If you're already using **shadcn** in your project, you can install Native Modal with:  
+If you're already using **shadcn** in your project, you can install Revola with:
 
 ```package-install
-npx shadcn@latest add http://localhost:3000/r/native-modal.json
+npx shadcn@latest add https://revola.sameerjs.com/r/revola.json
 ```
 
 <MarkdownAccordion title="If you haven't installed shadcn yet">
@@ -33,6 +34,7 @@ npx shadcn@latest init
 ```
 
 Choose between a Next.js project or a Monorepo.
+
 </Step>
 
 <Step>
@@ -46,24 +48,24 @@ npx shadcn@latest add button
 The command above will add the Button component to your project. You can then import it like this:
 
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
     <div>
       <Button>Click me</Button>
     </div>
-  )
+  );
 }
-
 ```
+
 </Step>
 </Steps>
 </MarkdownAccordion>
 
-
 ### Manual Installation (without shadcn)
-If you’d rather not use the shadcn CLI, you can install **Native Modal** manually with just a few steps.
+
+If you’d rather not use the shadcn CLI, you can install **Revola** manually with just a few steps.
 
 <Steps>
 <Step>
@@ -74,6 +76,7 @@ Install the required packages:
 ```package-install
 npm install @radix-ui/react-dialog vaul tailwindcss-animate
 ```
+
 </Step>
 
 <Step>
@@ -86,19 +89,20 @@ import type { Config } from "tailwindcss";
 import tailwindAnimate from "tailwindcss-animate";
 
 export default {
-// All you existing configs....
+  // All you existing configs....
 
   plugins: [tailwindAnimate],
 } satisfies Config;
 ```
+
 </Step>
 
 <Step>
 #### Add the `useMediaQuery` hook
 
-This hook is used internally by Native Modal to detect screen size.
+This hook is used internally by Revola to detect screen size.
 
-```tsx title="use-media-query.tsx"
+```tsx lineNumbers title="use-media-query.tsx"
 "use client";
 
 import { useEffect, useState } from "react";
@@ -121,117 +125,349 @@ const useMediaQuery = (query: string) => {
 };
 
 export default useMediaQuery;
-
 ```
+
 </Step>
 
 <Step>
 #### Add the component
 
-Copy the full `native-modal.tsx` component into your project:
+Copy the full `revola.tsx` component into your project:
 
-```tsx title="native-modal.tsx"
-// TODO: Replace the content with actual Native-Modal component's code.
-
+```tsx title="revola.tsx"
 "use client";
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import {
-  NativeModal,
-  NativeModalTrigger,
-  NativeModalContent,
-  NativeModalHeader,
-  NativeModalTitle,
-  NativeModalDescription,
-  NativeModalFooter,
-} from "@/components/native-modal";
+import * as React from "react";
 
-export default function NativeModalVaulDefaultControlledDemo() {
-  const [open, setOpen] = useState(false);
+import * as DialogPrimitive from "@radix-ui/react-dialog";
+import { Drawer as DrawerPrimitive, Content as VaulDrawerContent } from "vaul";
+import { X } from "lucide-react";
+import { cva } from "class-variance-authority";
+
+import { cn } from "@/lib/utils";
+
+import useMediaQuery from "@/hooks/use-media-query";
+
+type DrawerType = React.ComponentProps<typeof DrawerPrimitive.Root>;
+
+type ResponsiveDialogContextProps = {
+  modal?: boolean;
+  dismissible?: boolean;
+  direction?: "top" | "right" | "bottom" | "left";
+  onlyDrawer?: boolean;
+  onlyDialog?: boolean;
+  alert?: boolean;
+};
+
+type ResponsiveDialogProviderProps = {
+  children: React.ReactNode;
+} & ResponsiveDialogContextProps;
+
+const ResponsiveDialogContext = React.createContext<ResponsiveDialogContextProps>({});
+
+const ResponsiveDialogProvider = ({
+  modal = true,
+  dismissible = true,
+  direction = "bottom",
+  onlyDrawer = false,
+  onlyDialog = false,
+  alert = false,
+  children,
+}: ResponsiveDialogProviderProps) => {
   return (
-    <NativeModal open={open} onOpenChange={setOpen}>
-      <NativeModalTrigger asChild>
-        <Button variant="outline" className="h-12 rounded-full px-6">
-          Vaul Default Controlled Demo
-        </Button>
-      </NativeModalTrigger>
-
-      <NativeModalContent>
-        <div className="mx-auto mb-2 max-w-md bg-fd-background">
-          <NativeModalHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
-            <NativeModalTitle className="text-base font-medium leading-6 tracking-normal">
-              A controlled drawer.
-            </NativeModalTitle>
-            <NativeModalDescription className="space-y-2 max-md:text-base">
-              <span className="block">
-                This means that the drawer no longer manages its own state. Instead, you can control it programmatically
-                from the outside.
-              </span>
-              <span className="block">
-                But you can still let the drawer help you a bit by passing the `onOpenChange` prop. This way, the drawer
-                will change your open state when the user clicks outside of it, or when they press the escape key for
-                example.
-              </span>
-            </NativeModalDescription>
-          </NativeModalHeader>
-        </div>
-
-        <NativeModalFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
-          <div className="mx-auto flex w-full max-w-md justify-end gap-6">
-            <a
-              className="gap-0.25 flex items-center text-xs text-secondary-foreground"
-              href="https://github.com/SameerJS6/native-modal"
-              target="_blank"
-            >
-              GitHub
-              <svg
-                fill="none"
-                height="16"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                width="16"
-                aria-hidden="true"
-                className="ml-1 h-3 w-3"
-              >
-                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                <path d="M15 3h6v6"></path>
-                <path d="M10 14L21 3"></path>
-              </svg>
-            </a>
-            <a
-              className="gap-0.25 flex items-center text-xs text-secondary-foreground"
-              href="https://twitter.com/sameerjs6"
-              target="_blank"
-            >
-              Twitter
-              <svg
-                fill="none"
-                height="16"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                width="16"
-                aria-hidden="true"
-                className="ml-1 h-3 w-3"
-              >
-                <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
-                <path d="M15 3h6v6"></path>
-                <path d="M10 14L21 3"></path>
-              </svg>
-            </a>
-          </div>
-        </NativeModalFooter>
-      </NativeModalContent>
-    </NativeModal>
+    <ResponsiveDialogContext.Provider value={{ modal, dismissible, direction, onlyDrawer, onlyDialog, alert }}>
+      {children}
+    </ResponsiveDialogContext.Provider>
   );
-}
+};
+
+const useResponsiveDialog = () => {
+  const context = React.useContext(ResponsiveDialogContext);
+
+  if (!context) {
+    throw new Error("useResponsiveDialog must be used within a <ResponsiveDialog />");
+  }
+
+  return context;
+};
+
+const ResponsiveDialog = ({
+  modal = true,
+  dismissible = true,
+  direction = "bottom",
+  onlyDrawer = false,
+  onlyDialog = false,
+  alert = false,
+  shouldScaleBackground = true,
+  open: controlledOpen,
+  onOpenChange: controlledOnOpenChange,
+  ...props
+}: DrawerType & { onlyDrawer?: boolean; onlyDialog?: boolean; alert?: boolean }) => {
+  const [internalState, setInternalState] = React.useState<boolean>(false);
+
+  const isControlledOpen = typeof controlledOpen === "undefined";
+  const toggleInternalState = () => setInternalState((prev) => !prev);
+
+  const open = isControlledOpen ? internalState : controlledOpen;
+  const onOpenChange = isControlledOpen ? toggleInternalState : controlledOnOpenChange;
+
+  const isMobile = useMediaQuery("(min-width: 640px)");
+
+  // Determine which component to use based on props and media query
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const ResponsiveDialog = shouldUseDialog ? DialogPrimitive.Root : DrawerPrimitive.Root;
+
+  // Alert dialog behavior: force modal=true and dismissible=true but handle interactions differently
+  const effectiveModal = alert ? true : modal;
+  const effectiveDismissible = alert ? true : dismissible;
+
+  return (
+    <ResponsiveDialogProvider
+      modal={effectiveModal}
+      dismissible={effectiveDismissible}
+      direction={direction}
+      onlyDrawer={onlyDrawer}
+      onlyDialog={onlyDialog}
+      alert={alert}
+    >
+      <ResponsiveDialog
+        modal={effectiveModal}
+        direction={direction}
+        dismissible={effectiveDismissible}
+        shouldScaleBackground={shouldScaleBackground}
+        open={open}
+        onOpenChange={onOpenChange}
+        {...props}
+        {...(!shouldUseDialog && { autoFocus: true })}
+      />
+    </ResponsiveDialogProvider>
+  );
+};
+ResponsiveDialog.displayName = "ResponsiveDialog";
+
+const ResponsiveDialogTrigger = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) => {
+  const { onlyDrawer, onlyDialog } = useResponsiveDialog();
+  const isMobile = useMediaQuery("(min-width: 640px)");
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const ResponsiveDialogTrigger = shouldUseDialog ? DialogPrimitive.Trigger : DrawerPrimitive.Trigger;
+  return <ResponsiveDialogTrigger {...props} />;
+};
+ResponsiveDialogTrigger.displayName = "ResponsiveDialogTrigger";
+
+const ResponsiveDialogPortal = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Portal>) => {
+  const { onlyDrawer, onlyDialog } = useResponsiveDialog();
+  const isMobile = useMediaQuery("(min-width: 640px)");
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const ResponsiveDialogPortal = shouldUseDialog ? DialogPrimitive.Portal : DrawerPrimitive.Portal;
+  return <ResponsiveDialogPortal {...props} />;
+};
+ResponsiveDialogPortal.displayName = "ResponsiveDialogPortal";
+
+const ResponsiveDialogOverlay = ({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Overlay>) => {
+  const { onlyDrawer, onlyDialog } = useResponsiveDialog();
+  const isMobile = useMediaQuery("(min-width: 640px)");
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const ResponsiveDialogOverlay = shouldUseDialog ? DialogPrimitive.Overlay : DrawerPrimitive.Overlay;
+  return (
+    <ResponsiveDialogOverlay
+      {...props}
+      className={cn(
+        "fixed inset-0 z-50 bg-black/40 sm:data-[state=open]:animate-in sm:data-[state=closed]:animate-out sm:data-[state=closed]:fade-out-0 sm:data-[state=open]:fade-in-0",
+        className
+      )}
+    />
+  );
+};
+ResponsiveDialogOverlay.displayName = "ResponsiveDialogOverlay";
+
+const ResponsiveDialogClose = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) => {
+  const { dismissible, alert, onlyDrawer, onlyDialog } = useResponsiveDialog();
+  const isMobile = useMediaQuery("(min-width: 640px)");
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const ResponsiveDialogClose = shouldUseDialog ? DialogPrimitive.Close : DrawerPrimitive.Close;
+
+  // Alert dialog: allow close button to work even if dismissible is false
+  const shouldPreventClose = !dismissible && !alert;
+
+  return (
+    <ResponsiveDialogClose
+      aria-label="Close"
+      {...(shouldPreventClose && { onClick: (e) => e.preventDefault() })}
+      {...props}
+    />
+  );
+};
+ResponsiveDialogClose.displayName = "ResponsiveDialogClose";
+
+const ResponsiveDialogContentVariants = cva("fixed z-[9999] bg-fd-background", {
+  variants: {
+    device: {
+      desktop:
+        "left-[50%] top-[50%] grid h-auto max-h-[min(640px,80dvh)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
+      mobile: "flex ",
+    },
+    direction: {
+      bottom: "",
+      top: "",
+      left: "",
+      right: "",
+    },
+  },
+  defaultVariants: {
+    device: "desktop",
+    direction: "bottom",
+  },
+  compoundVariants: [
+    {
+      device: "mobile",
+      direction: "bottom",
+      className:
+        "inset-x-0 bottom-0 mt-24 h-fit max-h-[85%] flex-col rounded-t-[10px] border border-b-0 border-primary/10 pt-4",
+    },
+    {
+      device: "mobile",
+      direction: "top",
+      className:
+        "inset-x-0 top-0 mb-24 h-fit max-h-[85%] flex-col rounded-b-[10px] border border-b-0 border-primary/10",
+    },
+    {
+      device: "mobile",
+      direction: "left",
+      className:
+        "bottom-2 left-2 top-2 flex w-[310px] bg-transparent outline-none  [--initial-transform:calc(100%+8px)]",
+    },
+    {
+      device: "mobile",
+      direction: "right",
+      className: "bottom-2 right-2 top-2 w-[310px] bg-transparent outline-none  [--initial-transform:calc(100%+8px)]",
+    },
+  ],
+});
+
+const ResponsiveDialogContent = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { hideCloseButton?: boolean }
+>(({ className, children, hideCloseButton = false, ...props }, ref) => {
+  const { direction, modal, dismissible, alert, onlyDrawer, onlyDialog } = useResponsiveDialog();
+
+  const isMobile = useMediaQuery("(min-width: 640px)");
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const ResponsiveDialogContent = shouldUseDialog ? DialogPrimitive.Content : VaulDrawerContent;
+
+  const shouldPreventEscape = !dismissible && !alert;
+  const shouldPreventOutsideInteraction = !modal || (!dismissible && !alert) || alert;
+
+  return (
+    <ResponsiveDialogPortal>
+      <ResponsiveDialogOverlay />
+      <ResponsiveDialogContent
+        ref={ref}
+        {...props}
+        {...(shouldPreventEscape && shouldUseDialog && { onEscapeKeyDown: (e) => e.preventDefault() })}
+        {...(shouldPreventOutsideInteraction &&
+          shouldUseDialog && {
+            onInteractOutside: (e) => e.preventDefault(),
+          })}
+        {...(!shouldUseDialog &&
+          shouldPreventOutsideInteraction && {
+            onPointerDownOutside: (e) => e.preventDefault(),
+            onInteractOutside: (e) => e.preventDefault(),
+          })}
+        className={cn(
+          ResponsiveDialogContentVariants({
+            device: shouldUseDialog ? "desktop" : "mobile",
+            direction,
+          }),
+          className
+        )}
+      >
+        {!shouldUseDialog && direction === "bottom" && (
+          <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
+        )}
+        {!hideCloseButton ||
+          (alert && (
+            <ResponsiveDialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+              <X className="size-4" />
+              <span className="sr-only">close</span>
+            </ResponsiveDialogClose>
+          ))}
+        {children}
+      </ResponsiveDialogContent>
+    </ResponsiveDialogPortal>
+  );
+});
+ResponsiveDialogContent.displayName = "ResponsiveDialogContent";
+
+const ResponsiveDialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+  return <div className={cn("flex flex-col gap-1.5 p-4 text-center sm:p-0 sm:text-left", className)} {...props} />;
+};
+ResponsiveDialogHeader.displayName = "ResponsiveDialogHeader";
+
+const ResponsiveDialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+  return (
+    <footer
+      className={cn("flex flex-col gap-4 p-4 max-sm:mt-auto sm:flex-row sm:justify-end sm:gap-2 sm:p-0", className)}
+      {...props}
+    />
+  );
+};
+ResponsiveDialogFooter.displayName = "ResponsiveDialogFooter";
+
+const ResponsiveDialogTitle = React.forwardRef<
+  React.ComponentRef<typeof DialogPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
+>(({ className, ...props }, ref) => {
+  const { onlyDrawer, onlyDialog } = useResponsiveDialog();
+  const isMobile = useMediaQuery("(min-width: 640px)");
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const ResponsiveDialogTitle = shouldUseDialog ? DialogPrimitive.Title : DrawerPrimitive.Title;
+  return (
+    <ResponsiveDialogTitle
+      ref={ref}
+      className={cn("text-lg font-semibold leading-none tracking-tight", className)}
+      {...props}
+    />
+  );
+});
+
+ResponsiveDialogTitle.displayName = "ResponsiveDialogTitle";
+
+const ResponsiveDialogDescription = React.forwardRef<
+  React.ComponentRef<typeof DialogPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
+>(({ className, ...props }, ref) => {
+  const { onlyDrawer, onlyDialog } = useResponsiveDialog();
+  const isMobile = useMediaQuery("(min-width: 640px)");
+
+  const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
+  const ResponsiveDialogDescription = shouldUseDialog ? DialogPrimitive.Description : DrawerPrimitive.Description;
+  return (
+    <ResponsiveDialogDescription ref={ref} className={cn("text-sm text-muted-foreground", className)} {...props} />
+  );
+});
+
+ResponsiveDialogDescription.displayName = "ResponsiveDialogDescription";
+
+export {
+  ResponsiveDialog,
+  ResponsiveDialogClose,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogOverlay,
+  ResponsiveDialogPortal,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
+};
+
 ```
+
 </Step>
 
 <Step>
@@ -243,39 +479,37 @@ Make sure your import paths match your project structure.
 
 ## Usage
 
-```tsx 
-import { 
-  NativeModal, 
-  NativeModalTrigger, 
-  NativeModalContent, 
-  NativeModalHeader, 
-  NativeModalTitle, 
-  NativeModalDescription 
-  } from "@/components/ui/native-modal";
+```tsx
+import {
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
+} from "@/components/ui/revola";
 ```
 
 ```tsx
-    <NativeModal>
-      <NativeModalTrigger>Open Native Modal</NativeModalTrigger>
-      <NativeModalContent>
-        <div className="bg-background p-4">
-          <NativeModalHeader>
-            <NativeModalTitle>Welcome</NativeModalTitle>
-            <NativeModalDescription>
-              This is a responsive modal that adapts between drawer & modal.
-            </NativeModalDescription>
-          </NativeModalHeader>
-        </div>
-      </NativeModalContent> 
-    </NativeModal> 
-``` 
+<ResponsiveDialog>
+  <ResponsiveDialogTrigger>Open Revola</ResponsiveDialogTrigger>
+  <ResponsiveDialogContent>
+    <div className="bg-background p-4">
+      <ResponsiveDialogHeader>
+        <ResponsiveDialogTitle>Welcome</ResponsiveDialogTitle>
+        <ResponsiveDialogDescription>
+          This is a responsive modal that adapts between drawer & modal.
+        </ResponsiveDialogDescription>
+      </ResponsiveDialogHeader>
+    </div>
+  </ResponsiveDialogContent>
+</ResponsiveDialog>
+```
+
 ---
 
 ## Examples
 
-
 ### Simple Example
 
-<ComponentPreview name="default-demo" mobilePreviewLink="/vaul/default" />
-
-
+<ComponentPreview name="default-demo" />

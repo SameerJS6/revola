@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import tailwindAnimate from "tailwindcss-animate";
+
 import { createPreset } from "fumadocs-ui/tailwind-plugin";
 
 export default {
@@ -21,8 +22,8 @@ export default {
         "geist-mono": ["var(--font-geist-mono)"],
       },
       colors: {
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "hsl(var(--fd-background))",
+        foreground: "hsl(var(--fd-foreground))",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",

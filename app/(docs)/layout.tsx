@@ -1,8 +1,10 @@
 "use client";
 
-import { source } from "@/lib/source";
+import type { PropsWithChildren } from "react";
+
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
-import { PropsWithChildren } from "react";
+
+import { source } from "@/lib/source";
 
 export default function DocLayout({ children }: PropsWithChildren) {
   return (
@@ -12,7 +14,8 @@ export default function DocLayout({ children }: PropsWithChildren) {
         className: "[--fd-sidebar-width:250px]",
       }}
       nav={{
-        title: "Native Modal",
+        title: "Revola",
+        url: "/",
       }}
       tree={source.pageTree}
     >

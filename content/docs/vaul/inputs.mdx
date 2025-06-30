@@ -1,13 +1,14 @@
 ---
 title: Inputs
-description: All the Snap Points Examples ported to Native Modal
+description: Vaul input handling examples ported to Revola, showing mobile keyboard interaction compatibility.
+ogDescription: Mobile keyboard handling in Revola drawers.
 ---
 
-Traditionally tricky to get right, because keyboard is pushing the content up. Vaul fixes this by correcting the position of the drawer when the keyboard is opened.
+Mobile keyboard interactions can be challenging when the virtual keyboard pushes content upward. Revola inherits Vaul's automatic repositioning system that automatically adjusts the drawer position when the keyboard opens.
 
-<ComponentPreview name="default-input-demo" mobilePreviewLink="/vaul/input" />
+<ComponentPreview name="default-input-demo" />
 
 ### No repositioning
-Setting `repositionInputs` to false to disable the repositioning of inputs and fallback to the default browser behavior.
+Set `repositionInputs={false}` to disable automatic repositioning and use the browser's default keyboard behavior instead.
 
-<ComponentPreview name="no-repositioning-input-demo" mobilePreviewLink="/vaul/input/no-repositioning" />
+<ComponentPreview name="no-repositioning-input-demo" />
