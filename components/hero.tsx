@@ -121,15 +121,24 @@ export default function RevolaHero() {
           className="flex flex-col items-center justify-center gap-3 pt-2 sm:flex-row"
           variants={buttonVariants}
         >
-          <RevolaHeroDemo />
-          <MobilePreview previewLink={previewLink ?? ""} className={focusRingVariants()} />
-
+          <div className="flex items-center gap-3">
+            <RevolaHeroDemo />
+            <MobilePreview
+              previewLink={previewLink ?? ""}
+              className={cn(
+                focusRingVariants(),
+                "max-md:hidden",
+                "data-[open=false]:bg-[#161615] data-[open=true]:bg-[#f1f1f1] data-[open=false]:text-white data-[open=true]:text-[#161615] data-[open=false]:hover:bg-[#1A1A19] data-[open=true]:hover:bg-[#F9F9F8]",
+                "dark:data-[open=true]:bg-[#f1f1f1]"
+              )}
+            />
+          </div>
           <Link
             target="_blank"
             rel="noopener noreferrer"
             href="https://github.com/SameerJS6/revola"
             className={cn(
-              "inline-flex h-10 items-center gap-2 rounded-full pl-4 pr-3 font-medium text-zinc-900 transition-colors duration-200 hover:bg-zinc-100 hover:text-gray-600",
+              "inline-flex h-10 items-center gap-2 rounded-full pl-4 pr-3 font-medium text-zinc-900 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-800",
               textVariants({ selection: "dark" }),
               focusRingVariants()
             )}
