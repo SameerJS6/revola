@@ -1,6 +1,7 @@
-import { Index, type RegistryKeys } from "@/components/registry";
-import { notFound } from "next/navigation";
 import React from "react";
+import { notFound } from "next/navigation";
+
+import { Index, type RegistryKeys } from "@/components/registry";
 
 interface MobilePreviewPageProps {
   params: Promise<{

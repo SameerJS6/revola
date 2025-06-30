@@ -38,8 +38,6 @@ export default function ComponentPreview({
     return generateMobilePreviewLink(name, window.location.origin);
   }, [name]);
 
-  console.log("generatedMobilePreviewLink", generatedMobilePreviewLink);
-
   const Preview = React.useMemo(() => {
     const Component = Index[name]?.component;
 
