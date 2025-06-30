@@ -10,7 +10,7 @@
       "description": "A responsive dialog component that automatically adapts to screen size - drawer on mobile, modal on desktop.",
       "dependencies": ["@radix-ui/react-dialog", "vaul", "class-variance-authority"],
       "files": [
-        { "path": "registry/revola/index.tsx", "type": "registry:ui" },
+        { "path": "registry/revola/revola.tsx", "type": "registry:ui" },
         { "path": "hooks/use-media-query.tsx", "type": "registry:hook" }
       ]
     }
