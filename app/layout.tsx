@@ -5,6 +5,7 @@ import { Geist_Mono, Inter } from "next/font/google";
 
 import { RootProvider } from "fumadocs-ui/provider";
 
+import { PostHogProvider } from "@/components/analytics/posthog-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
@@ -24,7 +25,20 @@ export const metadata: Metadata = {
   description:
     "Revola is a responsive dialog component for React. This responsive behavior improves usability without any extra work from you.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
-  keywords: ["Next.js", "React", "Tailwind CSS", "Components", "shadcn"],
+  keywords: [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Components",
+    "shadcn",
+    "Revola",
+    "Vaul",
+    "Radix UI",
+    "Responsive Dialog",
+    "Dialog",
+    "Modal",
+    "Drawer",
+  ],
   authors: [
     {
       name: "SameerJS6",
@@ -74,13 +88,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
-        <RootProvider search={{ enabled: false }}>
-          <ThemeProvider enableSystem attribute="class" defaultTheme="dark" disableTransitionOnChange>
-            <div data-vaul-drawer-wrapper="" className="bg-fd-background">
-              {children}
-            </div>
-          </ThemeProvider>
-        </RootProvider>
+        <PostHogProvider>
+          <RootProvider search={{ enabled: false }}>
+            <ThemeProvider enableSystem attribute="class" defaultTheme="dark" disableTransitionOnChange>
+              <div data-vaul-drawer-wrapper="" className="bg-fd-background">
+                {children}
+              </div>
+            </ThemeProvider>
+          </RootProvider>
+        </PostHogProvider>
       </body>
     </html>
   );

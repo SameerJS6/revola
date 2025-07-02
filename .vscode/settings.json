@@ -10,5 +10,26 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.removeUnusedImports": "explicit"
+  },
+  "[mdx]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.removeUnusedImports": "never"
+    },
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off", 
+      "other": "off"
+    }
   }
 }
