@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import posthog from "posthog-js";
+import { PostHogProvider as PHProvider } from "posthog-js/react";
 
 import { isPostHogEnabled, POSTHOG_HOST, POSTHOG_KEY } from "@/lib/posthog";
 
@@ -11,15 +12,15 @@ interface PostHogProviderProps {
 
 export function PostHogProvider({ children }: PostHogProviderProps) {
   const isEnabled = isPostHogEnabled();
+
   useEffect(() => {
     if (isEnabled) {
       posthog.init(POSTHOG_KEY!, {
         api_host: POSTHOG_HOST,
-        capture_pageview: true,
-        capture_pageleave: true,
+        name: "Revola",
       });
     }
   }, []);
 
-  return <>{children}</>;
+  return <PHProvider client={posthog}>{children}</PHProvider>;
 }
