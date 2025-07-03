@@ -1,3 +1,5 @@
+"use client";
+
 import { ExternalLinkIcon } from "lucide-react";
 import { cva } from "class-variance-authority";
 
@@ -12,6 +14,7 @@ import {
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
 } from "@/registry/revola";
+import { trackEvent } from "@/lib/posthog";
 import { cn } from "@/lib/utils";
 
 export default function RevolaHeroDemo() {
@@ -41,6 +44,11 @@ export default function RevolaHeroDemo() {
             textVariants({ selection: "dark" }),
             focusRingVariants()
           )}
+          onClick={() => {
+            trackEvent("open_revola_dialog", {
+              button_name: "open_revola_dialog",
+            });
+          }}
         >
           Open Revola
         </Button>
