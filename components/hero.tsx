@@ -9,6 +9,7 @@ import { cva } from "class-variance-authority";
 import MobilePreview from "@/components/mobile-preview";
 import RevolaHeroDemo from "@/components/revola-hero-demo";
 import { generateMobilePreviewLink } from "@/lib/mobile-preview";
+import { trackEvent } from "@/lib/posthog";
 import { cn } from "@/lib/utils";
 
 export const focusRingVariants = cva("focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900", {
@@ -142,6 +143,11 @@ export default function RevolaHero() {
               textVariants({ selection: "dark" }),
               focusRingVariants()
             )}
+            onClick={() => {
+              trackEvent("navigate_to_github_hero", {
+                button_name: "github_link",
+              });
+            }}
           >
             GitHub
             <ArrowUpRight className="size-4" />
@@ -151,6 +157,11 @@ export default function RevolaHero() {
         <motion.div className="pt-2" variants={buttonVariants}>
           <Link
             href="/docs"
+            onClick={() => {
+              trackEvent("navigate_to_documentation", {
+                button_name: "documentation_link",
+              });
+            }}
             className={cn(
               "rounded px-2 py-1 transition-colors duration-200 hover:text-gray-700",
               textVariants({ size: "link", selection: "dark" }),

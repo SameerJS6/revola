@@ -74,6 +74,11 @@ export default function RevolaHeroDemo() {
               className={linkVariants()}
               href="https://github.com/SameerJS6/revola"
               target="_blank"
+              onClick={() => {
+                trackEvent("navigate_to_github_hero_demo", {
+                  button_name: "github_link",
+                });
+              }}
               rel="noopener noreferrer"
             >
               GitHub
@@ -83,6 +88,11 @@ export default function RevolaHeroDemo() {
               className={linkVariants()}
               href="https://twitter.com/sameerjs6"
               target="_blank"
+              onClick={() => {
+                trackEvent("navigate_to_twitter_from_hero_demo", {
+                  button_name: "twitter_link",
+                });
+              }}
               rel="noopener noreferrer"
             >
               Twitter
