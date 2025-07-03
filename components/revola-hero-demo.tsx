@@ -1,3 +1,5 @@
+"use client";
+
 import { ExternalLinkIcon } from "lucide-react";
 import { cva } from "class-variance-authority";
 
@@ -12,6 +14,7 @@ import {
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
 } from "@/registry/revola";
+import { trackEvent } from "@/lib/posthog";
 import { cn } from "@/lib/utils";
 
 export default function RevolaHeroDemo() {
@@ -41,6 +44,11 @@ export default function RevolaHeroDemo() {
             textVariants({ selection: "dark" }),
             focusRingVariants()
           )}
+          onClick={() => {
+            trackEvent("open_revola_dialog", {
+              button_name: "open_revola_dialog",
+            });
+          }}
         >
           Open Revola
         </Button>
@@ -66,6 +74,11 @@ export default function RevolaHeroDemo() {
               className={linkVariants()}
               href="https://github.com/SameerJS6/revola"
               target="_blank"
+              onClick={() => {
+                trackEvent("navigate_to_github_hero_demo", {
+                  button_name: "github_link",
+                });
+              }}
               rel="noopener noreferrer"
             >
               GitHub
@@ -75,6 +88,11 @@ export default function RevolaHeroDemo() {
               className={linkVariants()}
               href="https://twitter.com/sameerjs6"
               target="_blank"
+              onClick={() => {
+                trackEvent("navigate_to_twitter_from_hero_demo", {
+                  button_name: "twitter_link",
+                });
+              }}
               rel="noopener noreferrer"
             >
               Twitter
