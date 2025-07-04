@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Link } from "next-view-transitions";
 
 import { ArrowLeft, ArrowRight, SquareArrowOutUpRight } from "lucide-react";
 
