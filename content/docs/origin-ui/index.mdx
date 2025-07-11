@@ -1,0 +1,32 @@
+---
+title: Origin UI
+description: Real-world dialog examples from Origin UI, ported to demonstrate how easily you can adapt Revola to existing components.
+ogDescription: Origin UI dialog examples adapted to Revola from Dialog.
+---
+import { AlertTriangle, ScrollText, FileText, Info } from 'lucide-react';
+
+Origin UI is a collection of beautiful, real-world components. We've ported their dialog examples to use Revola instead of Shadcn's Dialog, demonstrating how effortlessly you can adapt Revola to existing components. 
+
+These examples showcase practical scenarios you encounter daily—authentication flows, payment processing, user feedback, confirmations, and informational content.
+
+
+<Cards>
+  <Card icon={<AlertTriangle />} href="/docs/origin-ui/alerts" title="Alerts">
+    Confirmation and alert dialogs for critical actions.
+  </Card>
+  <Card icon={<FileText />} href="/docs/origin-ui/forms" title="Forms">
+    Authentication, feedback, payment, and profile dialogs.
+  </Card>
+  <Card icon={<Info />} href="/docs/origin-ui/informative" title="Informative">
+    Onboarding and informational dialogs.
+  </Card>
+  <Card icon={<ScrollText />} href="/docs/origin-ui/scrollables" title="Scrollables">
+    Dialogs with scrollable content and sticky elements.
+  </Card>
+</Cards>
+
+> Examples are grouped by content type and behavior to help you quickly find the right pattern for your use case.
+
+**Transform any dialog:** Revola makes your dialogs responsive and accessible across desktop and mobile. Just swap your dialog implementation with Revola's `ResponsiveDialog` components—minimal changes required, no complex rewrites needed.
+
+Whether you need modals, drawers, onboarding flows, confirmations, or feedback forms, Revola makes your UI responsive and accessible with minimal changes.

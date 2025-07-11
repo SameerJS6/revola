@@ -32,6 +32,8 @@ export function rehypeComponent() {
 
           source = source.replaceAll("registry/revola", "components/ui/revola");
           source = source.replaceAll("export default", "export");
+          // Remove .js extensions from all Next.js imports for cleaner installed code
+          source = source.replace(/from ["']next\/([^"']+)\.js["']/g, 'from "next/$1"');
 
           // Add code as children so that rehype can take over at build time.
           node.children?.push(

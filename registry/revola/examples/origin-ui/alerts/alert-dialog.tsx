@@ -8,32 +8,32 @@ import {
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
-} from "@/registry/revola";
+} from "@/components/ui/revola";
 
-export default function AlertRevolaDemo() {
+export default function AlertDialog() {
   return (
     <ResponsiveDialog alert onlyDialog>
       <ResponsiveDialogTrigger asChild>
-        <Button variant="outline" className="h-12 rounded-full px-6">
-          Alert Revola
+        <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
+          Show Alert
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent>
-        <div className="md:p-6">
-          <ResponsiveDialogHeader className="gap-2 text-left">
-            <ResponsiveDialogTitle>Are you absolutely sure?</ResponsiveDialogTitle>
+      <ResponsiveDialogContent className="mx-auto rounded-2xl sm:max-w-[400px]">
+        <div className="p-6">
+          <ResponsiveDialogHeader className="gap-2 p-0">
+            <ResponsiveDialogTitle>Are you sure?</ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
-              This action cannot be undone. This will permanently delete your account and remove your data from our
-              servers.
+              Take a moment to review the details provided to ensure you understand the implications.
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
 
-          <ResponsiveDialogFooter className="flex-col-reverse md:mt-6">
+          <ResponsiveDialogFooter className="mt-4 gap-2.5 p-0 pt-4 max-sm:flex-col-reverse">
             <ResponsiveDialogClose asChild>
               <Button variant="secondary">Cancel</Button>
             </ResponsiveDialogClose>
+
             <ResponsiveDialogClose asChild>
-              <Button>Continue</Button>
+              <Button>Okay</Button>
             </ResponsiveDialogClose>
           </ResponsiveDialogFooter>
         </div>
