@@ -1,0 +1,47 @@
+---
+title: Alerts
+description:
+  Alert dialog examples with Revola, showcasing responsive confirmation patterns
+  and critical user interactions.
+ogDescription: Origin UI alert dialogs with Revola.
+---
+
+Revola supports alert dialog behavior using the `alert` prop. Pair it with
+`onlyDialog` for consistent dialog rendering across all devices, or use `alert`
+alone for responsive behavior (drawer on mobile, dialog on desktop).
+
+Even in responsive mode, alert semantics are preserved: no background dismissal,
+no default close button, but drag-to-close remains available.
+
+### Alert Dialog
+
+A basic alert dialog using `alert` and `onlyDialog` that renders consistently as
+a dialog on all devices. Perfect for simple confirmations that need the same UX
+everywhere.
+
+```package-install
+npx shadcn@latest add https://revola.sameerjs.com/r/alert-dialog.json
+```
+
+### Alert Dialog with Icon
+
+Enhanced alert dialog with `alert` and `onlyDialog` that renders as a dialog on
+all devices. The icon provides visual context to help users understand the
+alert's purpose at a glance.
+
+<ComponentPreview name="origin-ui-alert-dialog-with-icon-demo" />
+
+```package-install
+npx shadcn@latest add https://revola.sameerjs.com/r/alert-dialog-with-icon.json
+```
+
+### Delete Project
+
+A responsive destructive action dialog using `alert` alone - adapts to drawer on
+mobile, dialog on desktop.
+
+<ComponentPreview name="origin-ui-delete-project-demo" />
+
+```package-install
+npx shadcn@latest add https://revola.sameerjs.com/r/delete-project.json
+```
