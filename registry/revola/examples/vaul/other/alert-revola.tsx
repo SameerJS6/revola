@@ -12,7 +12,7 @@ import {
 
 export default function AlertRevolaDemo() {
   return (
-    <ResponsiveDialog alert>
+    <ResponsiveDialog alert onlyDialog>
       <ResponsiveDialogTrigger asChild>
         <Button variant="outline" className="h-12 rounded-full px-6">
           Alert Revola
