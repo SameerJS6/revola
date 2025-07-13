@@ -28,6 +28,8 @@ type ResponsiveDialogProviderProps = {
 
 const ResponsiveDialogContext = React.createContext<ResponsiveDialogContextProps>({});
 
+const MOBILE_BREAKPOINT = "(min-width: 640px)";
+
 const ResponsiveDialogProvider = ({
   modal = true,
   dismissible = true,
@@ -74,7 +76,7 @@ const ResponsiveDialog = ({
   const open = isControlledOpen ? internalState : controlledOpen;
   const onOpenChange = isControlledOpen ? toggleInternalState : controlledOnOpenChange;
 
-  const isMobile = useMediaQuery("(min-width: 640px)");
+  const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialog = shouldUseDialog ? DialogPrimitive.Root : DrawerPrimitive.Root;
@@ -108,7 +110,7 @@ ResponsiveDialog.displayName = "ResponsiveDialog";
 
 const ResponsiveDialogTrigger = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) => {
   const { onlyDrawer, onlyDialog } = useResponsiveDialog();
-  const isMobile = useMediaQuery("(min-width: 640px)");
+  const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogTrigger = shouldUseDialog ? DialogPrimitive.Trigger : DrawerPrimitive.Trigger;
@@ -118,7 +120,7 @@ ResponsiveDialogTrigger.displayName = "ResponsiveDialogTrigger";
 
 const ResponsiveDialogPortal = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Portal>) => {
   const { onlyDrawer, onlyDialog } = useResponsiveDialog();
-  const isMobile = useMediaQuery("(min-width: 640px)");
+  const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogPortal = shouldUseDialog ? DialogPrimitive.Portal : DrawerPrimitive.Portal;
@@ -128,7 +130,7 @@ ResponsiveDialogPortal.displayName = "ResponsiveDialogPortal";
 
 const ResponsiveDialogOverlay = ({ className, ...props }: React.ComponentProps<typeof DialogPrimitive.Overlay>) => {
   const { onlyDrawer, onlyDialog } = useResponsiveDialog();
-  const isMobile = useMediaQuery("(min-width: 640px)");
+  const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogOverlay = shouldUseDialog ? DialogPrimitive.Overlay : DrawerPrimitive.Overlay;
@@ -146,7 +148,7 @@ ResponsiveDialogOverlay.displayName = "ResponsiveDialogOverlay";
 
 const ResponsiveDialogClose = ({ ...props }: React.ComponentProps<typeof DialogPrimitive.Close>) => {
   const { dismissible, alert, onlyDrawer, onlyDialog } = useResponsiveDialog();
-  const isMobile = useMediaQuery("(min-width: 640px)");
+  const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogClose = shouldUseDialog ? DialogPrimitive.Close : DrawerPrimitive.Close;
@@ -167,7 +169,7 @@ const ResponsiveDialogContentVariants = cva("fixed z-[9999] bg-background", {
   variants: {
     device: {
       desktop:
-        "left-[50%] top-[50%] grid h-auto max-h-[min(640px,80dvh)] w-[calc(100%-2rem)] max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
+        "left-1/2 top-1/2 grid max-h-[calc(100%-4rem)] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:max-w-lg",
       mobile: "flex ",
     },
     direction: {
@@ -186,24 +188,24 @@ const ResponsiveDialogContentVariants = cva("fixed z-[9999] bg-background", {
       device: "mobile",
       direction: "bottom",
       className:
-        "inset-x-0 bottom-0 mt-24 h-fit max-h-[85%] flex-col rounded-t-[10px] border border-b-0 border-primary/10 pt-4",
+        "inset-x-0 bottom-0 mt-24 h-fit max-h-[95%] flex-col rounded-t-[10px] border border-b-0 border-primary/10 pt-4",
     },
     {
       device: "mobile",
       direction: "top",
       className:
-        "inset-x-0 top-0 mb-24 h-fit max-h-[85%] flex-col rounded-b-[10px] border border-b-0 border-primary/10",
+        "inset-x-0 top-0 mb-24 h-fit max-h-[95%] flex-col rounded-b-[10px] border border-b-0 border-primary/10",
     },
     {
       device: "mobile",
       direction: "left",
       className:
-        "bottom-2 left-2 top-2 flex w-[310px] bg-transparent outline-none  [--initial-transform:calc(100%+8px)]",
+        "bottom-2 left-2 top-2 flex w-[310px] bg-transparent outline-none [--initial-transform:calc(100%+8px)]",
     },
     {
       device: "mobile",
       direction: "right",
-      className: "bottom-2 right-2 top-2 w-[310px] bg-transparent outline-none  [--initial-transform:calc(100%+8px)]",
+      className: "bottom-2 right-2 top-2 w-[310px] bg-transparent outline-none [--initial-transform:calc(100%+8px)]",
     },
   ],
 });
@@ -214,10 +216,11 @@ const ResponsiveDialogContent = React.forwardRef<
 >(({ className, children, hideCloseButton = false, ...props }, ref) => {
   const { direction, modal, dismissible, alert, onlyDrawer, onlyDialog } = useResponsiveDialog();
 
-  const isMobile = useMediaQuery("(min-width: 640px)");
+  const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogContent = shouldUseDialog ? DialogPrimitive.Content : VaulDrawerContent;
 
+  const showCloseButton = !alert && !hideCloseButton;
   const shouldPreventEscape = !dismissible && !alert;
   const shouldPreventOutsideInteraction = !modal || (!dismissible && !alert) || alert;
 
@@ -246,15 +249,14 @@ const ResponsiveDialogContent = React.forwardRef<
         )}
       >
         {!shouldUseDialog && direction === "bottom" && (
-          <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
+          <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 pb-1.5 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
         )}
-        {!hideCloseButton ||
-          (alert && (
-            <ResponsiveDialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-              <X className="size-4" />
-              <span className="sr-only">close</span>
-            </ResponsiveDialogClose>
-          ))}
+        {showCloseButton && (
+          <ResponsiveDialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-white">
+            <X className="size-4" />
+            <span className="sr-only">close</span>
+          </ResponsiveDialogClose>
+        )}
         {children}
       </ResponsiveDialogContent>
     </ResponsiveDialogPortal>
@@ -282,7 +284,7 @@ const ResponsiveDialogTitle = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
 >(({ className, ...props }, ref) => {
   const { onlyDrawer, onlyDialog } = useResponsiveDialog();
-  const isMobile = useMediaQuery("(min-width: 640px)");
+  const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogTitle = shouldUseDialog ? DialogPrimitive.Title : DrawerPrimitive.Title;
@@ -302,7 +304,7 @@ const ResponsiveDialogDescription = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => {
   const { onlyDrawer, onlyDialog } = useResponsiveDialog();
-  const isMobile = useMediaQuery("(min-width: 640px)");
+  const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
 
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogDescription = shouldUseDialog ? DialogPrimitive.Description : DrawerPrimitive.Description;
