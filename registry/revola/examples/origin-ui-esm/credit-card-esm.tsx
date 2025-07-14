@@ -53,7 +53,6 @@ export default function CreditCardDialog() {
                 <Label htmlFor={`name-${id}`}>Name on card</Label>
                 <Input
                   required
-                  autoFocus
                   type="text"
                   id={`name-${id}`}
                   placeholder="John Doe"

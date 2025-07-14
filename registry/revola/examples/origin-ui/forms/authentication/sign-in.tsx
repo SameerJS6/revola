@@ -50,7 +50,6 @@ export default function SignInDialog() {
                 <Label htmlFor={`${id}-email`}>Email</Label>
                 <Input
                   required
-                  autoFocus
                   type="email"
                   id={`${id}-email`}
                   placeholder="hi@yourcompany.com"

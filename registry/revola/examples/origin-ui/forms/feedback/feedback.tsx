@@ -42,7 +42,6 @@ export default function FeedbackDialog() {
           <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
             <Textarea
               rows={3}
-              autoFocus
               id="feedback"
               className="resize-none"
               placeholder="How can we improve Revola?"

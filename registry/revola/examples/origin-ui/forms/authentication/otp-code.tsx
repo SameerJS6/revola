@@ -96,7 +96,6 @@ export default function OtpCodeDialog() {
                   onChange={setValue}
                   containerClassName="flex items-center gap-3 has-disabled:opacity-50"
                   maxLength={4}
-                  autoFocus
                   onFocus={() => setHasGuessed(undefined)}
                   render={({ slots }) => (
                     <div className="flex gap-2">

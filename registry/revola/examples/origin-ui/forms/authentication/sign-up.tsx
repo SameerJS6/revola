@@ -49,7 +49,6 @@ export default function SignUpDialog() {
                 <Label htmlFor={`${id}-name`}>Full name</Label>
                 <Input
                   required
-                  autoFocus
                   type="text"
                   id={`${id}-name`}
                   placeholder="Matt Welsh"
