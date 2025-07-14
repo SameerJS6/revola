@@ -48,12 +48,13 @@ export default function MobilePreview({ previewLink, className }: MobilePreviewP
       open={showPreview && isOpen}
       shouldScaleBackground={false}
     >
+      {/* TODO: FIX HOVER EFFECT ON LIGHT MODE ON MAIN DOCUMENTATION ROUTES/EXAMPLES */}
       {showPreview ? (
         <ResponsiveDialogTrigger
           data-open={isOpen ? "true" : "false"}
           className={cn(
             "relative flex size-9 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full text-sm font-medium shadow-sm transition-all disabled:pointer-events-none disabled:opacity-70",
-            "data-[open=false]:bg-white data-[open=true]:bg-[#161615] data-[open=true]:text-white data-[open=false]:hover:bg-[#313130] data-[open=true]:hover:bg-[#FAFAFA]",
+            "data-[open=false]:bg-white data-[open=true]:bg-[#161615] data-[open=true]:text-white data-[open=false]:hover:bg-[#FAFAFA] data-[open=true]:hover:bg-[#313130]",
             "dark:data-[open=false]:bg-[#161615] dark:data-[open=true]:bg-white dark:data-[open=true]:text-[#161615] dark:data-[open=false]:hover:bg-[#1A1A19] dark:data-[open=true]:hover:bg-[#F9F9F8]",
             className
           )}
