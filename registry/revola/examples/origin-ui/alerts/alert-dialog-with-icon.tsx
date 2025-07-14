@@ -20,7 +20,7 @@ export default function AlertIconDialog() {
           Alert with Icon
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent className="mx-auto rounded-2xl sm:max-w-[400px]">
+      <ResponsiveDialogContent className="sm:max-w-[400px]">
         <div className="p-6">
           <div className="flex flex-col gap-2 max-sm:items-center sm:flex-row sm:gap-4">
             <div className="flex size-9 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
@@ -33,7 +33,7 @@ export default function AlertIconDialog() {
               </ResponsiveDialogDescription>
             </ResponsiveDialogHeader>
           </div>
-          <ResponsiveDialogFooter className="mt-4 gap-2.5 p-0 max-sm:flex-col-reverse">
+          <ResponsiveDialogFooter className="mt-4 gap-2.5 p-0">
             <ResponsiveDialogClose asChild>
               <Button variant="secondary">Cancel</Button>
             </ResponsiveDialogClose>

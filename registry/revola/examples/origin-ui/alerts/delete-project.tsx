@@ -30,7 +30,7 @@ export default function DeleteProjectDialog() {
           Delete Project
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent className="sm:max-w-sm">
+      <ResponsiveDialogContent className="sm:max-w-[400px]">
         <div className="space-y-4 overflow-y-auto p-6 max-sm:pt-0">
           <div className="flex flex-col items-center gap-2">
             <div className="flex size-9 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
@@ -46,7 +46,7 @@ export default function DeleteProjectDialog() {
             </ResponsiveDialogHeader>
           </div>
 
-          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor={id}>Project name</Label>
               <Input
@@ -58,7 +58,7 @@ export default function DeleteProjectDialog() {
               />
             </div>
 
-            <ResponsiveDialogFooter className="flex-col-reverse p-0 sm:gap-4">
+            <ResponsiveDialogFooter className="p-0 sm:gap-2">
               <ResponsiveDialogClose asChild>
                 <Button type="button" variant="outline" className="flex-1">
                   Cancel

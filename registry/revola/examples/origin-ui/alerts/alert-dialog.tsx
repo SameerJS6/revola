@@ -18,7 +18,7 @@ export default function AlertDialog() {
           Show Alert
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent className="mx-auto rounded-2xl sm:max-w-[400px]">
+      <ResponsiveDialogContent className="sm:max-w-[400px]">
         <div className="p-6">
           <ResponsiveDialogHeader className="gap-2 p-0">
             <ResponsiveDialogTitle>Are you sure?</ResponsiveDialogTitle>
@@ -27,7 +27,7 @@ export default function AlertDialog() {
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
 
-          <ResponsiveDialogFooter className="mt-4 gap-2.5 p-0 pt-4 max-sm:flex-col-reverse">
+          <ResponsiveDialogFooter className="mt-4 gap-2.5 p-0 pt-4">
             <ResponsiveDialogClose asChild>
               <Button variant="secondary">Cancel</Button>
             </ResponsiveDialogClose>
