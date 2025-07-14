@@ -48,7 +48,6 @@ export default function MobilePreview({ previewLink, className }: MobilePreviewP
       open={showPreview && isOpen}
       shouldScaleBackground={false}
     >
-      {/* TODO: FIX HOVER EFFECT ON LIGHT MODE ON MAIN DOCUMENTATION ROUTES/EXAMPLES */}
       {showPreview ? (
         <ResponsiveDialogTrigger
           data-open={isOpen ? "true" : "false"}
