@@ -27,7 +27,6 @@ type ResponsiveDialogProviderProps = {
 } & ResponsiveDialogContextProps;
 
 const ResponsiveDialogContext = React.createContext<ResponsiveDialogContextProps>({});
-
 const MOBILE_BREAKPOINT = "(min-width: 640px)";
 
 const ResponsiveDialogProvider = ({
@@ -138,7 +137,7 @@ const ResponsiveDialogOverlay = ({ className, ...props }: React.ComponentProps<t
     <ResponsiveDialogOverlay
       {...props}
       className={cn(
-        "fixed inset-0 z-50 bg-black/40 sm:data-[state=open]:animate-in sm:data-[state=closed]:animate-out sm:data-[state=closed]:fade-out-0 sm:data-[state=open]:fade-in-0",
+        "fixed inset-0 z-50 bg-black/50 sm:data-[state=open]:animate-in sm:data-[state=closed]:animate-out sm:data-[state=closed]:fade-out-0 sm:data-[state=open]:fade-in-0",
         className
       )}
     />
@@ -272,7 +271,10 @@ ResponsiveDialogHeader.displayName = "ResponsiveDialogHeader";
 const ResponsiveDialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <footer
-      className={cn("flex flex-col gap-4 p-4 max-sm:mt-auto sm:flex-row sm:justify-end sm:gap-2 sm:p-0", className)}
+      className={cn(
+        "flex flex-col-reverse gap-4 p-4 max-sm:mt-auto sm:flex-row sm:justify-end sm:gap-2 sm:p-0",
+        className
+      )}
       {...props}
     />
   );
