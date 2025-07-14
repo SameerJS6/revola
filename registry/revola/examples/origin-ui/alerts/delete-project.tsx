@@ -52,8 +52,8 @@ export default function DeleteProjectDialog() {
               <Input
                 id={id}
                 type="text"
-                placeholder="Type Revola to confirm"
                 value={inputValue}
+                placeholder="Type Revola to confirm"
                 onChange={(e) => setInputValue(e.target.value)}
               />
             </div>
