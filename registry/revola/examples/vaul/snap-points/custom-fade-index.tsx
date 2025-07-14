@@ -29,7 +29,7 @@ export default function VaulCustomFadeDemo() {
           Custom Fade Index Revola
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent data-testid="content" className="flex flex-col max-sm:max-h-[97%] sm:p-0">
+      <ResponsiveDialogContent className="flex flex-col max-sm:max-h-[97%] sm:p-0">
         <div
           className={cn("mx-auto flex w-full flex-col p-6 pt-5 sm:overflow-y-auto", {
             "overflow-y-auto": snap === 1,
