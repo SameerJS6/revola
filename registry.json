@@ -13,6 +13,209 @@
         { "path": "registry/revola/revola.tsx", "type": "registry:ui" },
         { "path": "hooks/use-media-query.tsx", "type": "registry:hook" }
       ]
+    },
+    {
+      "name": "alert-dialog-with-icon",
+      "type": "registry:ui",
+      "title": "Alert Dialog with Icon",
+      "description": "A responsive alert dialog component that automatically adapts to screen size - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [
+        { "path": "registry/revola/examples/origin-ui/alerts/alert-dialog-with-icon.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "A responsive alert dialog component that automatically adapts to screen size - drawer on mobile, modal on desktop.",
+      "registryDependencies": ["button", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/revola/examples/origin-ui/alerts/alert-dialog.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "delete-project",
+      "type": "registry:ui",
+      "title": "Delete Project Dialog",
+      "description": "A responsive confirmation dialog for destructive actions with input validation - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "input", "label", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/revola/examples/origin-ui/alerts/delete-project.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "onboarding",
+      "type": "registry:ui",
+      "title": "Onboarding Dialog",
+      "description": "A responsive multi-step onboarding dialog with progress indicators - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/revola/examples/origin-ui/onboarding/onboarding.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "invite-members",
+      "type": "registry:ui",
+      "title": "Invite Members Dialog",
+      "description": "A responsive dialog for inviting team members with email inputs and magic link - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "input", "label", "tooltip", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/revola/examples/origin-ui/management/invite-members.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "custom-scrollbar",
+      "type": "registry:ui",
+      "title": "Custom Scrollbar Dialog",
+      "description": "A responsive scrollable dialog with custom scrollbar styling - drawer on mobile, modal on desktop.",
+      "registryDependencies": ["button", "scroll-area", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [
+        { "path": "registry/revola/examples/origin-ui/scrollables/custom-scrollbar.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "native-scrollbar",
+      "type": "registry:ui",
+      "title": "Native Scrollbar Dialog",
+      "description": "A responsive scrollable dialog with native browser scrollbar - drawer on mobile, modal on desktop.",
+      "registryDependencies": ["button", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [
+        { "path": "registry/revola/examples/origin-ui/scrollables/native-scrollbar.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "sticky-footer",
+      "type": "registry:ui",
+      "title": "Sticky Footer Dialog",
+      "description": "A responsive scrollable dialog with sticky footer buttons - drawer on mobile, modal on desktop.",
+      "registryDependencies": ["button", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/revola/examples/origin-ui/scrollables/sticky-footer.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "sticky-header",
+      "type": "registry:ui",
+      "title": "Sticky Header Dialog",
+      "description": "A responsive scrollable dialog with sticky header title - drawer on mobile, modal on desktop.",
+      "registryDependencies": ["button", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/revola/examples/origin-ui/scrollables/sticky-header.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "terms-and-conditions",
+      "type": "registry:ui",
+      "title": "Terms and Conditions Dialog",
+      "description": "A responsive scrollable dialog with scroll-to-bottom validation before accepting terms - drawer on mobile, modal on desktop.",
+      "registryDependencies": ["button", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [
+        { "path": "registry/revola/examples/origin-ui/scrollables/terms-and-conditions.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "otp-code",
+      "type": "registry:ui",
+      "title": "OTP Code Dialog",
+      "description": "A responsive OTP verification dialog with input validation - drawer on mobile, modal on desktop.",
+      "dependencies": ["input-otp"],
+      "registryDependencies": ["button", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [
+        { "path": "registry/revola/examples/origin-ui/forms/authentication/otp-code.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "sign-in",
+      "type": "registry:ui",
+      "title": "Sign In Dialog",
+      "description": "A responsive sign in form dialog with email and password inputs - drawer on mobile, modal on desktop.",
+      "registryDependencies": ["button", "checkbox", "input", "label", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [
+        { "path": "registry/revola/examples/origin-ui/forms/authentication/sign-in.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "sign-up",
+      "type": "registry:ui",
+      "title": "Sign Up Dialog",
+      "description": "A responsive sign up form dialog with name, email and password inputs - drawer on mobile, modal on desktop.",
+      "registryDependencies": ["button", "input", "label", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [
+        { "path": "registry/revola/examples/origin-ui/forms/authentication/sign-up.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "feedback",
+      "type": "registry:ui",
+      "title": "Feedback Dialog",
+      "description": "A responsive feedback form dialog with textarea input - drawer on mobile, modal on desktop.",
+      "registryDependencies": ["button", "textarea", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/revola/examples/origin-ui/forms/feedback/feedback.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "newsletter",
+      "type": "registry:ui",
+      "title": "Newsletter Dialog",
+      "description": "A responsive newsletter subscription dialog with email input - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "input", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/revola/examples/origin-ui/forms/feedback/newsletter.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "title": "Rating Dialog",
+      "description": "A responsive rating form dialog with radio group and textarea - drawer on mobile, modal on desktop.",
+      "registryDependencies": [
+        "button",
+        "label",
+        "radio-group",
+        "textarea",
+        "https://revola.sameerjs.com/r/revola.json"
+      ],
+      "files": [{ "path": "registry/revola/examples/origin-ui/forms/feedback/rating.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "checkout",
+      "type": "registry:ui",
+      "title": "Checkout Dialog",
+      "description": "A responsive checkout form dialog with payment inputs and plan selection - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react", "react-payment-inputs"],
+      "registryDependencies": [
+        "badge",
+        "button",
+        "input",
+        "label",
+        "radio-group",
+        "https://revola.sameerjs.com/r/revola.json"
+      ],
+      "files": [{ "path": "registry/revola/examples/origin-ui/forms/payment/checkout.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "credit-card",
+      "type": "registry:ui",
+      "title": "Credit Card Dialog",
+      "description": "A responsive credit card form dialog with payment input validation - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react", "react-payment-inputs"],
+      "registryDependencies": ["button", "checkbox", "input", "label", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/revola/examples/origin-ui/forms/payment/credit-card.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "change-plan",
+      "type": "registry:ui",
+      "title": "Change Plan Dialog",
+      "description": "A responsive plan selection dialog with radio group options - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "label", "radio-group", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [
+        { "path": "registry/revola/examples/origin-ui/forms/user-profile/change-plan.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "edit-profile",
+      "type": "registry:ui",
+      "title": "Edit Profile Dialog",
+      "description": "A responsive profile editing dialog with file upload and form inputs - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "input", "label", "textarea", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [
+        { "path": "registry/revola/examples/origin-ui/forms/user-profile/edit-profile.tsx", "type": "registry:ui" },
+        { "path": "hooks/use-character-limit.ts", "type": "registry:hook" },
+        { "path": "hooks/use-file-upload.ts", "type": "registry:hook" }
+      ]
     }
   ]
 }
