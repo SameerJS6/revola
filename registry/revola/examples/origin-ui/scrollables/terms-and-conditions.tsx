@@ -84,7 +84,7 @@ export default function TermsAndConditionsDialog() {
                         <strong>Limitation of Liability</strong>
                       </p>
                       <p>
-                        The website provides content &ldquo;as is&ldquo; without any warranties. The website owners
+                        The website provides content &ldquo;as is&rdquo; without any warranties. The website owners
                         shall not be liable for direct, indirect, incidental, consequential, or punitive damages arising
                         from user interactions with the platform.
                       </p>
