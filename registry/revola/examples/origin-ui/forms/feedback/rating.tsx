@@ -33,8 +33,7 @@ export default function RatingDialog() {
                     <legend className="text-lg font-semibold leading-none text-foreground">
                       How hard was it to set up your account?
                     </legend>
-                    <RadioGroup className="shadow-xs flex gap-0 -space-x-px rounded-md">
-                      {/* TODO: HANDLE MOBILE RESPONSIVENESS FOR THIS ROW, SINCE MOBILE WHICH HAS SMALLER SCREENS, IT OVERFLOWS THE SCREEN. */}
+                    <RadioGroup className="shadow-xs flex gap-0 -space-x-px rounded-md max-sm:flex-wrap">
                       {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((number) => (
                         <label
                           key={number}
@@ -52,7 +51,7 @@ export default function RatingDialog() {
                   </fieldset>
                   <div className="mt-2 flex justify-between text-xs text-muted-foreground">
                     <p>Very easy</p>
-                    <p>Very dificult</p>
+                    <p>Very difficult</p>
                   </div>
                 </div>
                 <div className="space-y-2">
