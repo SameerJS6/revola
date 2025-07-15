@@ -31,7 +31,14 @@ export default function TermsAndConditionsDialog() {
   return (
     <ResponsiveDialog>
       <ResponsiveDialogTrigger asChild>
-        <Button variant="outline" className="h-12 rounded-full px-6 capitalize">
+        <Button
+          variant="outline"
+          className="h-12 rounded-full px-6 capitalize"
+          onClick={() => {
+            setHasReadToBottom(false);
+            if (contentRef.current) contentRef.current.scrollTop = 0;
+          }}
+        >
           Terms & Conditions
         </Button>
       </ResponsiveDialogTrigger>
