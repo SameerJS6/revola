@@ -2,11 +2,18 @@
 
 import { useState } from "react";
 
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Smartphone } from "lucide-react";
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import IphoneMockup, { type Size } from "@/components/iphone-mockup";
-import { ResponsiveDialog, ResponsiveDialogContent, ResponsiveDialogTrigger } from "@/registry/revola";
+import {
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
+} from "@/registry/revola";
 import { cn } from "@/lib/utils";
 
 import useMediaQuery from "@/hooks/use-media-query";
@@ -92,6 +99,13 @@ export default function MobilePreview({ previewLink, className }: MobilePreviewP
           mockupSize === "xl" && "right-8"
         )}
       >
+        <VisuallyHidden>
+          <ResponsiveDialogTitle>Mobile Preview</ResponsiveDialogTitle>
+          <ResponsiveDialogDescription>
+            Mobile Preview requires minimum viewport height of <code>600px</code>. Try to zoom out your page to enable
+            this preview feature.
+          </ResponsiveDialogDescription>
+        </VisuallyHidden>
         <div className="flex size-full items-center justify-center">
           <IphoneMockup fullScreen size={mockupSize ?? "sm"} className="h-full [&_div[data-canvas]]:bg-border/50">
             <div className="flex h-full flex-col justify-between">
