@@ -1,6 +1,7 @@
 "use client";
 
 import { useId } from "react";
+import Image from "next/image";
 
 import { CheckIcon, ImagePlusIcon, XIcon } from "lucide-react";
 
@@ -25,20 +26,20 @@ import { useFileUpload } from "@/hooks/use-file-upload";
 // Pretend we have initial image files
 const initialBgImage = [
   {
-    name: "profile-bg.png",
+    name: "extended-gradient-bg.png",
     size: 1528737,
     type: "image/png",
-    url: "/vercel-geist-modal.png",
+    url: "/extended-gradient.png",
     id: "profile-bg-123456789",
   },
 ];
 
 const initialAvatarImage = [
   {
-    name: "avatar-72-01.png",
+    name: "original-avatar.jpg",
     size: 1528737,
-    type: "image/png",
-    url: "/image.png",
+    type: "image/jpeg",
+    url: "/original-avatar.jpg",
     id: "avatar-123456789",
   },
 ];
@@ -228,13 +229,13 @@ function Avatar() {
 
   return (
     <div className="-mt-10 px-6">
-      <div className="shadow-xs relative flex size-20 items-center justify-center overflow-hidden rounded-full border-4 border-background bg-muted shadow-black/10">
+      <div className="shadow-xs group relative flex size-20 items-center justify-center overflow-hidden rounded-full border-4 border-background bg-muted shadow-black/10">
         {currentImage && (
-          <img src={currentImage} className="size-full object-cover" width={80} height={80} alt="Profile image" />
+          <Image src={currentImage} className="size-full object-cover" width={80} height={80} alt="Profile image" />
         )}
         <button
           type="button"
-          className="absolute flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white outline-none transition-[color,box-shadow] hover:bg-black/80 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+          className="pointer-events-none absolute flex size-8 cursor-pointer items-center justify-center rounded-full bg-black/60 text-white opacity-0 outline-none transition-[color,box-shadow,opacity] hover:bg-black/80 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 group-hover:pointer-events-auto group-hover:opacity-100"
           onClick={openFileDialog}
           aria-label="Change profile picture"
         >
