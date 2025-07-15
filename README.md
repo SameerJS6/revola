@@ -43,11 +43,11 @@ export function Example() {
         <Button variant="outline">Open Revola</Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent>
-        <div className="px-2 md:p-6">
-          <ResponsiveDialogHeader className="gap-4 text-left">
-            <ResponsiveDialogTitle>Welcome to Revola</ResponsiveDialogTitle>
+        <div className="bg-background sm:p-6">
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle>Welcome</ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
-              This dialog automatically adapts to screen size - drawer on mobile, modal on desktop.
+              This is a responsive modal that adapts between drawer & modal.
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
         </div>
