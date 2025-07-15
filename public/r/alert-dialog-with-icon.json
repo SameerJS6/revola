@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog-with-icon",
+  "type": "registry:ui",
+  "title": "Alert Dialog with Icon",
+  "description": "A responsive alert dialog component that automatically adapts to screen size - drawer on mobile, modal on desktop.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "https://revola.sameerjs.com/r/revola.json"
+  ],
+  "files": [
+    {
+      "path": "registry/revola/examples/origin-ui/alerts/alert-dialog-with-icon.tsx",
+      "content": "import { CircleAlertIcon } from \"lucide-react\";\r\n\r\nimport { Button } from \"@/components/ui/button\";\r\nimport {\r\n  ResponsiveDialog,\r\n  ResponsiveDialogClose,\r\n  ResponsiveDialogContent,\r\n  ResponsiveDialogDescription,\r\n  ResponsiveDialogFooter,\r\n  ResponsiveDialogHeader,\r\n  ResponsiveDialogTitle,\r\n  ResponsiveDialogTrigger,\r\n} from \"@/components/ui/revola\";\r\n\r\nexport default function AlertIconDialog() {\r\n  return (\r\n    <ResponsiveDialog alert onlyDialog>\r\n      <ResponsiveDialogTrigger asChild>\r\n        <Button variant=\"outline\" className=\"h-12 rounded-full px-6 capitalize\">\r\n          Alert with Icon\r\n        </Button>\r\n      </ResponsiveDialogTrigger>\r\n      <ResponsiveDialogContent className=\"sm:max-w-[400px]\">\r\n        <div className=\"p-6\">\r\n          <div className=\"flex flex-col gap-2 max-sm:items-center sm:flex-row sm:gap-4\">\r\n            <div className=\"flex size-9 shrink-0 items-center justify-center rounded-full border\" aria-hidden=\"true\">\r\n              <CircleAlertIcon className=\"opacity-80\" size={16} />\r\n            </div>\r\n            <ResponsiveDialogHeader className=\"pt-2\">\r\n              <ResponsiveDialogTitle>Are you sure?</ResponsiveDialogTitle>\r\n              <ResponsiveDialogDescription>\r\n                Are you sure you want to delete your account? All your data will be removed.\r\n              </ResponsiveDialogDescription>\r\n            </ResponsiveDialogHeader>\r\n          </div>\r\n          <ResponsiveDialogFooter className=\"mt-4 gap-2.5 p-0\">\r\n            <ResponsiveDialogClose asChild>\r\n              <Button variant=\"secondary\">Cancel</Button>\r\n            </ResponsiveDialogClose>\r\n            <ResponsiveDialogClose asChild>\r\n              <Button>Confirm</Button>\r\n            </ResponsiveDialogClose>\r\n          </ResponsiveDialogFooter>\r\n        </div>\r\n      </ResponsiveDialogContent>\r\n    </ResponsiveDialog>\r\n  );\r\n}\r\n",
+      "type": "registry:ui"
+    }
+  ]
+}

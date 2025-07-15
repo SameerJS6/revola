@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "feedback",
+  "type": "registry:ui",
+  "title": "Feedback Dialog",
+  "description": "A responsive feedback form dialog with textarea input - drawer on mobile, modal on desktop.",
+  "registryDependencies": [
+    "button",
+    "textarea",
+    "https://revola.sameerjs.com/r/revola.json"
+  ],
+  "files": [
+    {
+      "path": "registry/revola/examples/origin-ui/forms/feedback/feedback.tsx",
+      "content": "\"use client\";\r\n\r\nimport { Button } from \"@/components/ui/button\";\r\nimport {\r\n  ResponsiveDialog,\r\n  ResponsiveDialogContent,\r\n  ResponsiveDialogDescription,\r\n  ResponsiveDialogHeader,\r\n  ResponsiveDialogTitle,\r\n  ResponsiveDialogTrigger,\r\n} from \"@/components/ui/revola\";\r\nimport { Textarea } from \"@/components/ui/textarea\";\r\n\r\nexport default function FeedbackDialog() {\r\n  return (\r\n    <ResponsiveDialog>\r\n      <ResponsiveDialogTrigger asChild>\r\n        <Button variant=\"outline\" className=\"h-12 rounded-full px-6 capitalize\">\r\n          Send Feedback\r\n        </Button>\r\n      </ResponsiveDialogTrigger>\r\n      <ResponsiveDialogContent className=\"sm:max-w-sm\">\r\n        <div className=\"space-y-4 overflow-y-auto p-6 max-sm:pt-0\">\r\n          <ResponsiveDialogHeader className=\"pb-0 pt-2\">\r\n            <ResponsiveDialogTitle>Send us feedback</ResponsiveDialogTitle>\r\n            <ResponsiveDialogDescription>\r\n              Watch{\" \"}\r\n              <a className=\"text-foreground underline-offset-2 hover:underline\" href=\"#\">\r\n                tutorials\r\n              </a>\r\n              , read Revola&lsquo;s{\" \"}\r\n              <a className=\"text-foreground underline-offset-2 hover:underline\" href=\"#\">\r\n                documentation\r\n              </a>\r\n              , or join our{\" \"}\r\n              <a className=\"text-foreground underline-offset-2 hover:underline\" href=\"#\">\r\n                Discord\r\n              </a>{\" \"}\r\n              for community help.\r\n            </ResponsiveDialogDescription>\r\n          </ResponsiveDialogHeader>\r\n          <form className=\"space-y-5\" onSubmit={(e) => e.preventDefault()}>\r\n            <Textarea\r\n              rows={3}\r\n              id=\"feedback\"\r\n              className=\"resize-none\"\r\n              placeholder=\"How can we improve Revola?\"\r\n              aria-label=\"Send feedback\"\r\n            />\r\n            <div className=\"flex flex-col sm:flex-row sm:justify-end\">\r\n              <Button type=\"button\">Send feedback</Button>\r\n            </div>\r\n          </form>\r\n        </div>\r\n      </ResponsiveDialogContent>\r\n    </ResponsiveDialog>\r\n  );\r\n}\r\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "newsletter",
+  "type": "registry:ui",
+  "title": "Newsletter Dialog",
+  "description": "A responsive newsletter subscription dialog with email input - drawer on mobile, modal on desktop.",
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "button",
+    "input",
+    "https://revola.sameerjs.com/r/revola.json"
+  ],
+  "files": [
+    {
+      "path": "registry/revola/examples/origin-ui/forms/feedback/newsletter.tsx",
+      "content": "\"use client\";\r\n\r\nimport { MailIcon } from \"lucide-react\";\r\n\r\nimport { Button } from \"@/components/ui/button\";\r\nimport { Input } from \"@/components/ui/input\";\r\nimport {\r\n  ResponsiveDialog,\r\n  ResponsiveDialogContent,\r\n  ResponsiveDialogDescription,\r\n  ResponsiveDialogHeader,\r\n  ResponsiveDialogTitle,\r\n  ResponsiveDialogTrigger,\r\n} from \"@/components/ui/revola\";\r\n\r\nexport default function NewsletterDialog() {\r\n  return (\r\n    <ResponsiveDialog>\r\n      <ResponsiveDialogTrigger asChild>\r\n        <Button variant=\"outline\" className=\"h-12 rounded-full px-6 capitalize\">\r\n          Subscribe\r\n        </Button>\r\n      </ResponsiveDialogTrigger>\r\n      <ResponsiveDialogContent className=\"sm:max-w-sm\">\r\n        <div className=\"space-y-4 overflow-y-auto p-6 max-sm:pt-0\">\r\n          <div className=\"mb-2 flex flex-col items-center gap-2\">\r\n            <div className=\"flex size-11 shrink-0 items-center justify-center rounded-full border\" aria-hidden=\"true\">\r\n              <svg\r\n                className=\"stroke-zinc-800 dark:stroke-zinc-100\"\r\n                xmlns=\"http://www.w3.org/2000/svg\"\r\n                width=\"20\"\r\n                height=\"20\"\r\n                viewBox=\"0 0 32 32\"\r\n                aria-hidden=\"true\"\r\n              >\r\n                <circle cx=\"16\" cy=\"16\" r=\"12\" fill=\"none\" strokeWidth=\"8\" />\r\n              </svg>\r\n            </div>\r\n            <ResponsiveDialogHeader className=\"py-0\">\r\n              <ResponsiveDialogTitle className=\"sm:text-center\">Never miss an update</ResponsiveDialogTitle>\r\n              <ResponsiveDialogDescription className=\"sm:text-center\">\r\n                Subscribe to receive news and special offers.\r\n              </ResponsiveDialogDescription>\r\n            </ResponsiveDialogHeader>\r\n          </div>\r\n          <form className=\"space-y-5\" onSubmit={(e) => e.preventDefault()}>\r\n            <div className=\"*:not-first:mt-2\">\r\n              <div className=\"relative\">\r\n                <Input\r\n                  id=\"dialog-subscribe\"\r\n                  className=\"peer ps-9\"\r\n                  placeholder=\"hi@yourcompany.com\"\r\n                  type=\"email\"\r\n                  aria-label=\"Email\"\r\n                />\r\n                <div className=\"pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50\">\r\n                  <MailIcon size={16} aria-hidden=\"true\" />\r\n                </div>\r\n              </div>\r\n            </div>\r\n            <Button type=\"submit\" className=\"w-full\">\r\n              Subscribe\r\n            </Button>\r\n          </form>\r\n\r\n          <p className=\"text-center text-xs text-muted-foreground\">\r\n            By subscribing you agree to our{\" \"}\r\n            <a className=\"underline hover:no-underline\" href=\"#\">\r\n              Privacy Policy\r\n            </a>\r\n            .\r\n          </p>\r\n        </div>\r\n      </ResponsiveDialogContent>\r\n    </ResponsiveDialog>\r\n  );\r\n}\r\n",
+      "type": "registry:ui"
+    }
+  ]
+}
