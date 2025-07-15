@@ -69,7 +69,7 @@ export default function OnboardingDialog() {
             width={382}
             height={216}
             alt="dialog"
-            src="/vercel-geist-modal.png"
+            src="/extended-gradient.png"
             className="w-full rounded-md object-cover"
           />
         </div>
