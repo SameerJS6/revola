@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { OTPInput, type SlotProps } from "input-otp";
 
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ export default function OtpCodeDialog() {
     }
   }, [hasGuessed]);
 
-  async function onSubmit(e?: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e?: FormEvent<HTMLFormElement>) {
     e?.preventDefault?.();
 
     inputRef.current?.select();
