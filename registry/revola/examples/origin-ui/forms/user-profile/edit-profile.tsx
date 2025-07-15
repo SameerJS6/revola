@@ -138,7 +138,7 @@ export default function EditProfileDialog() {
                 <Label htmlFor={`${id}-bio`}>Biography</Label>
                 <Textarea
                   id={`${id}-bio`}
-                  defaultValue={value}
+                  value={value}
                   maxLength={maxLength}
                   onChange={handleChange}
                   placeholder="Write a few sentences about yourself"
