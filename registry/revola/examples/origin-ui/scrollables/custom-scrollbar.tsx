@@ -20,7 +20,7 @@ export default function CustomScrollDialog() {
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent
-        hideCloseButton
+        showCloseButton={false}
         className="flex flex-col overflow-hidden rounded-t-2xl sm:max-h-[min(640px,80dvh)] sm:rounded-2xl md:p-0"
       >
         <ScrollArea className="flex max-h-full flex-col overflow-hidden">

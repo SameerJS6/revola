@@ -90,7 +90,7 @@ export default function MobilePreview({ previewLink, className }: MobilePreviewP
         </TooltipProvider>
       )}
       <ResponsiveDialogContent
-        hideCloseButton
+        showCloseButton={false}
         className={cn(
           "z-10 aspect-[8/16] h-full w-[375px]",
           mockupSize === "sm" && "-right-6",

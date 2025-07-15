@@ -19,7 +19,7 @@ export default function NativeScrollDialog() {
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent
-        hideCloseButton
+        showCloseButton={false}
         className="flex flex-col overflow-hidden sm:max-h-[min(640px,80dvh)] md:p-0"
       >
         <div className="overflow-y-auto">
