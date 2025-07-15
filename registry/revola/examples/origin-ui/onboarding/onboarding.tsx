@@ -83,7 +83,7 @@ export default function OnboardingDialog() {
               {[...Array(totalSteps)].map((_, index) => (
                 <div
                   key={index}
-                  className={cn("size-1.5 rounded-full bg-primary", index + 1 === step ? "bg-primary" : "opacity-20")}
+                  className={cn("size-1.5 rounded-full", index + 1 === step ? "bg-primary" : "bg-primary/20")}
                 />
               ))}
             </div>
