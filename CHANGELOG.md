@@ -1,4 +1,4 @@
-# revola
+# Revola
 
 ## 1.1.0
 
@@ -34,7 +34,7 @@
   - **Developer Experience:** All Vaul examples updated to use the new `showCloseButton={false}` syntax
   - **Consistency:** Standardized prop conventions across all dialog variants
 
-- ## v1.1.0
+---
 
 ## 1.0.0
 
