@@ -71,7 +71,7 @@ export default function CheckoutDialog() {
                     <p className="text-sm font-medium text-foreground">Yearly</p>
                     <Badge>Popular</Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">$320/month</p>
+                  <p className="text-sm text-muted-foreground">$320/year</p>
                 </label>
               </RadioGroup>
               <div className="space-y-2">

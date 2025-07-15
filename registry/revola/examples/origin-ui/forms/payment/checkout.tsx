@@ -71,7 +71,7 @@ export default function CheckoutDialog() {
                     <p className="text-sm font-medium text-foreground">Yearly</p>
                     <Badge>Popular</Badge>
                   </div>
-                  <p className="text-sm text-muted-foreground">$320/month</p>
+                  <p className="text-sm text-muted-foreground">$320/year</p>
                 </label>
               </RadioGroup>
               <div className="space-y-2">
@@ -91,6 +91,7 @@ export default function CheckoutDialog() {
                       {meta.cardType ? (
                         <svg
                           className="overflow-hidden rounded-sm"
+                          // Todo: remove this type case at build time in rehype-component.ts
                           {...getCardImageProps({
                             images: images as unknown as CardImages,
                           })}
