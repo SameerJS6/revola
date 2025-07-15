@@ -90,7 +90,7 @@ export default function OtpCodeDialog() {
               <div className="flex justify-center">
                 <OTPInput
                   inputMode="numeric"
-                  id="cofirmation-code"
+                  id="confirmation-code"
                   ref={inputRef}
                   value={value}
                   onChange={setValue}
