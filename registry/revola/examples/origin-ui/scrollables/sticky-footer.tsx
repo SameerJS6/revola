@@ -20,7 +20,7 @@ export default function StickyFooterDialog() {
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent
         showCloseButton={false}
-        className="flex flex-col overflow-hidden rounded-t-2xl sm:max-h-[min(640px,80dvh)] sm:rounded-2xl md:gap-0"
+        className="flex flex-col overflow-hidden sm:max-h-[min(640px,80dvh)] md:gap-0"
       >
         <div className="overflow-y-auto">
           <ResponsiveDialogHeader className="contents space-y-0 text-left">
