@@ -81,10 +81,6 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
         if (file.size > maxSize) {
           return `File "${file.name}" exceeds the maximum size of ${formatBytes(maxSize)}.`;
         }
-      } else {
-        if (file.size > maxSize) {
-          return `File "${file.name}" exceeds the maximum size of ${formatBytes(maxSize)}.`;
-        }
       }
 
       if (accept !== "*") {
@@ -104,7 +100,7 @@ export const useFileUpload = (options: FileUploadOptions = {}): [FileUploadState
         });
 
         if (!isAccepted) {
-          return `File "${file instanceof File ? file.name : file.name}" is not an accepted file type.`;
+          return `File "${file.name}" is not an accepted file type.`;
         }
       }
 
