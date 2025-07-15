@@ -24,7 +24,7 @@ export default function VaulNonDismissibleDemo() {
           Non-Dismissible Revola
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent hideCloseButton>
+      <ResponsiveDialogContent showCloseButton={false}>
         <div className="p-6">
           <ResponsiveDialogHeader className="space-y-4 p-0 text-left">
             <ResponsiveDialogTitle className="font-medium">Non-Dismissible Revola</ResponsiveDialogTitle>

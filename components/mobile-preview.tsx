@@ -2,11 +2,18 @@
 
 import { useState } from "react";
 
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Smartphone } from "lucide-react";
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import IphoneMockup, { type Size } from "@/components/iphone-mockup";
-import { ResponsiveDialog, ResponsiveDialogContent, ResponsiveDialogTrigger } from "@/registry/revola";
+import {
+  ResponsiveDialog,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
+} from "@/registry/revola";
 import { cn } from "@/lib/utils";
 
 import useMediaQuery from "@/hooks/use-media-query";
@@ -53,7 +60,7 @@ export default function MobilePreview({ previewLink, className }: MobilePreviewP
           data-open={isOpen ? "true" : "false"}
           className={cn(
             "relative flex size-9 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full text-sm font-medium shadow-sm transition-all disabled:pointer-events-none disabled:opacity-70",
-            "data-[open=false]:bg-white data-[open=true]:bg-[#161615] data-[open=true]:text-white data-[open=false]:hover:bg-[#313130] data-[open=true]:hover:bg-[#FAFAFA]",
+            "data-[open=false]:bg-white data-[open=true]:bg-[#161615] data-[open=true]:text-white data-[open=false]:hover:bg-[#FAFAFA] data-[open=true]:hover:bg-[#313130]",
             "dark:data-[open=false]:bg-[#161615] dark:data-[open=true]:bg-white dark:data-[open=true]:text-[#161615] dark:data-[open=false]:hover:bg-[#1A1A19] dark:data-[open=true]:hover:bg-[#F9F9F8]",
             className
           )}
@@ -83,7 +90,7 @@ export default function MobilePreview({ previewLink, className }: MobilePreviewP
         </TooltipProvider>
       )}
       <ResponsiveDialogContent
-        hideCloseButton
+        showCloseButton={false}
         className={cn(
           "z-10 aspect-[8/16] h-full w-[375px]",
           mockupSize === "sm" && "-right-6",
@@ -92,6 +99,13 @@ export default function MobilePreview({ previewLink, className }: MobilePreviewP
           mockupSize === "xl" && "right-8"
         )}
       >
+        <VisuallyHidden>
+          <ResponsiveDialogTitle>Mobile Preview</ResponsiveDialogTitle>
+          <ResponsiveDialogDescription>
+            Mobile Preview requires minimum viewport height of <code>600px</code>. Try to zoom out your page to enable
+            this preview feature.
+          </ResponsiveDialogDescription>
+        </VisuallyHidden>
         <div className="flex size-full items-center justify-center">
           <IphoneMockup fullScreen size={mockupSize ?? "sm"} className="h-full [&_div[data-canvas]]:bg-border/50">
             <div className="flex h-full flex-col justify-between">

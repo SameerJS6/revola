@@ -16,7 +16,10 @@ export default function VaulScrollableDemo() {
           Scrollable Revola
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent hideCloseButton className="flex flex-col">
+      <ResponsiveDialogContent
+        showCloseButton={false}
+        className="flex flex-col overflow-hidden sm:max-h-[min(640px,80dvh)]"
+      >
         <div className="overflow-y-auto p-6 max-md:mx-auto max-md:max-w-md">
           <ResponsiveDialogHeader className="p-0 text-left sm:px-0">
             <ResponsiveDialogTitle>Scrollable Content in Revola</ResponsiveDialogTitle>

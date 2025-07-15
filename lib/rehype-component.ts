@@ -30,8 +30,14 @@ export function rehypeComponent() {
           const filePath = src;
           let source = fs.readFileSync(filePath, "utf8");
 
+          source = source.replaceAll("react-payment-inputs/lib/images/index.js", "react-payment-inputs/images");
           source = source.replaceAll("registry/revola", "components/ui/revola");
           source = source.replaceAll("export default", "export");
+          // Remove .js extensions from all Next.js imports for cleaner installed code
+          source = source.replace(/from ["']next\/([^"']+)\.js["']/g, 'from "next/$1"');
+
+          // Clean up verbose comments
+          source = cleanUpComments(source);
 
           // Add code as children so that rehype can take over at build time.
           node.children?.push(
@@ -62,6 +68,22 @@ export function rehypeComponent() {
       }
     });
   };
+}
+
+function cleanUpComments(source: string): string {
+  // Remove comments that start with // and end with ; (verbose explanatory comments)
+  source = source.replace(/\/\/.*?;/gs, "");
+
+  // Remove multi-line comments /* ... */
+  // source = source.replace(/\/\*[\s\S]*?\*\//g, "");
+
+  // Clean up any empty lines that might be left after comment removal
+  // source = source.replace(/^\s*\n/gm, "");
+
+  // Remove excessive blank lines (more than 2 consecutive)
+  // source = source.replace(/\n{3,}/g, "\n\n");
+
+  return source;
 }
 
 function getNodeAttributeByName(node: UnistNode, name: string) {

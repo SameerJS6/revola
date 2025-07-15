@@ -16,7 +16,7 @@ export default function VaulSideDrawerDemo() {
           Side Drawer Revola
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent hideCloseButton>
+      <ResponsiveDialogContent showCloseButton={false}>
         <div className="flex size-full grow flex-col rounded-2xl bg-fd-background p-6">
           <ResponsiveDialogHeader className="space-y-2 text-left">
             <ResponsiveDialogTitle>Directional Drawer Control</ResponsiveDialogTitle>

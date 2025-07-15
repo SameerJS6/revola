@@ -88,7 +88,7 @@ export default function RevolaHero() {
 
   if (typeof window === "undefined") return;
 
-  const previewLink = generateMobilePreviewLink("default-demo", window.location.origin);
+  const previewLink = generateMobilePreviewLink("vaul-default-demo", window.location.origin);
 
   return (
     <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-white px-4">

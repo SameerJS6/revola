@@ -6,7 +6,6 @@ import { defineConfig, defineDocs, frontmatterSchema } from "fumadocs-mdx/config
 import { rehypePrettyCode } from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import { codeImport } from "remark-code-import";
-import { getHighlighter } from "@shikijs/compat";
 
 import { rehypeComponent } from "@/lib/rehype-component";
 
@@ -28,10 +27,16 @@ export const docs = defineDocs({
 
 export default defineConfig({
   mdxOptions: {
+    rehypeCodeOptions: {
+      themes: {
+        light: "github-light-default",
+        dark: "github-dark",
+      },
+    },
     rehypePlugins: [
       rehypeCode,
-      rehypeSlug,
       rehypeComponent,
+      rehypeSlug,
       [
         rehypePrettyCode,
         {
@@ -39,26 +44,40 @@ export default defineConfig({
             dark: "github-dark",
             light: "github-light-default",
           },
-          getHighlighter: () =>
-            getHighlighter({
-              themes: ["github-dark", "github-light-default"],
-            }),
-          onVisitLine(node: { children: { length: number } }) {
-            // Prevent lines from collapsing in `display: grid` mode, and allow empty
-            // lines to be copy/pasted
-            if (node.children.length === 0) {
-              node.children = [{ type: "text", value: " " }];
-            }
-          },
-          onVisitHighlightedLine(node: { properties: { className: string[] } }) {
-            node.properties.className.push("line--highlighted");
-          },
-          onVisitHighlightedWord(node: { properties: { className: string[] } }) {
-            node.properties.className = ["word--highlighted"];
-          },
         },
       ],
     ],
+    // rehypePlugins: [
+    //   rehypeCode,
+    //   rehypeSlug,
+    //   rehypeComponent,
+    //   [
+    //     rehypePrettyCode,
+    //     {
+    //       theme: {
+    //         dark: "github-dark",
+    //         light: "github-light-default",
+    //       },
+    //       getHighlighter: () =>
+    //         getHighlighter({
+    //           themes: ["github-dark", "github-light-default"],
+    //         }),
+    //       onVisitLine(node: { children: { length: number } }) {
+    //         // Prevent lines from collapsing in `display: grid` mode, and allow empty
+    //         // lines to be copy/pasted
+    //         if (node.children.length === 0) {
+    //           node.children = [{ type: "text", value: " " }];
+    //         }
+    //       },
+    //       onVisitHighlightedLine(node: { properties: { className: string[] } }) {
+    //         node.properties.className.push("line--highlighted");
+    //       },
+    //       onVisitHighlightedWord(node: { properties: { className: string[] } }) {
+    //         node.properties.className = ["word--highlighted"];
+    //       },
+    //     },
+    //   ],
+    // ],
     remarkPlugins: [
       codeImport,
       remarkGfm,
