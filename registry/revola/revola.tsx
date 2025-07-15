@@ -210,15 +210,15 @@ const ResponsiveDialogContentVariants = cva("fixed z-[9999] bg-background", {
 
 const ResponsiveDialogContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { hideCloseButton?: boolean }
->(({ className, children, hideCloseButton = false, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { showCloseButton?: boolean }
+>(({ className, children, showCloseButton = true, ...props }, ref) => {
   const { direction, modal, dismissible, alert, onlyDrawer, onlyDialog } = useResponsiveDialog();
 
   const isMobile = useMediaQuery(MOBILE_BREAKPOINT);
   const shouldUseDialog = onlyDialog || (!onlyDrawer && isMobile);
   const ResponsiveDialogContent = shouldUseDialog ? DialogPrimitive.Content : VaulDrawerContent;
 
-  const showCloseButton = !alert && !hideCloseButton;
+  const shouldShowCloseButton = !alert && showCloseButton;
   const shouldPreventEscape = !dismissible && !alert;
   const shouldPreventOutsideInteraction = !modal || (!dismissible && !alert) || alert;
 
@@ -250,7 +250,7 @@ const ResponsiveDialogContent = React.forwardRef<
           <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 pb-1.5 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
         )}
         {children}
-        {showCloseButton && (
+        {shouldShowCloseButton && (
           <ResponsiveDialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-white">
             <X className="size-4" />
             <span className="sr-only">close</span>
