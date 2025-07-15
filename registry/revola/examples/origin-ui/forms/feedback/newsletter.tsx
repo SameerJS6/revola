@@ -58,7 +58,7 @@ export default function NewsletterDialog() {
                 </div>
               </div>
             </div>
-            <Button type="button" className="w-full">
+            <Button type="submit" className="w-full">
               Subscribe
             </Button>
           </form>
