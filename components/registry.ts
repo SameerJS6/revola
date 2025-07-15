@@ -492,13 +492,13 @@ export const Index: Record<RegistryKeys, Registry> = {
     registryDependencies: undefined,
     files: [
       {
-        path: "registry/revola/examples/origin-ui/forms/user-profile/edit-profile.tsx",
+        path: "registry/revola/examples/origin-ui-esm/edit-profile-esm.tsx",
         type: "registry:demo",
         target: "",
       },
     ],
     categories: ["forms", "user-profile"],
-    component: React.lazy(() => import("@/registry/revola/examples/origin-ui/forms/user-profile/edit-profile")),
+    component: React.lazy(() => import("@/registry/revola/examples/origin-ui-esm/edit-profile-esm")),
     source: "",
     meta: undefined,
   },
