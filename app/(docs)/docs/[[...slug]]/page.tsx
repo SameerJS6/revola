@@ -118,6 +118,16 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
                 <SquareArrowOutUpRight className="size-3" />
               </Link>
             )}
+            {referenceLinks && referenceLinks.docs && (
+              <Link
+                href={referenceLinks.docs}
+                target="_blank"
+                className="flex items-center gap-1.5 rounded bg-accent px-2 py-1 text-xs font-medium text-accent-foreground"
+              >
+                Docs
+                <SquareArrowOutUpRight className="size-3" />
+              </Link>
+            )}
           </div>
         </div>
       </div>
