@@ -18,6 +18,7 @@ export const docs = defineDocs({
         .object({
           dialog: z.string().optional(),
           drawer: z.string().optional(),
+          docs: z.string().optional(),
         })
         .optional(),
       subdescription: z.string().optional(),
