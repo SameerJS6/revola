@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 
 import useMediaQuery from "@/hooks/use-media-query";
 
-type DrawerType = React.ComponentProps<typeof DrawerPrimitive.Root>;
+export type ResponsiveDialogProps = React.ComponentProps<typeof DrawerPrimitive.Root>;
 
 type ResponsiveDialogContextProps = {
   modal?: boolean;
@@ -66,7 +66,7 @@ const ResponsiveDialog = ({
   open: controlledOpen,
   onOpenChange: controlledOnOpenChange,
   ...props
-}: DrawerType & { onlyDrawer?: boolean; onlyDialog?: boolean; alert?: boolean }) => {
+}: ResponsiveDialogProps & { onlyDrawer?: boolean; onlyDialog?: boolean; alert?: boolean }) => {
   const [internalState, setInternalState] = React.useState<boolean>(false);
 
   const isControlledOpen = typeof controlledOpen === "undefined";
