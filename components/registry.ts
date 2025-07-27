@@ -669,12 +669,12 @@ export const Index: Record<RegistryKeys, Registry> = {
     registryDependencies: undefined,
     files: [
       {
-        path: "registry/cmdk/examples/combobox.tsx",
+        path: "registry/cmdk/examples/combobox-command.tsx",
         type: "registry:demo",
         target: "",
       },
     ],
-    component: React.lazy(() => import("@/registry/cmdk/examples/combobox")),
+    component: React.lazy(() => import("@/registry/cmdk/examples/combobox-command")),
     source: "",
     meta: undefined,
   },
