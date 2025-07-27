@@ -49,7 +49,7 @@ const ResponsiveCommandDialog = React.forwardRef<
     ref
   ) => {
     return (
-      <ResponsiveDialog {...props}>
+      <ResponsiveDialog shouldScaleBackground={false} {...props}>
         <ResponsiveDialogContent
           ref={ref}
           showCloseButton={showCloseButton}
