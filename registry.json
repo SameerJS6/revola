@@ -232,7 +232,7 @@
       "title": "Search Command Dialog",
       "description": "A responsive search command dialog with input and list of suggestions - drawer on mobile, modal on desktop.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["button", "https://revola.sameerjs.com/r/revola.json"],
+      "registryDependencies": ["button", "https://revola.sameerjs.com/r/responsive-command.json"],
       "files": [{ "path": "registry/cmdk/examples/search-command.tsx", "type": "registry:ui" }]
     }
   ]
