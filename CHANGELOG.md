@@ -1,5 +1,12 @@
 # Revola
 
+## 1.2.0
+
+### Minor Changes
+
+- **Breaking:** Renamed `DrawerType` to `ResponsiveDialogProps` and now exports the type publicly
+- **Added:** Command component integration with Revola for enhanced search functionality
+
 ## 1.1.0
 
 ### Minor Changes
