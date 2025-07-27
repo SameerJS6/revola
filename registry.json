@@ -15,6 +15,15 @@
       ]
     },
     {
+      "name": "responsive-command",
+      "type": "registry:ui",
+      "title": "Responsive Command",
+      "description": "A responsive command palette component that automatically adapts to screen size - drawer on mobile, modal on desktop.",
+      "dependencies": ["cmdk", "lucide-react"],
+      "registryDependencies": ["https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/cmdk/responsive-command.tsx", "type": "registry:ui" }]
+    },
+    {
       "name": "alert-dialog-with-icon",
       "type": "registry:ui",
       "title": "Alert Dialog with Icon",
@@ -216,6 +225,15 @@
         { "path": "hooks/use-character-limit.ts", "type": "registry:hook" },
         { "path": "hooks/use-file-upload.ts", "type": "registry:hook" }
       ]
+    },
+    {
+      "name": "search-command",
+      "type": "registry:ui",
+      "title": "Search Command Dialog",
+      "description": "A responsive search command dialog with input and list of suggestions - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "https://revola.sameerjs.com/r/revola.json"],
+      "files": [{ "path": "registry/cmdk/examples/search-command.tsx", "type": "registry:ui" }]
     }
   ]
 }
