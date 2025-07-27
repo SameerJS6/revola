@@ -16,6 +16,8 @@ interface Registry {
 
 type PrefixedKey<TLibrary extends string, TKey extends string> = `${TLibrary}-${TKey}`;
 
+type CmdkRegistryKeys = "default-demo" | "combobox-demo";
+
 type VaulRegistryKeys =
   | "default-demo"
   | "side-drawer-demo"
@@ -621,6 +623,54 @@ export const Index: Record<RegistryKeys, Registry> = {
     ],
     categories: ["scrollables"],
     component: React.lazy(() => import("@/registry/revola/examples/origin-ui/scrollables/terms-and-conditions")),
+    source: "",
+    meta: undefined,
+  },
+  "origin-ui-search-command-demo": {
+    name: "origin-ui-search-command-demo",
+    description: "Search command dialog demo",
+    type: "registry:demo",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/cmdk/examples/search-command.tsx",
+        type: "registry:demo",
+        target: "",
+      },
+    ],
+    component: React.lazy(() => import("@/registry/cmdk/examples/search-command")),
+    source: "",
+    meta: undefined,
+  },
+  "cmdk-default-demo": {
+    name: "cmdk-default-demo",
+    description: "Default command dialog demo",
+    type: "registry:demo",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/cmdk/examples/default-demo.tsx",
+        type: "registry:demo",
+        target: "",
+      },
+    ],
+    component: React.lazy(() => import("@/registry/cmdk/examples/default-demo")),
+    source: "",
+    meta: undefined,
+  },
+  "cmdk-combobox-demo": {
+    name: "cmdk-combobox-demo",
+    description: "Combobox command dialog demo",
+    type: "registry:demo",
+    registryDependencies: undefined,
+    files: [
+      {
+        path: "registry/cmdk/examples/combobox.tsx",
+        type: "registry:demo",
+        target: "",
+      },
+    ],
+    component: React.lazy(() => import("@/registry/cmdk/examples/combobox")),
     source: "",
     meta: undefined,
   },
