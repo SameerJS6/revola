@@ -53,9 +53,13 @@ type OriginUIRegistryKeys =
   | "native-scrollbar-demo"
   | "sticky-footer-demo"
   | "sticky-header-demo"
-  | "terms-and-conditions-demo";
+  | "terms-and-conditions-demo"
+  | "search-command-demo";
 
-export type RegistryKeys = PrefixedKey<"vaul", VaulRegistryKeys> | PrefixedKey<"origin-ui", OriginUIRegistryKeys>;
+export type RegistryKeys =
+  | PrefixedKey<"vaul", VaulRegistryKeys>
+  | PrefixedKey<"origin-ui", OriginUIRegistryKeys>
+  | PrefixedKey<"cmdk", CmdkRegistryKeys>;
 
 export const Index: Record<RegistryKeys, Registry> = {
   "vaul-default-demo": {
