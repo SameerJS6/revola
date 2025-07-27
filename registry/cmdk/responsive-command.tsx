@@ -28,45 +28,36 @@ const ResponsiveCommand = React.forwardRef<
 });
 ResponsiveCommand.displayName = CommandPrimitive.displayName;
 
-const ResponsiveCommandDialog = React.forwardRef<
-  React.ComponentRef<typeof ResponsiveDialog>,
-  React.ComponentPropsWithoutRef<typeof ResponsiveDialog> & {
-    title?: string;
-    description?: string;
-    className?: string;
-    showCloseButton?: boolean;
-  }
->(
-  (
-    {
-      title = "Command Palette",
-      description = "Search for a command to run...",
-      children,
-      className,
-      showCloseButton = true,
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <ResponsiveDialog shouldScaleBackground={false} {...props}>
-        <ResponsiveDialogContent
-          ref={ref}
-          showCloseButton={showCloseButton}
-          className={cn("mx-auto overflow-hidden bg-popover sm:max-w-lg [&>button:last-child]:hidden", className)}
-        >
-          <ResponsiveDialogHeader className="sr-only">
-            <ResponsiveDialogTitle>{title}</ResponsiveDialogTitle>
-            <ResponsiveDialogDescription>{description}</ResponsiveDialogDescription>
-          </ResponsiveDialogHeader>
-          <ResponsiveCommand className="max-h-[100svh] [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-3 [&_[cmdk-item]]:py-2">
-            {children}
-          </ResponsiveCommand>
-        </ResponsiveDialogContent>
-      </ResponsiveDialog>
-    );
-  }
-);
+const ResponsiveCommandDialog = ({
+  title = "Command Palette",
+  description = "Search for a command to run...",
+  children,
+  className,
+  showCloseButton = true,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof ResponsiveDialog> & {
+  title?: string;
+  description?: string;
+  className?: string;
+  showCloseButton?: boolean;
+}) => {
+  return (
+    <ResponsiveDialog shouldScaleBackground={false} {...props}>
+      <ResponsiveDialogContent
+        showCloseButton={showCloseButton}
+        className={cn("mx-auto overflow-hidden bg-popover sm:max-w-lg [&>button:last-child]:hidden", className)}
+      >
+        <ResponsiveDialogHeader className="sr-only">
+          <ResponsiveDialogTitle>{title}</ResponsiveDialogTitle>
+          <ResponsiveDialogDescription>{description}</ResponsiveDialogDescription>
+        </ResponsiveDialogHeader>
+        <ResponsiveCommand className="max-h-[100svh] [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-3 [&_[cmdk-item]]:py-2">
+          {children}
+        </ResponsiveCommand>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  );
+};
 ResponsiveCommandDialog.displayName = "ResponsiveCommandDialog";
 
 const ResponsiveCommandInput = React.forwardRef<
