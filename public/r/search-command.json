@@ -9,7 +9,7 @@
   ],
   "registryDependencies": [
     "button",
-    "https://revola.sameerjs.com/r/revola.json"
+    "https://revola.sameerjs.com/r/responsive-command.json"
   ],
   "files": [
     {
