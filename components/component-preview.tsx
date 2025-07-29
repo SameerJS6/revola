@@ -1,13 +1,12 @@
 "use client";
 
 import * as React from "react";
+import { Tabs } from "@base-ui-components/react/tabs";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { Loader } from "lucide-react";
 
 import MobilePreview from "@/components/mobile-preview";
 import { Index, type RegistryKeys } from "@/components/registry";
-import { generateMobilePreviewLink } from "@/lib/mobile-preview";
 import { cn } from "@/lib/utils";
 
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -32,12 +31,6 @@ export default function ComponentPreview({
   const Codes = React.Children.toArray(children) as Code[];
   const Code = Codes[0];
 
-  const generatedMobilePreviewLink = React.useMemo(() => {
-    if (typeof window === "undefined") return;
-
-    return generateMobilePreviewLink(name, window.location.origin);
-  }, [name]);
-
   const Preview = React.useMemo(() => {
     const Component = Index[name]?.component;
 
@@ -55,31 +48,30 @@ export default function ComponentPreview({
 
   return (
     <div className={cn("group relative my-4 flex flex-col space-y-2", className)} {...props}>
-      <Tabs defaultValue="preview" className="relative mr-auto w-full">
+      <Tabs.Root defaultValue="preview" className="relative mr-auto w-full">
         <div className="flex items-center justify-between pb-3">
           {!hideCode && (
-            <TabsList className="w-full justify-start rounded-none border-b bg-transparent p-0">
-              <TabsTrigger
+            <Tabs.List className="relative z-0 w-full justify-start rounded-none border-b bg-transparent p-0">
+              <Tabs.Tab
                 value="preview"
                 className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-2 pb-3 pt-2 text-sm font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
               >
                 Preview
-              </TabsTrigger>
-              <TabsTrigger
+              </Tabs.Tab>
+              <Tabs.Tab
                 value="code"
                 className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-2 pb-3 pt-2 text-sm font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
               >
                 Code
-              </TabsTrigger>
-            </TabsList>
+              </Tabs.Tab>
+              <Tabs.Indicator className="absolute left-0 top-1/2 z-[-1] h-7 w-[var(--active-tab-width)] -translate-y-1/2 translate-x-[var(--active-tab-left)] rounded-md border border-fd-border bg-fd-secondary/50 transition-all duration-200 ease-in-out" />
+            </Tabs.List>
           )}
         </div>
-        <TabsContent value="preview" className="relative rounded-md border bg-border/50">
-          {generatedMobilePreviewLink && (
-            <div className="absolute right-4 top-4 max-lg:hidden">
-              <MobilePreview previewLink={generatedMobilePreviewLink} />
-            </div>
-          )}
+        <Tabs.Panel value="preview" className="relative rounded-md border bg-border/50">
+          <div className="absolute right-4 top-4 max-lg:hidden">
+            <MobilePreview name={name} />
+          </div>
           <div
             className={cn("preview flex min-h-[350px] w-full justify-center p-10", {
               "items-center": align === "center",
@@ -98,15 +90,15 @@ export default function ComponentPreview({
               {Preview}
             </React.Suspense>
           </div>
-        </TabsContent>
-        <TabsContent value="code">
+        </Tabs.Panel>
+        <Tabs.Panel value="code">
           <div className="flex flex-col space-y-4">
             <div className="w-full rounded-md [&_figure]:my-0 [&_figure_figure]:my-0 [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre_code]:font-geist-mono">
               {Code}
             </div>
           </div>
-        </TabsContent>
-      </Tabs>
+        </Tabs.Panel>
+      </Tabs.Root>
     </div>
   );
 }
