@@ -45,7 +45,7 @@ const ResponsiveDialogProvider = ({
   );
 };
 
-const useResponsiveDialog = () => {
+export const useResponsiveDialog = () => {
   const context = React.useContext(ResponsiveDialogContext);
 
   if (!context) {
