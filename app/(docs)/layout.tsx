@@ -17,6 +17,7 @@ export default function DocLayout({ children }: PropsWithChildren) {
         title: "Revola",
         url: "/",
       }}
+      githubUrl="https://github.com/SameerJS6/revola"
       tree={source.pageTree}
     >
       {children}
