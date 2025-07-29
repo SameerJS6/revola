@@ -7,6 +7,8 @@ import { Smartphone } from "lucide-react";
 
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import IphoneMockup, { type Size } from "@/components/iphone-mockup";
+import type { RegistryKeys } from "@/components/registry";
+import type { SpecialRegistryKeys } from "@/components/special-registry";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
@@ -14,16 +16,17 @@ import {
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
 } from "@/registry/revola";
+import { generateMobilePreviewLink } from "@/lib/mobile-preview";
 import { cn } from "@/lib/utils";
 
 import useMediaQuery from "@/hooks/use-media-query";
 
 type MobilePreviewProps = {
-  previewLink: string;
+  name: RegistryKeys | SpecialRegistryKeys;
   className?: string;
 };
 
-export default function MobilePreview({ previewLink, className }: MobilePreviewProps) {
+export default function MobilePreview({ name, className }: MobilePreviewProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   // Multiple media queries for different screen heights
@@ -45,6 +48,11 @@ export default function MobilePreview({ previewLink, className }: MobilePreviewP
 
   const mockupSize = getMockupSize();
   const showPreview = mockupSize !== null;
+
+  const previewLink =
+    typeof window !== "undefined" ? generateMobilePreviewLink(name, window.location.origin) : undefined;
+
+  if (!previewLink) return;
 
   return (
     <ResponsiveDialog
