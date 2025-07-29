@@ -11,6 +11,7 @@ import {
   ResponsiveDialogDescription,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
+  useResponsiveDialog,
 } from "@/components/ui/revola";
 import { cn } from "@/lib/utils";
 
@@ -84,10 +85,27 @@ const ResponsiveCommandList = React.forwardRef<
   React.ComponentRef<typeof CommandPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>
 >(({ className, ...props }, ref) => {
+  let direction: "top" | "bottom" | "left" | "right" | undefined;
+  let onlyDialog = false;
+
+  try {
+    const context = useResponsiveDialog();
+    direction = context.direction;
+    onlyDialog = context.onlyDialog || false;
+  } catch {
+    direction = undefined;
+    onlyDialog = false;
+  }
+
   return (
     <CommandPrimitive.List
       ref={ref}
-      className={cn("max-h-[320px] flex-1 overflow-y-auto overflow-x-hidden", className)}
+      className={cn(
+        "flex-1 overflow-y-auto overflow-x-hidden sm:max-h-[320px]",
+        direction && "max-h-[calc(100svh-5rem)]",
+        onlyDialog && "max-h-[320px]",
+        className
+      )}
       {...props}
     />
   );
