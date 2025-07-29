@@ -8,6 +8,7 @@ const config = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  serverExternalPackages: ["shiki"],
 };
 
 export default withMDX(config);
