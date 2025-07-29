@@ -1,4 +1,5 @@
 import { Index, type RegistryKeys } from "@/components/registry";
+import { isSpecialComponent, type SpecialRegistryKeys } from "@/components/special-registry";
 
 /**
  * Generate a mobile preview link for a component
@@ -6,8 +7,11 @@ import { Index, type RegistryKeys } from "@/components/registry";
  * @param origin The origin of the page
  * @returns The mobile preview URL or null if component doesn't exist
  */
-export function generateMobilePreviewLink(componentName: RegistryKeys, origin: string): string | null {
-  if (!Index[componentName]) {
+export function generateMobilePreviewLink(
+  componentName: RegistryKeys | SpecialRegistryKeys,
+  origin: string
+): string | null {
+  if (!Index[componentName as RegistryKeys] && !isSpecialComponent(componentName)) {
     console.warn(`Component "${componentName}" not found in registry`);
     return null;
   }
