@@ -13,11 +13,10 @@ interface MobilePreviewPageProps {
 export default async function MobilePreviewPage({ params }: MobilePreviewPageProps) {
   const { component } = await params;
   let registryEntry;
+
   if (isSpecialComponent(component)) {
     registryEntry = SpecialIndex[component];
-  }
-
-  if (Index[component as RegistryKeys]) {
+  } else if (Index[component as RegistryKeys]) {
     registryEntry = Index[component as RegistryKeys];
   }
 

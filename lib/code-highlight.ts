@@ -25,21 +25,15 @@ async function getComponentCode(
   lang: BundledLanguage
 ): Promise<{ code: string; highlightedCode: JSX.Element } | null> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-    const response = await fetch(`${baseUrl}/r/${name}.json`, {
-      next: { revalidate: 3600 }, // Cache for 1 hour
-    });
+    // Dynamically import Node.js modules to avoid bundling issues
+    const { readFile } = await import("fs/promises");
+    const path = await import("path");
 
-    if (!response.ok) {
-      return null;
-    }
+    // Read file directly from filesystem during build time
+    const filePath = path.join(process.cwd(), "public", "r", `${name}.json`);
+    const fileContent = await readFile(filePath, "utf-8");
+    const data = JSON.parse(fileContent);
 
-    const contentType = response.headers.get("content-type");
-    if (!contentType || !contentType.includes("application/json")) {
-      return null;
-    }
-
-    const data = await response.json();
     const rawContent = data.files[0].content || "";
 
     if (!rawContent.trim()) {
