@@ -13,7 +13,7 @@ import {
   ResponsiveCommandInput,
   ResponsiveCommandItem,
   ResponsiveCommandList,
-} from "@/components/ui/command";
+} from "@/components/ui/responsive-command";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
