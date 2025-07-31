@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import ShadcnCommandMenuRoot from "@/registry/cmdk/examples/shadcn-command-menu-root";
+import CommandMenuWrapper from "@/registry/cmdk/examples/shadcn-command-menu-root";
 
 const specialRegistryKeys = ["shadcn-command-menu"] as const;
 type SpecialRegistryKeys = (typeof specialRegistryKeys)[number];
@@ -19,7 +19,7 @@ const SpecialIndex: Record<SpecialRegistryKeys, SpecialRegistry> = {
   "shadcn-command-menu": {
     name: "shadcn-command-menu",
     description: "Command menu demo",
-    component: ShadcnCommandMenuRoot,
+    component: CommandMenuWrapper,
     categories: ["command"],
     meta: "Special component that uses source.ts",
   },
