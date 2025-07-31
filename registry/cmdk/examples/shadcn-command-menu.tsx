@@ -234,105 +234,6 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
               No results found.
             </ResponsiveCommandEmpty>
 
-            {/* {tree.children.map((group, index) => (
-              <ResponsiveCommandGroup
-                key={group.name?.toLocaleString()! + index + Math.random()}
-                heading={group.name}
-                className="!p-0 [&_[cmdk-group-heading]]:scroll-mt-16 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
-              >
-                {group.type === "folder" &&
-                  group.children.map((item) => {
-                    if (item.type === "page") {
-                      const isComponent = item.url.includes("/components/");
-
-                      return (
-                        <CommandMenuItem
-                          key={item.url}
-                          value={item.name?.toString() ? `${group.name} ${item.name}` : ""}
-                          keywords={isComponent ? ["component"] : undefined}
-                          onHighlight={() => handlePageHighlight(isComponent, item)}
-                          onSelect={() => {
-                            runCommand(() => router.push(item.url));
-                          }}
-                        >
-                          {isComponent ? (
-                            <div className="aspect-square size-4 rounded-full border border-dashed border-muted-foreground" />
-                          ) : (
-                            <ArrowRight />
-                          )}
-                          {item.name}
-                        </CommandMenuItem>
-                      );
-                    }
-                    return null;
-                  })}
-              </ResponsiveCommandGroup>
-            ))} */}
-
-            {/* 
-            {groupedItems
-              .map((group, index) => {
-                if (group.separator) {
-                  return (
-                    <ResponsiveCommandGroup
-                      key={group.separator.name + group.separator.type + index}
-                      heading={group.separator.name?.toString()}
-                      className="!p-0 [&_[cmdk-group-heading]]:scroll-mt-16 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
-                    >
-                      {group.pages?.map((page) => {
-                        if (page.type === "page" && "url" in page) {
-                          return (
-                            <CommandMenuItem
-                              key={page.url}
-                              value={page.name?.toString()}
-                              onHighlight={() => handlePageHighlight(false, { url: page.url, name: page.name })}
-                              onSelect={() => runCommand(() => router.push(page.url))}
-                            >
-                              <ArrowRight />
-                              {page.name}
-                            </CommandMenuItem>
-                          );
-                        }
-                        return null;
-                      })}
-                    </ResponsiveCommandGroup>
-                  );
-                }
-
-                if (group.folder && group.folder.type === "folder" && "children" in group.folder) {
-                  return (
-                    <ResponsiveCommandGroup
-                      key={group.folder.name + group.folder.type + index}
-                      heading={group.folder.name?.toString()}
-                      className="!p-0 [&_[cmdk-group-heading]]:scroll-mt-16 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
-                    >
-                      {group.folder.children
-                        ?.filter((child) => child.type === "page")
-                        .map((child) => {
-                          if (child.type === "page" && "url" in child) {
-                            return (
-                              <CommandMenuItem
-                                key={child.url}
-                                value={child.name?.toString() ? `${group.folder!.name} ${child.name}` : ""}
-                                keywords={["component"]}
-                                onHighlight={() => handlePageHighlight(true, { url: child.url, name: child.name })}
-                                onSelect={() => runCommand(() => router.push(child.url))}
-                              >
-                                <ArrowRight />
-                                {child.name}
-                              </CommandMenuItem>
-                            );
-                          }
-                          return null;
-                        })}
-                    </ResponsiveCommandGroup>
-                  );
-                }
-
-                return null;
-              })
-              .filter(Boolean)} */}
-
             {simplifiedTree.map((group, index) => {
               return (
                 <ResponsiveCommandGroup
@@ -342,23 +243,17 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
                 >
                   {group.children.map((item) => {
                     if (item.type === "page") {
-                      const isComponent = item.url.includes("/components/");
-
                       return (
                         <CommandMenuItem
                           key={item.url}
+                          keywords={undefined}
+                          onHighlight={handlePageHighlight}
                           value={item.name?.toString() ? `${group.name} ${item.name}` : ""}
-                          keywords={isComponent ? ["component"] : undefined}
-                          onHighlight={() => handlePageHighlight()}
                           onSelect={() => {
                             runCommand(() => router.push(item.url));
                           }}
                         >
-                          {isComponent ? (
-                            <div className="aspect-square size-4 rounded-full border border-dashed border-muted-foreground" />
-                          ) : (
-                            <ArrowRight />
-                          )}
+                          <ArrowRight />
                           {item.name}
                         </CommandMenuItem>
                       );
@@ -369,77 +264,6 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
               );
             })}
 
-            {/* {groupedItems.map((group, index) => {
-              if (group.type === "separator-group") {
-                return (
-                  <ResponsiveCommandGroup
-                    key={`${group.separator?.name || "unnamed"}-${index}`}
-                    heading={group.separator?.name}
-                    className="!p-0 [&_[cmdk-group-heading]]:scroll-mt-16 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
-                  >
-                    {group.pages?.map((page) => {
-                      if (page.type === "page" && "url" in page) {
-                        const isComponent = page.url.includes("/components/");
-
-                        return (
-                          <CommandMenuItem
-                            key={page.url}
-                            value={page.name?.toString() || ""}
-                            keywords={isComponent ? ["component"] : undefined}
-                            onHighlight={() => handlePageHighlight(isComponent, page)}
-                            onSelect={() => runCommand(() => router.push(page.url))}
-                          >
-                            {isComponent ? (
-                              <div className="aspect-square size-4 rounded-full border border-dashed border-muted-foreground" />
-                            ) : (
-                              <ArrowRight />
-                            )}
-                            {page.name}
-                          </CommandMenuItem>
-                        );
-                      }
-                      return null;
-                    })}
-                  </ResponsiveCommandGroup>
-                );
-              }
-
-              if (group.type === "folder" && group.folder && "children" in group.folder) {
-                return (
-                  <ResponsiveCommandGroup
-                    key={group.folder.name?.toString() || ""}
-                    heading={group.folder.name}
-                    className="!p-0 [&_[cmdk-group-heading]]:scroll-mt-16 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
-                  >
-                    {group.folder.children?.map((item) => {
-                      if (item.type === "page") {
-                        const isComponent = item.url.includes("/components/");
-
-                        return (
-                          <CommandMenuItem
-                            key={item.url}
-                            value={`${group.folder!.name} ${item.name}`}
-                            keywords={isComponent ? ["component"] : undefined}
-                            onHighlight={() => handlePageHighlight(isComponent, item)}
-                            onSelect={() => runCommand(() => router.push(item.url))}
-                          >
-                            {isComponent ? (
-                              <div className="aspect-square size-4 rounded-full border border-dashed border-muted-foreground" />
-                            ) : (
-                              <ArrowRight />
-                            )}
-                            {item.name}
-                          </CommandMenuItem>
-                        );
-                      }
-                      return null;
-                    })}
-                  </ResponsiveCommandGroup>
-                );
-              }
-
-              return null;
-            })} */}
             {colors.map((colorPalette) => (
               <ResponsiveCommandGroup
                 key={colorPalette.name}
@@ -475,7 +299,7 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
           <div className="flex items-center gap-2">
             <CommandMenuKbd>
               <CornerDownLeftIcon />
-            </CommandMenuKbd>{" "}
+            </CommandMenuKbd>
             {selectedType === "page" ? "Go to Page" : null}
             {selectedType === "color" ? "Copy OKLCH" : null}
           </div>
