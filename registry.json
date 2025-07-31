@@ -246,6 +246,7 @@
         { "path": "registry/cmdk/examples/shadcn-command-menu.tsx", "type": "registry:ui" },
         { "path": "lib/colors.ts", "type": "registry:lib" },
         { "path": "lib/source.ts", "type": "registry:lib" },
+        { "path": "lib/registry-colors.ts", "type": "registry:lib" },
         { "path": "hooks/use-is-mac.ts", "type": "registry:hook" },
         { "path": "hooks/use-mutation-observer.ts", "type": "registry:hook" }
       ]
