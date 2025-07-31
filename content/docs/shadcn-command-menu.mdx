@@ -41,7 +41,7 @@ import { source } from "@/lib/source";
 Since `pageTree` is a server-side value, retrieve it and pass it (along with the color palette) to the component in a client-safe wrapper.
 
 ```tsx title="components/command-menu-wrapper.tsx"
-import ShadcnCommandMenu from "@/components/shadcn-command-menu";
+import ShadcnCommandMenu from "@/components/ui/shadcn-command-menu";
 import { getColors } from "@/lib/colors";
 import { source } from "@/lib/source";
 
@@ -50,10 +50,9 @@ export default function CommandMenuWrapper() {
   const pageTree = source.pageTree;
 
   return (
-    <ShadcnCommandMenu 
-      tree={pageTree} 
-      colors={colors} 
-    />
+    <div className="space-x-4 space-y-4">
+      <ShadcnCommandMenu tree={pageTree} colors={colors} />
+    </div>
   );
 }
 ```
