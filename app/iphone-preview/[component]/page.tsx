@@ -36,7 +36,7 @@ export default async function MobilePreviewPage({ params }: MobilePreviewPagePro
           </div>
         }
       >
-        <Component />
+        {React.createElement(Component)}
       </React.Suspense>
     </main>
   );
