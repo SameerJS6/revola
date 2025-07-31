@@ -14,7 +14,6 @@ import {
   ResponsiveCommandItem,
   ResponsiveCommandList,
 } from "@/components/ui/command";
-import { Separator } from "@/components/ui/separator";
 import {
   ResponsiveDialog,
   ResponsiveDialogContent,
@@ -22,7 +21,8 @@ import {
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
   ResponsiveDialogTrigger,
-} from "@/registry/revola";
+} from "@/components/ui/revola";
+import { Separator } from "@/components/ui/separator";
 import { type Color, type ColorPalette } from "@/lib/colors";
 import { source, type Tree } from "@/lib/source";
 import { cn } from "@/lib/utils";
@@ -157,11 +157,7 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
 
       if (e.key === "c" && (e.metaKey || e.ctrlKey)) {
         runCommand(() => {
-          if (selectedType === "color") {
-            copyToClipboardWithoutMeta(copyPayload);
-          }
-
-          if (selectedType === "page") {
+          if (selectedType === "color" || selectedType === "page") {
             copyToClipboardWithoutMeta(copyPayload);
           }
         });
@@ -238,7 +234,7 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
               return (
                 <ResponsiveCommandGroup
                   heading={group.name}
-                  key={group.name + index + Math.random()}
+                  key={group.name + index}
                   className="!p-0 [&_[cmdk-group-heading]]:scroll-mt-16 [&_[cmdk-group-heading]]:!p-3 [&_[cmdk-group-heading]]:!pb-1"
                 >
                   {group.children.map((item) => {
