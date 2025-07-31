@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import CommandMenuWrapper from "@/registry/cmdk/examples/shadcn-command-menu-root";
+import CommandMenuWrapper from "@/registry/cmdk/examples/shadcn-command-menu-wrapper";
 
 const specialRegistryKeys = ["shadcn-command-menu"] as const;
 type SpecialRegistryKeys = (typeof specialRegistryKeys)[number];
