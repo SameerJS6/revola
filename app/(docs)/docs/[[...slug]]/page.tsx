@@ -16,6 +16,7 @@ import { DocsBody, DocsDescription, DocsPage, DocsTitle } from "fumadocs-ui/page
 
 import { Button } from "@/components/ui/button";
 import ComponentPreview from "@/components/component-preview";
+import ComponentPreviewCustomHighlight from "@/components/component-preview-custom-highlight";
 import MarkdownAccordion from "@/components/markdown-accordion";
 import { source } from "@/lib/source";
 import { absoluteUrl, cn } from "@/lib/utils";
@@ -161,6 +162,7 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
             ),
             TypeTable,
             ComponentPreview,
+            ComponentPreviewCustomHighlight,
             Button,
           }}
         />
