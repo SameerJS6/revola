@@ -1,0 +1,93 @@
+---
+title: Shadcn Command Menu
+description: A command menu adapted from shadcn/ui, designed to work seamlessly with Fumadocs and enhanced with Revola's responsive behavior.
+ogDescription: Command menu for Fumadocs, adapted from shadcn/ui and powered by Revola.
+---
+
+## Overview
+
+
+The Shadcn Command Menu is a searchable command palette that helps users quickly navigate your documentation built with [Fumadocs](https://fumadocs.dev/).
+
+This version is adapted from the original [shadcn/ui Command Menu](https://ui.shadcn.com/), with a few enhancements and tighter integration with Revola for responsive behavior and improved reliability.
+
+<ComponentPreviewCustomHighlight name="shadcn-command-menu" />
+
+## Installation
+
+```package-install
+npx shadcn@latest add https://revola.sameerjs.com/r/shadcn-command-menu.json
+```
+
+## Usage
+
+<Steps>
+<Step>
+#### Basic Implementation
+
+Import the component and supporting utilities from your local files:
+
+```tsx
+import ShadcnCommandMenu from "@/components/shadcn-command-menu";
+import { getColors } from "@/lib/colors";
+import { source } from "@/lib/source";
+```
+</Step>
+
+<Step>
+#### Create the Menu Component
+
+Since `pageTree` is a server-side value, retrieve it and pass it (along with the color palette) to the component in a client-safe wrapper.
+
+```tsx title="components/command-menu-wrapper.tsx"
+import ShadcnCommandMenu from "@/components/ui/shadcn-command-menu";
+import { getColors } from "@/lib/colors";
+import { source } from "@/lib/source";
+
+export default function CommandMenuWrapper() {
+  const colors = getColors();
+  const pageTree = source.pageTree;
+
+  return (
+    <div className="space-x-4 space-y-4">
+      <ShadcnCommandMenu tree={pageTree} colors={colors} />
+    </div>
+  );
+}
+```
+</Step>
+
+<Step>
+#### Add to Your Layout
+
+Include the command menu in your layout or navigation:
+
+```tsx title="components/navigation.tsx"
+import CommandMenuWrapper from "@/components/command-menu-wrapper";
+
+export function Navigation() {
+  return (
+    <nav className="flex items-center gap-4">
+      <CommandMenuWrapper />
+      {/* Other navigation items */}
+    </nav>
+  );
+}
+```
+</Step>
+
+<Step>
+You're all set!
+Enjoy the enhanced command menu experience.
+</Step>
+</Steps>
+
+
+## Note
+
+There’s a known issue: if a valid search result is found, everything works correctly (including showing the secondary action).
+
+![This will be fixed soon](/shadcn-command-menu-issue.png)
+
+
+However, if you change the search query to something that doesn't match any item, the secondary action still appears, even though it shouldn't.

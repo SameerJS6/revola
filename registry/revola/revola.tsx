@@ -45,7 +45,7 @@ const ResponsiveDialogProvider = ({
   );
 };
 
-const useResponsiveDialog = () => {
+export const useResponsiveDialog = () => {
   const context = React.useContext(ResponsiveDialogContext);
 
   if (!context) {
@@ -186,13 +186,13 @@ const ResponsiveDialogContentVariants = cva("fixed z-[9999] bg-background", {
       device: "mobile",
       direction: "bottom",
       className:
-        "inset-x-0 bottom-0 mt-24 h-fit max-h-[95%] flex-col rounded-t-[10px] border border-b-0 border-primary/10 pt-4",
+        "inset-x-0 bottom-0 mt-24 h-fit max-h-[65%] flex-col rounded-t-[10px] border border-b-0 border-primary/10 pt-4",
     },
     {
       device: "mobile",
       direction: "top",
       className:
-        "inset-x-0 top-0 mb-24 h-fit max-h-[95%] flex-col rounded-b-[10px] border border-b-0 border-primary/10",
+        "inset-x-0 top-0 mb-24 h-fit max-h-[65%] flex-col rounded-b-[10px] border border-b-0 border-primary/10",
     },
     {
       device: "mobile",

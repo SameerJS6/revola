@@ -11,13 +11,12 @@ links:
 
 Revola's Command Palette is a responsive drop-in replacement for shadcn/ui's command component. Built on [cmdk](https://cmdk.paco.me/), it automatically switches between modal dialog on desktop and drawer on mobile.
 
+
+Adapting it to your existing command setup is as simple as updating the import path and renaming the component.
+
 <ComponentPreview name="origin-ui-search-command-demo" />
 
-
-
 ## Installation
-
-
 
 ### Install via Shadcn CLI
 
@@ -44,7 +43,7 @@ npm install cmdk
 
 Copy and paste the following code into your project:
 
-```tsx title="responsive-command"
+```tsx title="responsive-command.tsx"
 "use client";
 
 import * as React from "react";
@@ -58,6 +57,7 @@ import {
   ResponsiveDialogDescription,
   ResponsiveDialogHeader,
   ResponsiveDialogTitle,
+  useResponsiveDialog,
 } from "@/components/ui/revola";
 import { cn } from "@/lib/utils";
 
@@ -75,45 +75,36 @@ const ResponsiveCommand = React.forwardRef<
 });
 ResponsiveCommand.displayName = CommandPrimitive.displayName;
 
-const ResponsiveCommandDialog = React.forwardRef<
-  React.ComponentRef<typeof ResponsiveDialog>,
-  React.ComponentPropsWithoutRef<typeof ResponsiveDialog> & {
-    title?: string;
-    description?: string;
-    className?: string;
-    showCloseButton?: boolean;
-  }
->(
-  (
-    {
-      title = "Command Palette",
-      description = "Search for a command to run...",
-      children,
-      className,
-      showCloseButton = true,
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <ResponsiveDialog {...props}>
-        <ResponsiveDialogContent
-          ref={ref}
-          showCloseButton={showCloseButton}
-          className={cn("mx-auto overflow-hidden bg-popover sm:max-w-lg [&>button:last-child]:hidden", className)}
-        >
-          <ResponsiveDialogHeader className="sr-only">
-            <ResponsiveDialogTitle>{title}</ResponsiveDialogTitle>
-            <ResponsiveDialogDescription>{description}</ResponsiveDialogDescription>
-          </ResponsiveDialogHeader>
-          <ResponsiveCommand className="max-h-[100svh] [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-3 [&_[cmdk-item]]:py-2">
-            {children}
-          </ResponsiveCommand>
-        </ResponsiveDialogContent>
-      </ResponsiveDialog>
-    );
-  }
-);
+const ResponsiveCommandDialog = ({
+  title = "Command Palette",
+  description = "Search for a command to run...",
+  children,
+  className,
+  showCloseButton = true,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof ResponsiveDialog> & {
+  title?: string;
+  description?: string;
+  className?: string;
+  showCloseButton?: boolean;
+}) => {
+  return (
+    <ResponsiveDialog shouldScaleBackground={false} {...props}>
+      <ResponsiveDialogContent
+        showCloseButton={showCloseButton}
+        className={cn("mx-auto overflow-hidden bg-popover sm:max-w-lg [&>button:last-child]:hidden", className)}
+      >
+        <ResponsiveDialogHeader className="sr-only">
+          <ResponsiveDialogTitle>{title}</ResponsiveDialogTitle>
+          <ResponsiveDialogDescription>{description}</ResponsiveDialogDescription>
+        </ResponsiveDialogHeader>
+        <ResponsiveCommand className="max-h-[100svh] [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-3 [&_[cmdk-item]]:py-2">
+          {children}
+        </ResponsiveCommand>
+      </ResponsiveDialogContent>
+    </ResponsiveDialog>
+  );
+};
 ResponsiveCommandDialog.displayName = "ResponsiveCommandDialog";
 
 const ResponsiveCommandInput = React.forwardRef<
@@ -140,10 +131,27 @@ const ResponsiveCommandList = React.forwardRef<
   React.ComponentRef<typeof CommandPrimitive.List>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.List>
 >(({ className, ...props }, ref) => {
+  let direction: "top" | "bottom" | "left" | "right" | undefined;
+  let onlyDialog = false;
+
+  try {
+    const context = useResponsiveDialog();
+    direction = context.direction;
+    onlyDialog = context.onlyDialog || false;
+  } catch {
+    direction = undefined;
+    onlyDialog = false;
+  }
+
   return (
     <CommandPrimitive.List
       ref={ref}
-      className={cn("max-h-[320px] flex-1 overflow-y-auto overflow-x-hidden", className)}
+      className={cn(
+        "flex-1 overflow-y-auto overflow-x-hidden sm:max-h-[320px]",
+        direction && "max-h-[calc(100svh-5rem)]",
+        onlyDialog && "max-h-[320px]",
+        className
+      )}
       {...props}
     />
   );
@@ -232,6 +240,7 @@ export {
   ResponsiveCommandSeparator,
   ResponsiveCommandShortcut,
 };
+
 ```
 </Step>
 </Steps>

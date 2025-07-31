@@ -2,16 +2,24 @@ import React from "react";
 import { notFound } from "next/navigation";
 
 import { Index, type RegistryKeys } from "@/components/registry";
+import { isSpecialComponent, SpecialIndex, type SpecialRegistryKeys } from "@/components/special-registry";
 
 interface MobilePreviewPageProps {
   params: Promise<{
-    component: RegistryKeys;
+    component: RegistryKeys | SpecialRegistryKeys;
   }>;
 }
 
 export default async function MobilePreviewPage({ params }: MobilePreviewPageProps) {
   const { component } = await params;
-  const registryEntry = Index[component];
+  let registryEntry;
+  if (isSpecialComponent(component)) {
+    registryEntry = SpecialIndex[component];
+  }
+
+  if (Index[component as RegistryKeys]) {
+    registryEntry = Index[component as RegistryKeys];
+  }
 
   if (!registryEntry) {
     notFound();
@@ -28,7 +36,7 @@ export default async function MobilePreviewPage({ params }: MobilePreviewPagePro
           </div>
         }
       >
-        <Component />
+        {React.createElement(Component)}
       </React.Suspense>
     </main>
   );

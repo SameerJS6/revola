@@ -8,7 +8,6 @@ import { cva } from "class-variance-authority";
 
 import MobilePreview from "@/components/mobile-preview";
 import RevolaHeroDemo from "@/components/revola-hero-demo";
-import { generateMobilePreviewLink } from "@/lib/mobile-preview";
 import { trackEvent } from "@/lib/posthog";
 import { cn } from "@/lib/utils";
 
@@ -88,8 +87,6 @@ export default function RevolaHero() {
 
   if (typeof window === "undefined") return;
 
-  const previewLink = generateMobilePreviewLink("vaul-default-demo", window.location.origin);
-
   return (
     <div className="relative flex min-h-dvh items-center justify-center overflow-hidden bg-white px-4">
       <BackgroundGrid />
@@ -125,7 +122,7 @@ export default function RevolaHero() {
           <div className="flex items-center gap-3">
             <RevolaHeroDemo />
             <MobilePreview
-              previewLink={previewLink ?? ""}
+              name="vaul-default-demo"
               className={cn(
                 focusRingVariants(),
                 "max-md:hidden",

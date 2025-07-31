@@ -12,8 +12,8 @@ const useMediaQuery = (query: string) => {
 
     const listener = () => setMatches(media.matches);
 
-    window.addEventListener("resize", listener);
-    return () => window.removeEventListener("resize", listener);
+    window.addEventListener("change", listener);
+    return () => window.removeEventListener("change", listener);
   }, [query, matches]);
 
   return matches;

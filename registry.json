@@ -234,6 +234,22 @@
       "dependencies": ["lucide-react"],
       "registryDependencies": ["button", "https://revola.sameerjs.com/r/responsive-command.json"],
       "files": [{ "path": "registry/cmdk/examples/search-command.tsx", "type": "registry:ui" }]
+    },
+    {
+      "name": "shadcn-command-menu",
+      "type": "registry:component",
+      "title": "Shadcn Command Menu",
+      "description": "A responsive shadcn's adapted command menu component that automatically adapts to screen size - drawer on mobile, modal on desktop.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button", "separator", "https://revola.sameerjs.com/r/responsive-command.json"],
+      "files": [
+        { "path": "registry/cmdk/examples/shadcn-command-menu.tsx", "type": "registry:ui" },
+        { "path": "lib/colors.ts", "type": "registry:lib" },
+        { "path": "lib/source.ts", "type": "registry:lib" },
+        { "path": "lib/registry-colors.ts", "type": "registry:lib" },
+        { "path": "hooks/use-is-mac.ts", "type": "registry:hook" },
+        { "path": "hooks/use-mutation-observer.ts", "type": "registry:hook" }
+      ]
     }
   ]
 }

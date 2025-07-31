@@ -1,5 +1,30 @@
 # Revola
 
+## 1.3.0
+
+### Minor Changes
+
+- **Added:** Shadcn Command Menu integration with enhanced search functionality
+- **Added:** Custom code highlighting and block components similar to Fumadocs
+- **Breaking:** Exported `useResponsiveDialog` context hook for enhanced component integration
+
+### Added
+
+- **Dynamic Height for ResponsiveCommandList** - Mobile drawers now use full height (`max-h-[95%]`) instead of hardcoded `320px` for better mobile experience, while maintaining `320px` for dialog mode
+- **Enhanced Component Preview System** - New unified component preview for components that can't be handled through the main registry
+- **Special Registry** - Dedicated registry for components requiring custom parsing logic
+
+### Changed
+
+- **Performance Improvement:** Updated `use-media-query.tsx` to use `change` event listener instead of `resize` for better re-render performance
+- **UI Library Migration:** Replaced Radix UI with Base UI for `Tabs` and `ScrollArea` components
+- **Visual Adjustments:** Reduced maximum height from `95%` to `65%` for improved viewport utilization
+
+### Improved
+
+- **Documentation:** Updated roadmap, getting-started, and command documentation for better developer experience
+- **Developer Experience:** Enhanced component preview system with better flexibility and customization options
+
 ## 1.2.0
 
 ### Minor Changes

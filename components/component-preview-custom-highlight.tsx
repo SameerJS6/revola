@@ -1,53 +1,44 @@
-"use client";
-
-import * as React from "react";
+import React from "react";
 import { Tabs } from "@base-ui-components/react/tabs";
+import type { BundledLanguage } from "shiki/bundle/web";
 
 import { Loader } from "lucide-react";
 
+import CodeBlock from "@/components/code-block";
 import MobilePreview from "@/components/mobile-preview";
-import { Index, type RegistryKeys } from "@/components/registry";
+import { SpecialIndex, type SpecialRegistryKeys } from "@/components/special-registry";
+import { getComponentCode } from "@/lib/code-highlight";
 import { cn } from "@/lib/utils";
 
-interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
-  name: RegistryKeys;
-  align?: "center" | "start" | "end";
+type ComponentDetailsProps = {
+  name: SpecialRegistryKeys;
   hideCode?: boolean;
-}
+  className?: string;
+  lang?: BundledLanguage;
+  align?: "center" | "start" | "end";
+};
 
-interface Code extends React.ReactElement {
-  props: {
-    children: string;
-  } & Record<string, boolean | string>;
-}
-export default function ComponentPreview({
+export default async function ComponentPreviewCustomHighlight({
   name,
-  children,
   className,
-  align = "center",
+  lang = "tsx",
   hideCode = false,
-  ...props
-}: ComponentPreviewProps) {
-  const Codes = React.Children.toArray(children) as Code[];
-  const Code = Codes[0];
+  align = "center",
+}: ComponentDetailsProps) {
+  const codeData = await getComponentCode(name, lang);
+  const registryEntry = SpecialIndex[name];
 
-  const Preview = React.useMemo(() => {
-    const Component = Index[name]?.component;
-
-    if (!Component) {
-      return (
-        <p className="text-sm text-muted-foreground">
-          Component <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">{name}</code>{" "}
-          not found in registry.
-        </p>
-      );
-    }
-
-    return <Component />;
-  }, [name]);
+  const Preview = !registryEntry ? (
+    <p className="text-sm text-muted-foreground">
+      Component <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm">{name}</code> not
+      found in special registry.
+    </p>
+  ) : (
+    React.createElement(registryEntry.component)
+  );
 
   return (
-    <div className={cn("group relative my-4 flex flex-col space-y-2", className)} {...props}>
+    <div className={cn("group relative my-4 flex flex-col space-y-2", className)}>
       <Tabs.Root defaultValue="preview" className="relative mr-auto w-full">
         <div className="flex items-center justify-between pb-3">
           {!hideCode && (
@@ -92,11 +83,27 @@ export default function ComponentPreview({
           </div>
         </Tabs.Panel>
         <Tabs.Panel value="code">
-          <div className="flex flex-col space-y-4">
-            <div className="w-full rounded-md [&_figure]:my-0 [&_figure_figure]:my-0 [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre_code]:font-geist-mono">
-              {Code}
-            </div>
-          </div>
+          {!codeData ? (
+            <p className="text-sm text-muted-foreground">
+              No code available. If you think this is an error, please{" "}
+              <a
+                target="_blank"
+                href="https://github.com/SameerJS6/revola/issues"
+                rel="noopener noreferrer"
+                className="font-medium text-foreground underline hover:no-underline"
+              >
+                open an issue
+              </a>
+              .
+            </p>
+          ) : (
+            <CodeBlock
+              lang={lang}
+              code={codeData.code}
+              preHighlighted={codeData.highlightedCode}
+              className="[&_pre]:max-h-[350px]"
+            />
+          )}
         </Tabs.Panel>
       </Tabs.Root>
     </div>

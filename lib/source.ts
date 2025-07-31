@@ -5,7 +5,9 @@ import { icons } from "lucide-react";
 
 import { loader } from "fumadocs-core/source";
 
-export const source = loader({
+type Tree = typeof source;
+
+const source = loader({
   baseUrl: "/docs",
   icon(icon) {
     if (!icon) return;
@@ -14,3 +16,5 @@ export const source = loader({
   },
   source: docs.toFumadocsSource(),
 });
+
+export { source, type Tree };
