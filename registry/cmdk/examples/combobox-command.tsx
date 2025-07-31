@@ -5,6 +5,7 @@ import * as React from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   ResponsiveCommand,
   ResponsiveCommandEmpty,
@@ -12,8 +13,7 @@ import {
   ResponsiveCommandInput,
   ResponsiveCommandItem,
   ResponsiveCommandList,
-} from "@/components/ui/command";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+} from "@/components/ui/responsive-command";
 import { cn } from "@/lib/utils";
 
 const frameworks = [

@@ -13,7 +13,7 @@ import {
   ResponsiveCommandList,
   ResponsiveCommandSeparator,
   ResponsiveCommandShortcut,
-} from "@/components/ui/command";
+} from "@/components/ui/responsive-command";
 
 export default function SearchCommandExample() {
   const [open, setOpen] = React.useState(false);
