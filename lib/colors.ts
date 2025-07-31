@@ -24,7 +24,7 @@ export type ColorPalette = z.infer<typeof colorPaletteSchema>;
 
 export function getColorFormat(color: Color) {
   return {
-    className: `bg-${color.name}-100`,
+    className: `bg-${color.name}-${color.scale}`,
     hex: color.hex,
     rgb: color.rgb,
     hsl: color.hsl,
@@ -52,7 +52,7 @@ export function getColors() {
               ...color,
               name,
               id: `${name}-${color.scale}`,
-              className: `${name}-${color.scale}`,
+              className: `bg-${name}-${color.scale}`,
               var: `--color-${name}-${color.scale}`,
               rgb,
               hsl: color.hsl.replace(/^hsl\(([\d.]+),([\d.]+%),([\d.]+%)\)$/, "$1 $2 $3"),
