@@ -1,3 +1,9 @@
+"use server";
+
+import "server-only";
+
+import { readFile } from "fs/promises";
+import path from "path";
 import type { JSX } from "react";
 import { Fragment, jsx, jsxs } from "react/jsx-runtime";
 import { toJsxRuntime } from "hast-util-to-jsx-runtime";
@@ -25,11 +31,6 @@ async function getComponentCode(
   lang: BundledLanguage
 ): Promise<{ code: string; highlightedCode: JSX.Element } | null> {
   try {
-    // Dynamically import Node.js modules to avoid bundling issues
-    const { readFile } = await import("fs/promises");
-    const path = await import("path");
-
-    // Read file directly from filesystem during build time
     const filePath = path.join(process.cwd(), "public", "r", `${name}.json`);
     const fileContent = await readFile(filePath, "utf-8");
     const data = JSON.parse(fileContent);
