@@ -1,5 +1,21 @@
 # Revola
 
+## 1.4.0
+
+### Minor Changes
+
+- **Breaking:** Removed all spacing from `ResponsiveDialogHeader` & `ResponsiveDialogFooter` to simplify styling
+- **Changed:** Made drag handle in drawer on mobile independent of `ResponsiveDialogContent`'s spacing/padding, now relies on its own margin of `my-4`
+- **Added:** Two new props on `ResponsiveDialogContent`:
+  - `closeButtonClassName` - For styling the built-in close button
+  - `dragHandleClassName` - For styling the built-in drag handle
+- **Reverted:** `useMediaQuery` hook's event listener from `change` back to `resize`
+
+### Component Changes
+
+- **Updated:** All examples from Vaul, Command & Shadcn Command Menu have been adapted to new changes
+- **Fixed:** `onboarding.tsx` from Origin UI's example where skip button and indicating dots were cutoff on mobile
+
 ## 1.3.0
 
 ### Minor Changes
