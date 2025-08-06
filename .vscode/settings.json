@@ -4,6 +4,7 @@
   "javascript.preferences.importModuleSpecifier": "non-relative",
   "typescript.updateImportsOnFileMove.enabled": "always",
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "typescript.preferences.importModuleSpecifierEnding": "minimal",
   "javascript.preferences.importModuleSpecifierEnding": "minimal",
   "docwriter.hotkey.windows": "Alt + .",
