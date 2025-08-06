@@ -37,9 +37,9 @@ export default function DeleteProjectDialog() {
               <CircleAlertIcon className="opacity-80" size={16} />
             </div>
 
-            <ResponsiveDialogHeader className="pt-0">
-              <ResponsiveDialogTitle className="sm:text-center">Final confirmation</ResponsiveDialogTitle>
-              <ResponsiveDialogDescription className="sm:text-center">
+            <ResponsiveDialogHeader className="px-4 pb-4 sm:p-0 sm:text-center">
+              <ResponsiveDialogTitle>Final confirmation</ResponsiveDialogTitle>
+              <ResponsiveDialogDescription>
                 This action cannot be undone. To confirm, please enter the project name{" "}
                 <span className="text-foreground">Revola</span>.
               </ResponsiveDialogDescription>
@@ -58,7 +58,7 @@ export default function DeleteProjectDialog() {
               />
             </div>
 
-            <ResponsiveDialogFooter className="p-0 sm:gap-2">
+            <ResponsiveDialogFooter className="gap-4 sm:gap-2">
               <ResponsiveDialogClose asChild>
                 <Button type="button" variant="outline" className="flex-1">
                   Cancel

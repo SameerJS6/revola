@@ -26,14 +26,15 @@ export default function AlertIconDialog() {
             <div className="flex size-9 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
               <CircleAlertIcon className="opacity-80" size={16} />
             </div>
-            <ResponsiveDialogHeader className="pt-2">
+            <ResponsiveDialogHeader className="pt-2 sm:pt-0">
               <ResponsiveDialogTitle>Are you sure?</ResponsiveDialogTitle>
               <ResponsiveDialogDescription>
                 Are you sure you want to delete your account? All your data will be removed.
               </ResponsiveDialogDescription>
             </ResponsiveDialogHeader>
           </div>
-          <ResponsiveDialogFooter className="mt-4 gap-2.5 p-0">
+
+          <ResponsiveDialogFooter className="mt-4 gap-2.5 sm:gap-2">
             <ResponsiveDialogClose asChild>
               <Button variant="secondary">Cancel</Button>
             </ResponsiveDialogClose>
