@@ -9,6 +9,7 @@
 - **Added:** Two new props on `ResponsiveDialogContent`:
   - `closeButtonClassName` - For styling the built-in close button
   - `dragHandleClassName` - For styling the built-in drag handle
+- **Fixed:** Safety check ineffective of `useResponsiveDialog` by removing `{}` from `ResponsiveDialogContext` creation as default value
 - **Reverted:** `useMediaQuery` hook's event listener from `change` back to `resize`
 
 ### Component Changes
