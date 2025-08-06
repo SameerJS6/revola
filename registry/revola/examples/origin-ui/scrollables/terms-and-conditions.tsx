@@ -42,7 +42,7 @@ export default function TermsAndConditionsDialog() {
           Terms & Conditions
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent className="flex flex-col sm:max-h-[min(640px,80dvh)] sm:gap-0">
+      <ResponsiveDialogContent className="flex max-h-[min(640px,80dvh)] flex-col sm:gap-0">
         <ResponsiveDialogHeader className="contents space-y-0 text-left">
           <ResponsiveDialogTitle className="border-b px-6 pb-4 text-base sm:py-4">
             Terms & Conditions

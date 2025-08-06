@@ -21,7 +21,7 @@ export default function CustomScrollDialog() {
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent
         showCloseButton={false}
-        className="flex flex-col overflow-hidden sm:max-h-[min(640px,80dvh)]"
+        className="flex max-h-[min(640px,80dvh)] flex-col overflow-hidden"
       >
         <ScrollArea className="flex max-h-full flex-col overflow-hidden">
           <ResponsiveDialogHeader className="contents space-y-0 text-left">
