@@ -30,11 +30,13 @@ export function MyRevola() {
     <ResponsiveDialog>
       <ResponsiveDialogTrigger />
       <ResponsiveDialogContent>
-        <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle />
-          <ResponsiveDialogDescription />
-        </ResponsiveDialogHeader>
-        <ResponsiveDialogFooter />
+        <div>
+          <ResponsiveDialogHeader>
+            <ResponsiveDialogTitle />
+            <ResponsiveDialogDescription />
+          </ResponsiveDialogHeader>
+          <ResponsiveDialogFooter />
+        </div>
       </ResponsiveDialogContent>
     </ResponsiveDialog>
   );
@@ -210,6 +212,16 @@ Contains the main content to be rendered inside Revola.
       description: "Shows/Hides the default close button from both drawer and dialog modes.",
       type: "boolean",
       default: "true",
+    },
+    "closeButtonClassName?": {
+      description: "Styles for the built in close button.",
+      type: "string",
+      default: "",
+    },
+    "dragHandleClassName?": {
+      description: "Styles for the built in drag handle.",
+      type: "string",
+      default: "",
     },
   }}
 />
