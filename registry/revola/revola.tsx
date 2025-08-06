@@ -212,10 +212,9 @@ const ResponsiveDialogContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
     showCloseButton?: boolean;
-    /**
-     * styles for default close button.
-     */
+    /** Styles for the built in close button */
     closeButtonClassName?: string;
+    /** Styles for the drag handle */
     dragHandleClassName?: string;
   }
 >(({ className, children, showCloseButton = true, closeButtonClassName, dragHandleClassName, ...props }, ref) => {
