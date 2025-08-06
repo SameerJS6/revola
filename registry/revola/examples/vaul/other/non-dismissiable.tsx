@@ -25,8 +25,8 @@ export default function VaulNonDismissibleDemo() {
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent showCloseButton={false}>
-        <div className="p-6">
-          <ResponsiveDialogHeader className="space-y-4 p-0 text-left">
+        <div className="space-y-4 p-6 sm:space-y-2">
+          <ResponsiveDialogHeader className="space-y-4 text-left">
             <ResponsiveDialogTitle className="font-medium">Non-Dismissible Revola</ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="space-y-2 text-base">
               <span className="block">
@@ -42,7 +42,7 @@ export default function VaulNonDismissibleDemo() {
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
 
-          <ResponsiveDialogFooter className="px-0">
+          <ResponsiveDialogFooter>
             <ResponsiveDialogClose onClick={() => setIsOpen(false)} className={buttonVariants()}>
               Close Drawer
             </ResponsiveDialogClose>

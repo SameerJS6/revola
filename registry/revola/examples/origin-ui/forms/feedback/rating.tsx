@@ -18,7 +18,7 @@ export default function RatingDialog() {
           Rate Experience
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent className="mx-auto sm:max-w-[400px]">
+      <ResponsiveDialogContent className="mx-auto flex max-h-[85%] flex-col sm:max-w-[400px]">
         <div>
           <ResponsiveDialogHeader className="contents text-left">
             <ResponsiveDialogTitle className="border-b px-6 pb-4 text-base sm:pt-4">

@@ -42,7 +42,7 @@ export default function CodeBlock({ code, lang, initial, preHighlighted, classNa
         if (isMounted) setContent(result);
       });
     } else {
-      setContent(<pre className="rounded-md bg-zinc-950 p-4">No code available</pre>);
+      setContent(<pre className="rounded-md bg-fd-secondary/50 p-4">No code available</pre>);
     }
 
     return () => {

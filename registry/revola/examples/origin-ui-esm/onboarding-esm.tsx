@@ -63,7 +63,10 @@ export default function OnboardingDialog() {
           Onboarding
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent className="gap-0 sm:max-w-[400px] [&>button:last-child]:text-white">
+      <ResponsiveDialogContent
+        closeButtonClassName="text-black bg-yellow-500/5"
+        className="flex max-h-[85%] flex-col gap-0 sm:max-w-[400px]"
+      >
         <div className="p-2">
           <Image
             width={382}
@@ -74,10 +77,11 @@ export default function OnboardingDialog() {
           />
         </div>
         <div className="space-y-6 px-6 pb-6 pt-3">
-          <ResponsiveDialogHeader className="p-0">
+          <ResponsiveDialogHeader>
             <ResponsiveDialogTitle>{stepContent[step - 1].title}</ResponsiveDialogTitle>
             <ResponsiveDialogDescription>{stepContent[step - 1].description}</ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
+
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div className="flex justify-center space-x-1.5 max-sm:order-1">
               {[...Array(totalSteps)].map((_, index) => (
@@ -87,7 +91,7 @@ export default function OnboardingDialog() {
                 />
               ))}
             </div>
-            <ResponsiveDialogFooter className="flex-col-reverse gap-2 p-0">
+            <ResponsiveDialogFooter className="">
               <ResponsiveDialogClose asChild>
                 <Button type="button" variant="ghost">
                   Skip

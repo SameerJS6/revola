@@ -24,8 +24,8 @@ export default function VaulControlledDemo() {
       </ResponsiveDialogTrigger>
 
       <ResponsiveDialogContent>
-        <div className="mx-auto mb-2 max-w-md bg-fd-background">
-          <ResponsiveDialogHeader className="gap-4 px-6 text-left sm:gap-4 sm:pt-6">
+        <div className="mx-auto mb-2 max-w-md bg-background px-6 py-4 sm:p-0 sm:pt-6">
+          <ResponsiveDialogHeader className="gap-4 text-left">
             <ResponsiveDialogTitle className="text-base font-medium leading-6 tracking-normal">
               Controlled Revola
             </ResponsiveDialogTitle>
@@ -48,7 +48,7 @@ export default function VaulControlledDemo() {
           </ResponsiveDialogHeader>
         </div>
 
-        <ResponsiveDialogFooter className="border-t border-border bg-secondary/25 px-6 dark:bg-secondary/50 sm:pb-4 sm:pt-4">
+        <ResponsiveDialogFooter className="border-t border-border bg-secondary/25 px-6 py-4 dark:bg-secondary/50">
           <div className="mx-auto flex w-full max-w-md justify-end gap-6">
             <a
               className="gap-0.25 flex items-center text-xs text-secondary-foreground"

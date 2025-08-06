@@ -36,11 +36,9 @@ export default function SignUpDialog() {
                 <circle cx="16" cy="16" r="12" fill="none" strokeWidth="8" />
               </svg>
             </div>
-            <ResponsiveDialogHeader className="py-0">
-              <ResponsiveDialogTitle className="sm:text-center">Sign up Revola</ResponsiveDialogTitle>
-              <ResponsiveDialogDescription className="sm:text-center">
-                We just need a few details to get you started.
-              </ResponsiveDialogDescription>
+            <ResponsiveDialogHeader className="sm:text-center">
+              <ResponsiveDialogTitle>Sign up Revola</ResponsiveDialogTitle>
+              <ResponsiveDialogDescription>We just need a few details to get you started.</ResponsiveDialogDescription>
             </ResponsiveDialogHeader>
           </div>
 

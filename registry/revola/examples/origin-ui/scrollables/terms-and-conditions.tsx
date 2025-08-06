@@ -42,11 +42,12 @@ export default function TermsAndConditionsDialog() {
           Terms & Conditions
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent className="flex flex-col sm:max-h-[min(640px,80dvh)] sm:gap-0">
+      <ResponsiveDialogContent className="flex max-h-[min(640px,80dvh)] flex-col sm:gap-0">
         <ResponsiveDialogHeader className="contents space-y-0 text-left">
           <ResponsiveDialogTitle className="border-b px-6 pb-4 text-base sm:py-4">
             Terms & Conditions
           </ResponsiveDialogTitle>
+
           <div ref={contentRef} onScroll={handleScroll} className="overflow-y-auto">
             <ResponsiveDialogDescription asChild>
               <div className="px-6 py-4">
@@ -144,13 +145,14 @@ export default function TermsAndConditionsDialog() {
             </ResponsiveDialogDescription>
           </div>
         </ResponsiveDialogHeader>
-        <ResponsiveDialogFooter className="border-t sm:items-center sm:px-6 sm:py-4">
+
+        <ResponsiveDialogFooter className="border-t px-6 py-4 sm:items-center">
           {!hasReadToBottom && (
             <span className="grow text-xs text-muted-foreground max-sm:text-center">
               Read all terms before accepting.
             </span>
           )}
-          <div className="flex flex-col gap-4 sm:flex-row-reverse">
+          <div className="flex flex-col gap-2 sm:flex-row-reverse sm:gap-4">
             <ResponsiveDialogClose asChild>
               <Button type="button" disabled={!hasReadToBottom}>
                 I agree

@@ -62,11 +62,9 @@ export default function InviteMembersDialog() {
             <div className="flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
               <UserRoundPlusIcon className="opacity-80" size={16} />
             </div>
-            <ResponsiveDialogHeader className="p-0">
-              <ResponsiveDialogTitle className="text-left">Invite team members</ResponsiveDialogTitle>
-              <ResponsiveDialogDescription className="text-left">
-                Invite teammates to earn free components.
-              </ResponsiveDialogDescription>
+            <ResponsiveDialogHeader className="text-left">
+              <ResponsiveDialogTitle>Invite team members</ResponsiveDialogTitle>
+              <ResponsiveDialogDescription>Invite teammates to earn free components.</ResponsiveDialogDescription>
             </ResponsiveDialogHeader>
           </div>
           <form className="space-y-5">

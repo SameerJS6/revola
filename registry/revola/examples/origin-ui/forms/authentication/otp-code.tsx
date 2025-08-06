@@ -65,11 +65,9 @@ export default function OtpCodeDialog() {
                 <circle cx="16" cy="16" r="12" fill="none" strokeWidth="8" />
               </svg>
             </div>
-            <ResponsiveDialogHeader className="py-0">
-              <ResponsiveDialogTitle className="sm:text-center">
-                {hasGuessed ? "Code verified!" : "Enter confirmation code"}
-              </ResponsiveDialogTitle>
-              <ResponsiveDialogDescription className="sm:text-center">
+            <ResponsiveDialogHeader className="sm:text-center">
+              <ResponsiveDialogTitle>{hasGuessed ? "Code verified!" : "Enter confirmation code"}</ResponsiveDialogTitle>
+              <ResponsiveDialogDescription className="text-balance">
                 {hasGuessed
                   ? "Your code has been successfully verified."
                   : `Check your email and enter the code - Try ${CORRECT_CODE}`}

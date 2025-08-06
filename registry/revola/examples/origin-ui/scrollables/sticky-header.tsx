@@ -18,7 +18,7 @@ export default function StickyHeaderDialog() {
           Sticky Header
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent className="flex flex-col gap-0 overflow-hidden sm:max-h-[min(640px,80dvh)]">
+      <ResponsiveDialogContent className="flex max-h-[min(640px,80dvh)] flex-col gap-0 overflow-hidden">
         <ResponsiveDialogHeader className="contents space-y-0 text-left">
           <ResponsiveDialogTitle className="border-b px-6 pb-4 text-base md:py-4">
             Frequently Asked Questions (FAQ)
@@ -127,7 +127,7 @@ export default function StickyHeaderDialog() {
                 </div>
               </div>
             </ResponsiveDialogDescription>
-            <ResponsiveDialogFooter className="md:justify-start md:px-6 md:pb-6">
+            <ResponsiveDialogFooter className="px-6 pb-6 sm:justify-start">
               <ResponsiveDialogClose asChild>
                 <Button type="button">Okay</Button>
               </ResponsiveDialogClose>
