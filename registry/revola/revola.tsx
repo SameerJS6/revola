@@ -186,7 +186,7 @@ const ResponsiveDialogContentVariants = cva("fixed z-[9999] bg-background", {
       device: "mobile",
       direction: "bottom",
       className:
-        "inset-x-0 bottom-0 mt-24 h-fit max-h-[65%] flex-col rounded-t-[10px] border border-b-0 border-primary/10 pt-4",
+        "inset-x-0 bottom-0 mt-24 h-fit max-h-[65%] flex-col rounded-t-[10px] border border-b-0 border-primary/10",
     },
     {
       device: "mobile",
@@ -210,8 +210,15 @@ const ResponsiveDialogContentVariants = cva("fixed z-[9999] bg-background", {
 
 const ResponsiveDialogContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & { showCloseButton?: boolean }
->(({ className, children, showCloseButton = true, ...props }, ref) => {
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
+    showCloseButton?: boolean;
+    /**
+     * styles for default close button.
+     */
+    closeButtonClassName?: string;
+    dragHandleClassName?: string;
+  }
+>(({ className, children, showCloseButton = true, closeButtonClassName, dragHandleClassName, ...props }, ref) => {
   const { direction, modal, dismissible, alert, onlyDrawer, onlyDialog } = useResponsiveDialog();
 
   const isDesktop = useMediaQuery(MOBILE_BREAKPOINT);
@@ -247,11 +254,21 @@ const ResponsiveDialogContent = React.forwardRef<
         )}
       >
         {!shouldUseDialog && direction === "bottom" && (
-          <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 pb-1.5 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted" />
+          <div
+            className={cn(
+              "mx-auto my-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 pb-1.5 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted",
+              dragHandleClassName
+            )}
+          />
         )}
         {children}
         {shouldShowCloseButton && (
-          <ResponsiveDialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-white">
+          <ResponsiveDialogClose
+            className={cn(
+              "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background backdrop-blur-sm transition-opacity hover:opacity-100 focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-white",
+              closeButtonClassName
+            )}
+          >
             <X className="size-4" />
             <span className="sr-only">close</span>
           </ResponsiveDialogClose>
@@ -263,20 +280,12 @@ const ResponsiveDialogContent = React.forwardRef<
 ResponsiveDialogContent.displayName = "ResponsiveDialogContent";
 
 const ResponsiveDialogHeader = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return <div className={cn("flex flex-col gap-1.5 p-4 text-center sm:p-0 sm:text-left", className)} {...props} />;
+  return <div className={cn("flex flex-col gap-1.5 text-center sm:text-left", className)} {...props} />;
 };
 ResponsiveDialogHeader.displayName = "ResponsiveDialogHeader";
 
 const ResponsiveDialogFooter = ({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return (
-    <footer
-      className={cn(
-        "flex flex-col-reverse gap-4 p-4 max-sm:mt-auto sm:flex-row sm:justify-end sm:gap-2 sm:p-0",
-        className
-      )}
-      {...props}
-    />
-  );
+  return <footer className={cn("flex flex-col-reverse gap-2 sm:flex-row sm:justify-end", className)} {...props} />;
 };
 ResponsiveDialogFooter.displayName = "ResponsiveDialogFooter";
 
