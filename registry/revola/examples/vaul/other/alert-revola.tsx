@@ -20,7 +20,7 @@ export default function AlertRevolaDemo() {
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent>
         <div className="p-6">
-          <ResponsiveDialogHeader className="gap-2 p-0">
+          <ResponsiveDialogHeader className="gap-2">
             <ResponsiveDialogTitle>Are you absolutely sure?</ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
               This action cannot be undone. This will permanently delete your account and remove your data from our
@@ -28,7 +28,7 @@ export default function AlertRevolaDemo() {
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
 
-          <ResponsiveDialogFooter className="mt-4 gap-2.5 p-0 pt-4">
+          <ResponsiveDialogFooter className="mt-4 gap-2.5 sm:gap-2">
             <ResponsiveDialogClose asChild>
               <Button variant="secondary">Cancel</Button>
             </ResponsiveDialogClose>

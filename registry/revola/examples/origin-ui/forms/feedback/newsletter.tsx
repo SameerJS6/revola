@@ -36,11 +36,9 @@ export default function NewsletterDialog() {
                 <circle cx="16" cy="16" r="12" fill="none" strokeWidth="8" />
               </svg>
             </div>
-            <ResponsiveDialogHeader className="py-0">
-              <ResponsiveDialogTitle className="sm:text-center">Never miss an update</ResponsiveDialogTitle>
-              <ResponsiveDialogDescription className="sm:text-center">
-                Subscribe to receive news and special offers.
-              </ResponsiveDialogDescription>
+            <ResponsiveDialogHeader className="sm:text-center">
+              <ResponsiveDialogTitle>Never miss an update</ResponsiveDialogTitle>
+              <ResponsiveDialogDescription>Subscribe to receive news and special offers.</ResponsiveDialogDescription>
             </ResponsiveDialogHeader>
           </div>
           <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>

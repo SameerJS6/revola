@@ -18,10 +18,10 @@ export default function VaulScrollableDemo() {
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent
         showCloseButton={false}
-        className="flex flex-col overflow-hidden sm:max-h-[min(640px,80dvh)]"
+        className="flex max-h-[90%] flex-col overflow-hidden sm:max-h-[min(640px,80dvh)]"
       >
-        <div className="overflow-y-auto p-6 max-md:mx-auto max-md:max-w-md">
-          <ResponsiveDialogHeader className="p-0 text-left sm:px-0">
+        <div className="overflow-y-auto p-6">
+          <ResponsiveDialogHeader className="text-left">
             <ResponsiveDialogTitle>Scrollable Content in Revola</ResponsiveDialogTitle>
             <ResponsiveDialogDescription>
               Demonstrating how Revola handles long content with smooth scrolling behavior on both mobile and desktop.

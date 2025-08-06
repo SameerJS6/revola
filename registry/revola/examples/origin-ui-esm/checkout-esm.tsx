@@ -47,11 +47,9 @@ export default function CheckoutDialog() {
             <div className="flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
               <StoreIcon className="opacity-80" size={16} />
             </div>
-            <ResponsiveDialogHeader className="p-0">
-              <ResponsiveDialogTitle className="text-left">Confirm and pay</ResponsiveDialogTitle>
-              <ResponsiveDialogDescription className="text-left">
-                Pay securely and cancel any time.
-              </ResponsiveDialogDescription>
+            <ResponsiveDialogHeader className="text-left">
+              <ResponsiveDialogTitle>Confirm and pay</ResponsiveDialogTitle>
+              <ResponsiveDialogDescription>Pay securely and cancel any time.</ResponsiveDialogDescription>
             </ResponsiveDialogHeader>
           </div>
 

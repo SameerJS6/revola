@@ -20,11 +20,11 @@ export default function StickyFooterDialog() {
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent
         showCloseButton={false}
-        className="flex flex-col overflow-hidden sm:max-h-[min(640px,80dvh)] md:gap-0"
+        className="flex flex-col gap-0 overflow-hidden sm:max-h-[min(640px,80dvh)]"
       >
         <div className="overflow-y-auto">
           <ResponsiveDialogHeader className="contents space-y-0 text-left">
-            <ResponsiveDialogTitle className="px-6 text-base md:pt-6">
+            <ResponsiveDialogTitle className="px-6 text-base sm:pt-6">
               Frequently Asked Questions (FAQ)
             </ResponsiveDialogTitle>
             <ResponsiveDialogDescription asChild>
@@ -133,14 +133,14 @@ export default function StickyFooterDialog() {
           </ResponsiveDialogHeader>
         </div>
 
-        <ResponsiveDialogFooter className="border-t sm:flex-row-reverse sm:justify-start sm:px-6 sm:py-4">
-          <ResponsiveDialogClose asChild>
-            <Button type="button">Okay</Button>
-          </ResponsiveDialogClose>
+        <ResponsiveDialogFooter className="border-t px-6 py-4">
           <ResponsiveDialogClose asChild>
             <Button variant="outline" type="button">
               Cancel
             </Button>
+          </ResponsiveDialogClose>
+          <ResponsiveDialogClose asChild>
+            <Button type="button">Okay</Button>
           </ResponsiveDialogClose>
         </ResponsiveDialogFooter>
       </ResponsiveDialogContent>

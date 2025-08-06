@@ -20,7 +20,7 @@ export default function NativeScrollDialog() {
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent
         showCloseButton={false}
-        className="flex flex-col overflow-hidden sm:max-h-[min(640px,80dvh)] md:p-0"
+        className="flex flex-col overflow-hidden sm:max-h-[min(640px,80dvh)]"
       >
         <div className="overflow-y-auto">
           <ResponsiveDialogHeader className="contents space-y-0 text-left">
@@ -130,7 +130,7 @@ export default function NativeScrollDialog() {
             </ResponsiveDialogDescription>
           </ResponsiveDialogHeader>
 
-          <ResponsiveDialogFooter className="md:justify-start md:px-6 md:pb-6">
+          <ResponsiveDialogFooter className="px-6 pb-6 sm:justify-start">
             <ResponsiveDialogClose asChild>
               <Button type="button" variant="outline">
                 Cancel

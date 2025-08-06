@@ -66,7 +66,7 @@ export default function EditProfileDialog() {
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent className="flex flex-col gap-0">
-        <ResponsiveDialogHeader className="space-y-0 !p-0 text-left">
+        <ResponsiveDialogHeader className="space-y-0 text-left">
           <ResponsiveDialogTitle className="border-b px-6 py-4 text-base max-sm:pt-2">
             Edit profile
           </ResponsiveDialogTitle>
@@ -78,7 +78,7 @@ export default function EditProfileDialog() {
         <div className="overflow-y-auto">
           <ProfileBg />
           <Avatar />
-          <div className="px-6 pb-6 pt-4">
+          <div className="p-6 pt-4">
             <form className="space-y-4">
               <div className="flex flex-col gap-4 sm:flex-row">
                 <div className="flex-1 space-y-2">
@@ -158,7 +158,7 @@ export default function EditProfileDialog() {
             </form>
           </div>
         </div>
-        <ResponsiveDialogFooter className="flex-col-reverse border-t sm:px-6 sm:py-4">
+        <ResponsiveDialogFooter className="border-t px-6 py-4">
           <ResponsiveDialogClose asChild>
             <Button type="button" variant="outline">
               Cancel

@@ -30,11 +30,9 @@ export default function ChangePlanDialog() {
             <div className="flex size-11 shrink-0 items-center justify-center rounded-full border" aria-hidden="true">
               <RefreshCcwIcon className="opacity-80" size={16} />
             </div>
-            <ResponsiveDialogHeader className="p-0">
-              <ResponsiveDialogTitle className="text-left">Change your plan</ResponsiveDialogTitle>
-              <ResponsiveDialogDescription className="text-left">
-                Pick one of the following plans.
-              </ResponsiveDialogDescription>
+            <ResponsiveDialogHeader className="text-left">
+              <ResponsiveDialogTitle>Change your plan</ResponsiveDialogTitle>
+              <ResponsiveDialogDescription>Pick one of the following plans.</ResponsiveDialogDescription>
             </ResponsiveDialogHeader>
           </div>
           <form className="space-y-5">

@@ -19,9 +19,9 @@ export default function VaulInputDefaultDemo() {
           Input Default Revola
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent className="flex max-h-[97vh] flex-col sm:p-0">
-        <form className="overflow-auto rounded-t-[10px] px-6 sm:p-6">
-          <ResponsiveDialogHeader className="mb-2 px-0 text-left sm:mb-6">
+      <ResponsiveDialogContent className="flex max-h-[97dvh] flex-col">
+        <form className="overflow-auto rounded-t-[10px] px-6 py-4 sm:py-6">
+          <ResponsiveDialogHeader className="mb-6 text-left">
             <ResponsiveDialogTitle className="font-medium">New Project</ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="leading-6">
               Get started by filling in the information below to create your new project.
@@ -47,7 +47,7 @@ export default function VaulInputDefaultDemo() {
               />
             </div>
           </div>
-          <ResponsiveDialogFooter className="px-0 pt-6 sm:pt-4">
+          <ResponsiveDialogFooter className="pt-6 sm:pt-4">
             <Button className="font-medium">Submit</Button>
           </ResponsiveDialogFooter>
         </form>

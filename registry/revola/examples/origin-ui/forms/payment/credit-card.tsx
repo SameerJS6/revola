@@ -39,11 +39,9 @@ export default function CreditCardDialog() {
                 <WalletIcon className="opacity-80" size={16} />
               </div>
             </div>
-            <ResponsiveDialogHeader className="p-0">
-              <ResponsiveDialogTitle className="text-left">Update your card</ResponsiveDialogTitle>
-              <ResponsiveDialogDescription className="text-left">
-                Your new card will replace your current card.
-              </ResponsiveDialogDescription>
+            <ResponsiveDialogHeader className="text-left">
+              <ResponsiveDialogTitle>Update your card</ResponsiveDialogTitle>
+              <ResponsiveDialogDescription>Your new card will replace your current card.</ResponsiveDialogDescription>
             </ResponsiveDialogHeader>
           </div>
 
@@ -108,7 +106,7 @@ export default function CreditCardDialog() {
                 Set as default payment method
               </Label>
             </div>
-            <ResponsiveDialogFooter className="p-0">
+            <ResponsiveDialogFooter>
               <Button type="button" className="w-full">
                 Update card
               </Button>

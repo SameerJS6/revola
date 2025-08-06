@@ -127,7 +127,7 @@ export default function StickyHeaderDialog() {
                 </div>
               </div>
             </ResponsiveDialogDescription>
-            <ResponsiveDialogFooter className="md:justify-start md:px-6 md:pb-6">
+            <ResponsiveDialogFooter className="px-6 pb-6 sm:justify-start">
               <ResponsiveDialogClose asChild>
                 <Button type="button">Okay</Button>
               </ResponsiveDialogClose>

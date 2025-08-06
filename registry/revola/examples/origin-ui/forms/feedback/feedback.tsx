@@ -20,10 +20,10 @@ export default function FeedbackDialog() {
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent className="sm:max-w-sm">
-        <div className="space-y-4 overflow-y-auto p-6 max-sm:pt-0">
-          <ResponsiveDialogHeader className="pb-0 pt-2">
+        <div className="space-y-4 overflow-y-auto p-6 pt-2 sm:p-6">
+          <ResponsiveDialogHeader>
             <ResponsiveDialogTitle>Send us feedback</ResponsiveDialogTitle>
-            <ResponsiveDialogDescription>
+            <ResponsiveDialogDescription className="text-balance">
               Watch{" "}
               <a className="text-foreground underline-offset-2 hover:underline" href="#">
                 tutorials

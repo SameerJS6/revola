@@ -37,9 +37,9 @@ export default function SignInDialog() {
                 <circle cx="16" cy="16" r="12" fill="none" strokeWidth="8" />
               </svg>
             </div>
-            <ResponsiveDialogHeader className="py-0">
-              <ResponsiveDialogTitle className="sm:text-center">Welcome back</ResponsiveDialogTitle>
-              <ResponsiveDialogDescription className="sm:text-center">
+            <ResponsiveDialogHeader className="sm:text-center">
+              <ResponsiveDialogTitle>Welcome back</ResponsiveDialogTitle>
+              <ResponsiveDialogDescription>
                 Enter your credentials to login to your account.
               </ResponsiveDialogDescription>
             </ResponsiveDialogHeader>

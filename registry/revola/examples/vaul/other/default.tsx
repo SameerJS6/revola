@@ -18,7 +18,7 @@ export default function VaulOtherDemo() {
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent>
         <div className="flex flex-col p-6">
-          <ResponsiveDialogHeader className="space-y-4 p-0 text-left">
+          <ResponsiveDialogHeader className="space-y-4 text-left">
             <ResponsiveDialogTitle className="font-medium">Non-Modal Revola</ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="space-y-2">
               <span className="block">

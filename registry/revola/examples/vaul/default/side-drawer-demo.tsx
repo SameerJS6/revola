@@ -17,7 +17,7 @@ export default function VaulSideDrawerDemo() {
         </Button>
       </ResponsiveDialogTrigger>
       <ResponsiveDialogContent showCloseButton={false}>
-        <div className="flex size-full grow flex-col rounded-2xl bg-fd-background p-6">
+        <div className="flex size-full grow flex-col rounded-2xl bg-background p-6">
           <ResponsiveDialogHeader className="space-y-2 text-left">
             <ResponsiveDialogTitle>Directional Drawer Control</ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="text-base">

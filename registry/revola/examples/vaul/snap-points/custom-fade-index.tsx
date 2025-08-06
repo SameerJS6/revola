@@ -29,7 +29,7 @@ export default function VaulCustomFadeDemo() {
           Custom Fade Index Revola
         </Button>
       </ResponsiveDialogTrigger>
-      <ResponsiveDialogContent className="flex flex-col max-sm:max-h-[97%] sm:p-0">
+      <ResponsiveDialogContent className="flex max-h-[97%] flex-col overflow-hidden sm:max-h-[min(640px,80dvh)]">
         <div
           className={cn("mx-auto flex w-full flex-col p-6 pt-5 sm:overflow-y-auto", {
             "overflow-y-auto": snap === 1,
@@ -53,7 +53,7 @@ export default function VaulCustomFadeDemo() {
               </svg>
             ))}
           </div>
-          <ResponsiveDialogHeader className="px-0 text-left">
+          <ResponsiveDialogHeader className="py-4 text-left sm:py-0">
             <ResponsiveDialogTitle className="mt-2 text-2xl font-medium">The Hidden Details</ResponsiveDialogTitle>
             <p className="mb-6 mt-1 text-sm">40 videos, 20+ exercises</p>
           </ResponsiveDialogHeader>
