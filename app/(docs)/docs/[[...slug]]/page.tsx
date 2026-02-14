@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import { ArrowLeft, ArrowRight, SquareArrowOutUpRight } from "lucide-react";
 
-import { findNeighbour } from "fumadocs-core/server";
+import { findNeighbour } from "fumadocs-core/page-tree";
 import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
 import { CodeBlock, Pre } from "fumadocs-ui/components/codeblock";
 import { ImageZoom } from "fumadocs-ui/components/image-zoom";
@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import ComponentPreview from "@/components/component-preview";
 import ComponentPreviewCustomHighlight from "@/components/component-preview-custom-highlight";
 import MarkdownAccordion from "@/components/markdown-accordion";
-import { source } from "@/lib/source";
+import { type Page, source } from "@/lib/source";
 import { absoluteUrl, cn } from "@/lib/utils";
 
 export const revalidate = false;
@@ -31,7 +31,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata(props: { params: Promise<{ slug?: string[] }> }): Promise<Metadata> {
   const params = await props.params;
-  const page = source.getPage(params.slug);
+  const page = source.getPage(params.slug) as Page | undefined;
 
   if (!page) notFound();
 
@@ -45,7 +45,7 @@ export async function generateMetadata(props: { params: Promise<{ slug?: string[
       url: absoluteUrl(page.url),
       images: [
         {
-          url: `/og?title=${encodeURIComponent(page.data.title)}&description=${encodeURIComponent(page.data.ogDescription)}`,
+          url: `/og?title=${encodeURIComponent(page.data.title ?? "")}&description=${encodeURIComponent(page.data.ogDescription ?? "")}`,
         },
       ],
     },
@@ -55,7 +55,7 @@ export async function generateMetadata(props: { params: Promise<{ slug?: string[
       card: "summary_large_image",
       images: [
         {
-          url: `/og?title=${encodeURIComponent(page.data.title)}&description=${encodeURIComponent(page.data.ogDescription)}`,
+          url: `/og?title=${encodeURIComponent(page.data.title ?? "")}&description=${encodeURIComponent(page.data.ogDescription ?? "")}`,
         },
       ],
       creator: "@sameerjs6",
@@ -65,7 +65,7 @@ export async function generateMetadata(props: { params: Promise<{ slug?: string[
 
 export default async function DocIndividualPage(props: { params: Promise<{ slug?: string[] }> }) {
   const params = await props.params;
-  const page = source.getPage(params.slug);
+  const page = source.getPage(params.slug) as Page | undefined;
 
   if (!page) notFound();
 
@@ -87,7 +87,6 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
       }
       footer={{ enabled: false }}
       full={page.data.full}
-      article={{ className: "mx-auto max-w-[800px] mt-4" }}
     >
       <div className="mb-8 space-y-3 lg:space-y-4">
         <DocsTitle className="font-semibold">{page.data.title}</DocsTitle>
@@ -143,19 +142,23 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
             Step,
             Tab,
             Tabs,
-            a: (props) => <Link target={props.href.startsWith("https") ? "_blank" : "_self"} {...props} />,
-            // AutoTypeTable,
-            img: (props) => <ImageZoom className="rounded-3xl" {...props} />,
-            code: ({ ref, ...props }) => (
+            a: (props: React.ComponentProps<"a">) => (
+              <Link
+                target={props.href?.startsWith("https") ? "_blank" : "_self"}
+                {...(props as React.ComponentProps<typeof Link>)}
+              />
+            ),
+            img: (props: React.ComponentProps<typeof ImageZoom>) => <ImageZoom className="rounded-3xl" {...props} />,
+            code: ({ ref, ...props }: React.ComponentProps<"code">) => (
               <code
                 ref={ref}
-                className="border border-primary/15 bg-secondary/50 py-[1.5px] font-geist-mono text-secondary-foreground"
+                className="border border-primary/15 bg-secondary/50 px-1 py-[1.5px] font-geist-mono text-secondary-foreground"
                 {...props}
               />
             ),
-            pre: ({ ref, children, ...props }) => (
+            pre: ({ ref, children, ...props }: React.ComponentProps<"pre">) => (
               <CodeBlock ref={ref} {...props}>
-                <Pre className="*:border-none *:bg-transparent *:py-[3px] has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0">
+                <Pre className="px-4 *:border-none *:bg-transparent *:py-[3px] has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0">
                   {children}
                 </Pre>
               </CodeBlock>

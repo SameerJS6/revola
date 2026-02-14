@@ -4,7 +4,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist_Mono, Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 
-import { RootProvider } from "fumadocs-ui/provider";
+import { RootProvider } from "fumadocs-ui/provider/next";
 
 import { PostHogProvider } from "@/components/analytics/posthog-provider";
 import { ThemeProvider } from "@/components/theme-provider";
