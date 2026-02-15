@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button";
 import ComponentPreview from "@/components/component-preview";
 import ComponentPreviewCustomHighlight from "@/components/component-preview-custom-highlight";
 import MarkdownAccordion from "@/components/markdown-accordion";
-import { type Page, source } from "@/lib/source";
+import { source, type Page } from "@/lib/source";
 import { absoluteUrl, cn } from "@/lib/utils";
 
 export const revalidate = false;
@@ -152,13 +152,13 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
             code: ({ ref, ...props }: React.ComponentProps<"code">) => (
               <code
                 ref={ref}
-                className="border border-primary/15 bg-secondary/50 px-1 py-[1.5px] font-geist-mono text-secondary-foreground"
+                className="border border-primary/15 bg-secondary/50 px-1 py-[1.5px] font-jetbrains-mono text-secondary-foreground"
                 {...props}
               />
             ),
             pre: ({ ref, children, ...props }: React.ComponentProps<"pre">) => (
-              <CodeBlock ref={ref} {...props}>
-                <Pre className="px-4 *:border-none *:bg-transparent *:py-[3px] has-[[data-slot=tabs]]:p-0 has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0">
+              <CodeBlock ref={ref} keepBackground {...props} className="dark:bg-fd-overlay!">
+                <Pre className="*:border-none *:bg-transparent *:py-0.75 has-data-highlighted-line:px-0 has-data-line-numbers:px-0 has-data-[slot=tabs]:p-0">
                   {children}
                 </Pre>
               </CodeBlock>
@@ -171,7 +171,7 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
         />
       </DocsBody>
 
-      <div className="mx-auto flex h-16 w-full max-w-[800px] items-center gap-2 px-4">
+      <div className="mx-auto flex h-16 w-full max-w-200 items-center gap-2 px-4">
         {neighbours.previous && (
           <Button variant="secondary" size="sm" asChild className="shadow-none">
             <Link href={neighbours.previous.url}>

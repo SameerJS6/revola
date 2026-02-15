@@ -32,14 +32,14 @@ export default function VaulControlledDemo() {
             <ResponsiveDialogDescription className="space-y-2 max-md:text-base">
               <span className="block">
                 Control Revola's open state programmatically using the{" "}
-                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-geist-mono text-xs text-secondary-foreground">
+                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-jetbrains-mono text-xs text-secondary-foreground">
                   open
                 </kbd>{" "}
                 prop, just like any other dialog component.
               </span>
               <span className="block">
                 The{" "}
-                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-geist-mono text-xs text-secondary-foreground">
+                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-jetbrains-mono text-xs text-secondary-foreground">
                   onOpenChange
                 </kbd>{" "}
                 prop handles user interactions like clicking outside, pressing escape, or swiping down on mobile.

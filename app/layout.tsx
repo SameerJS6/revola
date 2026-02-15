@@ -1,7 +1,8 @@
 import "@/app/globals.css";
 
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 
 import { RootProvider } from "fumadocs-ui/provider/next";
@@ -15,10 +16,10 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = localFont({
+  src: "../font/JetBrainsMono-Regular.woff2",
+  variable: "--font-jetbrains-mono",
   display: "swap",
-  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
@@ -88,7 +89,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}>
         <PostHogProvider>
           <RootProvider search={{ enabled: false }}>
             <ThemeProvider enableSystem attribute="class" defaultTheme="dark" disableTransitionOnChange>

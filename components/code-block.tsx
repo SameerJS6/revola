@@ -42,7 +42,7 @@ export default function CodeBlock({ code, lang, initial, preHighlighted, classNa
         if (isMounted) setContent(result);
       });
     } else {
-      setContent(<pre className="rounded-md bg-fd-secondary/50 p-4">No code available</pre>);
+      setContent(<pre className="rounded-md bg-black p-4">No code available</pre>);
     }
 
     return () => {
@@ -53,19 +53,19 @@ export default function CodeBlock({ code, lang, initial, preHighlighted, classNa
   return content ? (
     <div
       className={cn(
-        "group relative overflow-hidden !whitespace-pre rounded-lg border bg-fd-secondary/50 [&_code]:font-geist-mono [&_code]:text-[13px] [&_pre]:max-h-[600px] [&_pre]:whitespace-pre [&_pre]:rounded-md [&_pre]:!bg-transparent [&_pre]:p-4 [&_pre]:!leading-tight",
+        "group relative overflow-hidden rounded-lg border bg-(--shiki-light-bg) whitespace-pre! dark:bg-fd-overlay [&_code]:font-jetbrains-mono [&_pre]:max-h-150 [&_pre]:rounded-md [&_pre]:bg-transparent! [&_pre]:p-4 [&_pre]:whitespace-pre",
         className
       )}
     >
-      <ScrollArea ref={areaRef} dir="ltr" className="not-prose relative size-full rounded-lg border bg-fd-secondary/50">
+      <ScrollArea ref={areaRef} dir="ltr" className="not-prose relative size-full rounded-lg border">
         {content}
         <ScrollBar orientation="horizontal" />
-        <CopyButton className="absolute right-2 top-2 z-[2] backdrop-blur-md" onCopy={onCopy} />
+        <CopyButton className="absolute top-2 right-2 z-2 backdrop-blur-md" onCopy={onCopy} />
       </ScrollArea>
     </div>
   ) : (
-    <div className="relative my-6 min-h-[500px] overflow-hidden rounded-lg border bg-fd-secondary/50 text-sm">
-      <pre className="rounded-md p-4 text-center text-sm">Loading...</pre>
+    <div className="relative my-6 min-h-125 overflow-hidden rounded-lg border bg-black text-sm">
+      <pre className="rounded-md text-center text-sm">Loading...</pre>
     </div>
   );
 }
