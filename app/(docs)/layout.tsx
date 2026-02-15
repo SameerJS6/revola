@@ -11,7 +11,6 @@ export default function DocLayout({ children }: PropsWithChildren) {
     <DocsLayout
       sidebar={{
         collapsible: true,
-        className: "[--fd-sidebar-width:250px]",
       }}
       nav={{
         title: "Revola",
