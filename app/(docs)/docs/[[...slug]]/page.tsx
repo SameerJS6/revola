@@ -144,8 +144,8 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
             Tabs,
             a: (props: React.ComponentProps<"a">) => (
               <Link
-                target={props.href?.startsWith("https") ? "_blank" : "_self"}
                 {...(props as React.ComponentProps<typeof Link>)}
+                target={props.href?.startsWith("https") ? "_blank" : "_self"}
               />
             ),
             img: (props: React.ComponentProps<typeof ImageZoom>) => <ImageZoom className="rounded-3xl" {...props} />,

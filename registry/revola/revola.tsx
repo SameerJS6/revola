@@ -168,7 +168,6 @@ const ResponsiveDialogContentVariants = cva("fixed z-[9999] bg-background", {
     device: {
       desktop:
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 ring-foreground/10 grid max-w-[calc(100%-2rem)] max-w-[calc(100%-2rem)] gap-4 rounded-xl ring-1 duration-200 sm:max-w-sm fixed top-1/2 left-1/2 w-full sm:max-w-lg -translate-x-1/2 -translate-y-1/2 outline-none",
-      // "left-1/2 top-1/2 grid max-h-[calc(100%-4rem)] w-full max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-4 rounded-lg border shadow-lg duration-200 data-open:animate-in data-closed:animate-out data-closed:fade-out-0 data-open:fade-in-0 data-closed:zoom-out-95 data-open:zoom-in-95 sm:max-w-lg",
       mobile: "flex ",
     },
     direction: {
@@ -256,7 +255,7 @@ const ResponsiveDialogContent = React.forwardRef<
         {!shouldUseDialog && direction === "bottom" && (
           <div
             className={cn(
-              "mx-auto my-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 pb-1.5 data-[vaul-handle]:h-1.5 data-[vaul-handle]:w-14 data-[vaul-handle]:pb-1.5 dark:bg-muted",
+              "mx-auto my-4 h-1.5 w-14 rounded-full bg-muted-foreground/25 pb-1.5 data-vaul-handle:h-1.5 data-vaul-handle:w-14 data-vaul-handle:pb-1.5 dark:bg-muted",
               dragHandleClassName
             )}
           />
