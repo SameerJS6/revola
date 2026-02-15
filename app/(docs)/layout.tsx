@@ -1,5 +1,3 @@
-"use client";
-
 import type { PropsWithChildren } from "react";
 
 import { DocsLayout } from "fumadocs-ui/layouts/docs";

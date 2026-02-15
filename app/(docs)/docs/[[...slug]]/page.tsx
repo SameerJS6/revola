@@ -89,7 +89,7 @@ export default async function DocIndividualPage(props: { params: Promise<{ slug?
       full={page.data.full}
     >
       <div className="mb-8 space-y-3 lg:space-y-4">
-        <DocsTitle className="font-semibold">{page.data.title}</DocsTitle>
+        <DocsTitle className="font-normal">{page.data.title}</DocsTitle>
         <div className={cn(referenceLinks && "space-y-2.5")}>
           <div className="space-y-1">
             <DocsDescription className={cn("mb-0 text-base")}>{page.data.description}</DocsDescription>
