@@ -1,5 +1,3 @@
-"use client";
-
 import type { PropsWithChildren } from "react";
 
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
@@ -11,7 +9,6 @@ export default function DocLayout({ children }: PropsWithChildren) {
     <DocsLayout
       sidebar={{
         collapsible: true,
-        className: "[--fd-sidebar-width:250px]",
       }}
       nav={{
         title: "Revola",

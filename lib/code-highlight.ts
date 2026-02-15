@@ -62,4 +62,4 @@ const convertRegistryPaths = (content: string): string => {
     .replace(/@\/registry\/default\/lib/g, "@/lib");
 };
 
-export { highlight, getComponentCode, convertRegistryPaths };
+export { highlight, getComponentCode };

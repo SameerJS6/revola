@@ -42,7 +42,7 @@ type SimplifiedGroup = {
     type: "page";
     name: string;
     url: string;
-    icon?: React.ReactElement<unknown, string | React.JSXElementConstructor<any>>;
+    icon?: React.ReactNode;
   }>;
 };
 

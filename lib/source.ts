@@ -1,9 +1,10 @@
+import type { ReactNode } from "react";
 import { createElement } from "react";
-import { docs } from "@/.source";
+import { docs } from "@/.source/server";
 
 import { icons } from "lucide-react";
 
-import { loader } from "fumadocs-core/source";
+import { type InferPageType, loader } from "fumadocs-core/source";
 
 type Tree = typeof source;
 
@@ -17,4 +18,19 @@ const source = loader({
   source: docs.toFumadocsSource(),
 });
 
-export { source, type Tree };
+type Page = InferPageType<typeof source> & {
+  data: {
+    ogDescription: string;
+    links?: {
+      dialog?: string;
+      drawer?: string;
+      docs?: string;
+    };
+    subdescription?: string;
+    body: (props: { components?: Record<string, unknown> }) => ReactNode;
+    toc: Array<{ title: string; url: string; depth: number }>;
+    full?: boolean;
+  };
+};
+
+export { source, type Tree, type Page };
