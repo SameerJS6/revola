@@ -9,7 +9,7 @@
 
 @theme inline {
   --font-inter: var(--font-inter);
-  --font-geist-mono: var(--font-geist-mono);
+  --font-jetbrains-mono: var(--font-jetbrains-mono);
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
@@ -162,7 +162,7 @@
   }
 
   table tbody tr td div code {
-    @apply !border !border-primary/10 !bg-secondary/25 !py-[1.5px] font-geist-mono !text-secondary-foreground;
+      @apply border! border-primary/10! bg-secondary/25! py-[1.5px]! font-jetbrains-mono text-secondary-foreground!;
   }
 
   img[data-rmiz-modal-img] {
@@ -170,6 +170,10 @@
   }
 }
 
+[data-line] {
+  @apply px-4;
+}
+
 [data-line] span {
-  @apply text-[var(--shiki-light)] dark:text-[var(--shiki-dark)];
+  @apply text-(--shiki-light) dark:text-(--shiki-dark);
 }
