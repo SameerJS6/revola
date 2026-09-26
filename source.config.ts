@@ -1,6 +1,5 @@
 import { z } from "zod";
 
-import { rehypeCode, remarkGfm } from "fumadocs-core/mdx-plugins";
 import { fileGenerator, remarkDocGen, remarkInstall } from "fumadocs-docgen";
 import { defineConfig, defineDocs, frontmatterSchema } from "fumadocs-mdx/config";
 import { rehypePrettyCode } from "rehype-pretty-code";
@@ -34,8 +33,8 @@ export default defineConfig({
         dark: "github-dark",
       },
     },
+    // fumadocs-mdx already prepends rehypeCode (using rehypeCodeOptions) and remarkGfm
     rehypePlugins: [
-      rehypeCode,
       rehypeComponent,
       rehypeSlug,
       [
@@ -81,7 +80,6 @@ export default defineConfig({
     // ],
     remarkPlugins: [
       codeImport,
-      remarkGfm,
       [remarkInstall, { persist: { id: "package-manager" } }],
       [remarkDocGen, { generators: [fileGenerator()] }],
     ],
