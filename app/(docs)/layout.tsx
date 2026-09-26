@@ -7,6 +7,9 @@ import { source } from "@/lib/source";
 export default function DocLayout({ children }: PropsWithChildren) {
   return (
     <DocsLayout
+      containerProps={{
+        className: "[--fd-layout-width:100%]",
+      }}
       sidebar={{
         collapsible: true,
       }}
