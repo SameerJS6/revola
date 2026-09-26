@@ -31,7 +31,7 @@ export default function VaulControlledDemo() {
             </ResponsiveDialogTitle>
             <ResponsiveDialogDescription className="space-y-2 max-md:text-base">
               <span className="block">
-                Control Revola's open state programmatically using the{" "}
+                Control Revola&rsquo;s open state programmatically using the{" "}
                 <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-jetbrains-mono text-xs text-secondary-foreground">
                   open
                 </kbd>{" "}

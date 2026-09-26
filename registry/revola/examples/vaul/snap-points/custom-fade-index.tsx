@@ -84,8 +84,8 @@ export default function VaulCustomFadeDemo() {
           <div className="mt-12">
             <figure>
               <blockquote className="font-serif">
-                "I especially loved the hidden details video. That was so useful, learned a lot by just reading it.
-                Can&rsquo;t wait for more course content!"
+                &ldquo;I especially loved the hidden details video. That was so useful, learned a lot by just reading it.
+                Can&rsquo;t wait for more course content!&rdquo;
               </blockquote>
               <figcaption>
                 <span className="mt-2 block text-sm text-muted-foreground">Yvonne Ray, Frontend Developer</span>

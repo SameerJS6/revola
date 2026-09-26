@@ -90,14 +90,15 @@ function simplifyTreeStructure(tree: TreeNode[]): SimplifiedGroup[] {
         break;
       }
       case "folder": {
-        const folderPages = item.children?.filter((child) => child.type === "page" && "url" in child) || [];
+        const folderPages =
+          item.children?.filter((child): child is Extract<TreeNode, { type: "page" }> => child.type === "page") || [];
 
         groups.push({
           name: item.name?.toString() || "Untitled",
           children: folderPages.map((page) => ({
             type: "page" as const,
             name: page.name?.toString() || "Untitled",
-            url: (page as any).url,
+            url: page.url,
             ...(page.icon && { icon: page.icon }),
           })),
         });
@@ -179,13 +180,13 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
         <Button
           variant="secondary"
           className={cn(
-            "relative h-11 w-full justify-start rounded-lg bg-secondary pl-2.5 font-normal text-secondary-foreground/60 shadow-none dark:bg-card sm:pr-12 md:w-40 lg:w-56 xl:w-64"
+            "relative h-11 w-full justify-start rounded-lg bg-secondary pl-2.5 font-normal text-secondary-foreground/60 shadow-none sm:pr-12 md:w-40 lg:w-56 xl:w-64 dark:bg-card"
           )}
           onClick={() => setOpen(true)}
         >
           <span className="hidden lg:inline-flex">Search documentation...</span>
           <span className="inline-flex lg:hidden">Search...</span>
-          <div className="absolute right-1.5 top-1/2 hidden -translate-y-1/2 gap-1 sm:flex">
+          <div className="absolute top-1/2 right-1.5 hidden -translate-y-1/2 gap-1 sm:flex">
             <CommandMenuKbd>{isMac ? "⌘" : "Ctrl"}</CommandMenuKbd>
             <CommandMenuKbd className="aspect-square">K</CommandMenuKbd>
           </div>
@@ -194,7 +195,7 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
       <ResponsiveDialogContent
         showCloseButton={false}
         dragHandleClassName="mt-0"
-        className="overflow-hidden rounded-t-2xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 dark:bg-neutral-900 dark:ring-neutral-800 sm:rounded-xl"
+        className="overflow-hidden rounded-t-2xl border-none bg-clip-padding p-2 pb-11 shadow-2xl ring-4 ring-neutral-200/80 sm:rounded-xl dark:bg-neutral-900 dark:ring-neutral-800"
       >
         <ResponsiveDialogHeader className="sr-only">
           <ResponsiveDialogTitle>Search documentation...</ResponsiveDialogTitle>
@@ -226,7 +227,7 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
             }}
             placeholder="Search documentation..."
           />
-          <ResponsiveCommandList ref={listRef} className="min-h-80 scroll-pb-1.5 scroll-pt-2 no-scrollbar">
+          <ResponsiveCommandList ref={listRef} className="no-scrollbar min-h-80 scroll-pt-2 scroll-pb-1.5">
             <ResponsiveCommandEmpty className="py-12 text-center text-sm text-muted-foreground">
               No results found.
             </ResponsiveCommandEmpty>
@@ -282,7 +283,7 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
                       style={{ "--color": color.oklch } as React.CSSProperties}
                     />
                     {color.className}
-                    <span className="ml-auto font-mono text-xs font-normal tabular-nums text-muted-foreground">
+                    <span className="ml-auto font-mono text-xs font-normal text-muted-foreground tabular-nums">
                       {color.oklch}
                     </span>
                   </CommandMenuItem>
@@ -292,7 +293,7 @@ export default function CommandMenu({ tree, colors }: CommandMenuProps) {
           </ResponsiveCommandList>
         </ResponsiveCommand>
 
-        <div className="absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium text-muted-foreground dark:border-t-neutral-700 dark:bg-neutral-800 sm:rounded-b-xl">
+        <div className="absolute inset-x-0 bottom-0 z-20 flex h-10 items-center gap-2 border-t border-t-neutral-100 bg-neutral-50 px-4 text-xs font-medium text-muted-foreground sm:rounded-b-xl dark:border-t-neutral-700 dark:bg-neutral-800">
           <div className="flex items-center gap-2">
             <CommandMenuKbd>
               <CornerDownLeftIcon />
@@ -358,7 +359,7 @@ function CommandMenuKbd({ className, ...props }: React.ComponentProps<"kbd">) {
   return (
     <kbd
       className={cn(
-        "not-prose pointer-events-none flex h-5 select-none items-center justify-center gap-1 rounded border bg-background px-1 font-sans text-[0.7rem] font-medium text-muted-foreground [&_svg:not([class*='size-'])]:size-3",
+        "not-prose pointer-events-none flex h-5 items-center justify-center gap-1 rounded border bg-background px-1 font-sans text-[0.7rem] font-medium text-muted-foreground select-none [&_svg:not([class*='size-'])]:size-3",
         className
       )}
       {...props}

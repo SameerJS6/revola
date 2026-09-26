@@ -35,7 +35,7 @@ export default function VaulScrollableDemo() {
             </p>
             <p>
               <strong>Mobile Experience:</strong> The drawer slides up from the bottom, with content that can be
-              scrolled naturally. Users can still interact with the familiar swipe-to-close gesture when they're done
+              scrolled naturally. Users can still interact with the familiar swipe-to-close gesture when they&rsquo;re done
               reading.
             </p>
             <p>
