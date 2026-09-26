@@ -167,7 +167,7 @@ const ResponsiveDialogContentVariants = cva("fixed z-[9999] bg-background", {
   variants: {
     device: {
       desktop:
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 ring-foreground/10 grid max-w-[calc(100%-2rem)] max-w-[calc(100%-2rem)] gap-4 rounded-xl ring-1 duration-200 sm:max-w-sm fixed top-1/2 left-1/2 w-full sm:max-w-lg -translate-x-1/2 -translate-y-1/2 outline-none",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 ring-foreground/10 grid max-w-[calc(100%-2rem)] gap-4 rounded-xl ring-1 duration-200 fixed top-1/2 left-1/2 w-full sm:max-w-lg -translate-x-1/2 -translate-y-1/2 outline-none",
       mobile: "flex ",
     },
     direction: {
