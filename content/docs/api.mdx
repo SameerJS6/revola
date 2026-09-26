@@ -156,19 +156,19 @@ Revola provides additional props to control responsive behavior and force specif
 
 <TypeTable
   type={{
-    "alert?": {
+    alert: {
       description:
         "Creates alert dialog behavior by preventing background interactions while allowing ESC key, close button, and swipe-to-close. Works on both desktop dialogs and mobile drawers.",
       type: "boolean",
       default: "false",
     },
-    "onlyDrawer?": {
+    onlyDrawer: {
       description:
         "Forces drawer mode on all screen sizes. Useful for consistent drawer UI or testing mobile behavior on desktop.",
       type: "boolean",
       default: "false",
     },
-    "onlyDialog?": {
+    onlyDialog: {
       description:
         "Forces dialog mode on all screen sizes. Useful for consistent modal UI or testing desktop behavior on mobile.",
       type: "boolean",
@@ -187,7 +187,7 @@ The button that opens the drawer.
 
 <TypeTable
   type={{
-    "asChild?": {
+    asChild: {
       description:
         "Change the default rendered element for the one passed as a child, merging their props and behavior.",
       type: "boolean",
@@ -202,23 +202,23 @@ Contains the main content to be rendered inside Revola.
 
 <TypeTable
   type={{
-    "asChild?": {
+    asChild: {
       description:
         "Change the default rendered element for the one passed as a child, merging their props and behavior.",
       type: "boolean",
       default: "false",
     },
-    "showCloseButton?": {
+    showCloseButton: {
       description: "Shows/Hides the default close button from both drawer and dialog modes.",
       type: "boolean",
       default: "true",
     },
-    "closeButtonClassName?": {
+    closeButtonClassName: {
       description: "Styles for the built in close button.",
       type: "string",
       default: "",
     },
-    "dragHandleClassName?": {
+    dragHandleClassName: {
       description: "Styles for the built in drag handle.",
       type: "string",
       default: "",
@@ -232,7 +232,7 @@ The button that closes Revola.
 
 <TypeTable
   type={{
-    "asChild?": {
+    asChild: {
       description:
         "Change the default rendered element for the one passed as a child, merging their props and behavior.",
       type: "boolean",
@@ -251,7 +251,7 @@ An optional accessible title to be announced when the drawer is opened.
 
 <TypeTable
   type={{
-    "asChild?": {
+    asChild: {
       description:
         "Change the default rendered element for the one passed as a child, merging their props and behavior.",
       type: "boolean",
@@ -266,7 +266,7 @@ An optional accessible description to be announced when the drawer is opened.
 
 <TypeTable
   type={{
-    "asChild?": {
+    asChild: {
       description:
         "Change the default rendered element for the one passed as a child, merging their props and behavior.",
       type: "boolean",

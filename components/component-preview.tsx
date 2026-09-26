@@ -55,13 +55,13 @@ export default function ComponentPreview({
             <Tabs.List className="relative z-0 w-full justify-start border-b bg-transparent p-0">
               <Tabs.Tab
                 value="preview"
-                className="relative h-9 border-b-2 border-b-transparent bg-transparent px-2 pt-2 pb-3 text-sm font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                className="relative h-9 border-b-2 border-b-transparent bg-transparent px-2 pt-2 pb-3 text-sm font-semibold text-muted-foreground shadow-none transition-none data-selected:text-foreground"
               >
                 Preview
               </Tabs.Tab>
               <Tabs.Tab
                 value="code"
-                className="relative h-9 border-b-2 border-b-transparent bg-transparent px-2 pt-2 pb-3 text-sm font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                className="relative h-9 border-b-2 border-b-transparent bg-transparent px-2 pt-2 pb-3 text-sm font-semibold text-muted-foreground shadow-none transition-none data-selected:text-foreground"
               >
                 Code
               </Tabs.Tab>
