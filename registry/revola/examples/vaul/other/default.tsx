@@ -26,7 +26,7 @@ export default function VaulOtherDemo() {
               </span>
               <span className="block">
                 Setting{" "}
-                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-geist-mono text-xs text-secondary-foreground">
+                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-jetbrains-mono text-xs text-secondary-foreground">
                   modal={"{false}"}
                 </kbd>{" "}
                 allows users to interact with the page behind Revola - scroll, click buttons, navigate, etc.

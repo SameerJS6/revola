@@ -34,7 +34,7 @@ export default function VaulNonDismissibleDemo() {
               </span>
               <span className="block">
                 With{" "}
-                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-geist-mono text-xs text-secondary-foreground">
+                <kbd className="rounded border border-primary/15 bg-secondary/50 px-0.5 py-[1.5px] font-jetbrains-mono text-xs text-secondary-foreground">
                   dismissible={"{false}"}
                 </kbd>
                 , only programmatic control can close it.

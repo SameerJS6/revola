@@ -29,8 +29,8 @@ export const textVariants = cva("", {
       dark: "selection:bg-zinc-900 selection:text-zinc-50",
     },
     size: {
-      title: "text-6xl font-semibold tracking-tight text-zinc-900 md:text-7xl",
-      subtitle: "text-lg font-medium text-zinc-500 md:text-xl",
+      title: "text-6xl font-medium tracking-tight text-zinc-900 md:text-7xl",
+      subtitle: "text-lg text-zinc-500 md:text-xl",
       link: "text-zinc-500 underline underline-offset-4",
     },
   },
@@ -126,7 +126,7 @@ export default function RevolaHero() {
               className={cn(
                 focusRingVariants(),
                 "max-md:hidden",
-                "data-[open=false]:bg-[#161615] data-[open=true]:bg-[#f1f1f1] data-[open=false]:text-white data-[open=true]:text-[#161615] data-[open=false]:hover:bg-[#1A1A19] data-[open=true]:hover:bg-[#F9F9F8]",
+                "data-[open=false]:bg-[#161615] data-[open=false]:text-white data-[open=false]:hover:bg-[#1A1A19] data-[open=true]:bg-[#f1f1f1] data-[open=true]:text-[#161615] data-[open=true]:hover:bg-[#F9F9F8]",
                 "dark:data-[open=true]:bg-[#f1f1f1]"
               )}
             />
@@ -136,7 +136,7 @@ export default function RevolaHero() {
             rel="noopener noreferrer"
             href="https://github.com/SameerJS6/revola"
             className={cn(
-              "inline-flex h-10 items-center gap-2 rounded-full pl-4 pr-3 font-medium text-zinc-900 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-800",
+              "inline-flex h-10 items-center gap-2 rounded-full pr-3 pl-4 font-medium text-zinc-900 transition-colors duration-200 hover:bg-zinc-100 hover:text-zinc-800",
               textVariants({ selection: "dark" }),
               focusRingVariants()
             )}
@@ -176,7 +176,7 @@ export default function RevolaHero() {
 function BackgroundGrid() {
   return (
     <svg
-      className="pointer-events-none absolute inset-0 h-full w-full stroke-gray-200 opacity-50 [mask-image:radial-gradient(100%_100%_at_top_center,white,transparent)]"
+      className="pointer-events-none absolute inset-0 h-full w-full mask-[radial-gradient(100%_100%_at_top_center,white,transparent)] stroke-gray-200 opacity-50"
       aria-hidden="true"
     >
       <defs>

@@ -67,9 +67,9 @@ export default function MobilePreview({ name, className }: MobilePreviewProps) {
         <ResponsiveDialogTrigger
           data-open={isOpen ? "true" : "false"}
           className={cn(
-            "relative flex size-9 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full text-sm font-medium shadow-sm transition-all disabled:pointer-events-none disabled:opacity-70",
-            "data-[open=false]:bg-white data-[open=true]:bg-[#161615] data-[open=true]:text-white data-[open=false]:hover:bg-[#FAFAFA] data-[open=true]:hover:bg-[#313130]",
-            "dark:data-[open=false]:bg-[#161615] dark:data-[open=true]:bg-white dark:data-[open=true]:text-[#161615] dark:data-[open=false]:hover:bg-[#1A1A19] dark:data-[open=true]:hover:bg-[#F9F9F8]",
+            "relative flex size-9 shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full text-sm font-medium shadow-sm transition-all disabled:pointer-events-none disabled:opacity-70",
+            "data-[open=false]:bg-white data-[open=false]:hover:bg-[#FAFAFA] data-[open=true]:bg-[#161615] data-[open=true]:text-white data-[open=true]:hover:bg-[#313130]",
+            "dark:data-[open=false]:bg-[#161615] dark:data-[open=false]:hover:bg-[#1A1A19] dark:data-[open=true]:bg-white dark:data-[open=true]:text-[#161615] dark:data-[open=true]:hover:bg-[#F9F9F8]",
             className
           )}
         >
@@ -81,7 +81,7 @@ export default function MobilePreview({ name, className }: MobilePreviewProps) {
             <TooltipTrigger>
               <div
                 className={cn(
-                  "relative flex size-9 flex-shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full text-sm font-medium shadow-sm transition-all disabled:pointer-events-none disabled:opacity-70",
+                  "relative flex size-9 shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full text-sm font-medium shadow-sm transition-all disabled:pointer-events-none disabled:opacity-70",
                   "cursor-not-allowed bg-white opacity-50 hover:bg-[#FAFAFA] dark:bg-[#161615] dark:text-white dark:hover:bg-[#1A1A19]"
                 )}
               >
@@ -100,7 +100,7 @@ export default function MobilePreview({ name, className }: MobilePreviewProps) {
       <ResponsiveDialogContent
         showCloseButton={false}
         className={cn(
-          "z-10 aspect-[8/16] h-full w-[375px]",
+          "z-10 aspect-8/16 h-full w-93.75",
           mockupSize === "sm" && "-right-6",
           mockupSize === "md" && "-right-2",
           mockupSize === "lg" && "right-4",

@@ -41,5 +41,8 @@ yarn-error.log*
 next-env.d.ts
 
 
+# Claude
+.claude/settings.local.json
+
 # Fumadocs
 .source
